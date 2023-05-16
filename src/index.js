@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./routes/Home";
 import App from "./App";
+import TeamRating from "./routes/app/TeamRating";
+import AdminPage from "./routes/admin";
+import AdminUsers from "./routes/admin/Users";
+import AdminTeams from "./routes/admin/Teams";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +14,19 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <TeamRating />
+      },
+      {
+        path: "/admin",
+        element: <AdminPage />
+      },
+      {
+        path: "/admin/users",
+        element: <AdminUsers />
+      },
+      {
+        path: "/admin/teams",
+        element: <AdminTeams />
       }
     ]
   },
