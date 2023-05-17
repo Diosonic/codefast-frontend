@@ -9,6 +9,7 @@ export default class CoreApiService {
 
   async read(id) {
     const response = await api.get(`${this.endpoint}/${id}`);
+    debugger;
     const data = response.data.item;
     return this.serializer.fromJson(data);
   }
@@ -50,7 +51,7 @@ export default class CoreApiService {
       this.serializer.toJson(item)
     );
 
-    const data = response.data.item;
+    const data = response.data.oret;
 
     return this.serializer.fromJson(data);
   }
@@ -68,6 +69,7 @@ export default class CoreApiService {
   }
 
   async update(item, isFormDate = false) {
+    debugger;
     const response = await api.put(
       `${this.endpoint}/${item.id}`,
       isFormDate
