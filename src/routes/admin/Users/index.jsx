@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import UserService from "../../../services/user.serializer";
+import UserService from "../../../services/user.service";
 
 export default function AdminUsers() {
   useEffect(() => {
