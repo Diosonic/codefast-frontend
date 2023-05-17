@@ -8,6 +8,7 @@ import AdminUsers from "./routes/admin/Users";
 import AdminTeams from "./routes/admin/Teams";
 import TeamForm from "./routes/admin/Teams/TeamsForm";
 import AdminUserForm from "./routes/admin/Users/UserForm";
+import CheckIn from "./routes/admin/Check-In";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <AdminPage />,
+      },
+      {
+        path: "/admin/checkin",
+        element: <CheckIn />,
       },
       {
         path: "/admin/users",
