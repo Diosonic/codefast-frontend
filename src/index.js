@@ -44,6 +44,7 @@ const router = createBrowserRouter([
         path: "/admin/teams/form",
         element: <TeamForm />,
       },
+      { path: "/admin/teams/form/:id", element: <TeamForm /> },
     ],
   },
 ]);
