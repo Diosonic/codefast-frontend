@@ -7,6 +7,7 @@ import AdminPage from "./routes/admin";
 import AdminUsers from "./routes/admin/Users";
 import AdminTeams from "./routes/admin/Teams";
 import TeamForm from "./routes/admin/Teams/TeamsForm";
+import AdminUserForm from "./routes/admin/Users/UserForm";
 
 const router = createBrowserRouter([
   {
@@ -16,18 +17,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <TeamRating />,
-      },
-      {
-        path: "/admin",
-        element: <AdminPage />,
-      },
-      {
-        path: "/admin/users",
-        element: <AdminUsers />,
-      },
-      {
-        path: "/admin/teams",
-        element: <AdminTeams />,
       },
     ],
   },
@@ -42,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/users",
         element: <AdminUsers />,
+      },
+      {
+        path: "/admin/users/form",
+        element: <AdminUserForm />,
       },
       {
         path: "/admin/teams",
