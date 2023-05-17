@@ -1,42 +1,73 @@
-import { Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
-import { Form } from "react-router-dom";
-import TextInput from "../../../../components/InputText";
-import CheckboxInput from "../../../../components/CheckboxInput";
 import TeamService from "../../../../services/team.service";
+import { useParams } from "react-router-dom";
+import Select from "react-select";
+import UserService from "../../../../services/user.service";
 
 export default function TeamForm() {
+  const { id } = useParams();
   const [teamValues, setTeamValues] = useState();
+  const [userOptions, setUserOptions] = useState([]);
+  const [action, setAction] = useState("create");
+
+  const _teamService = new TeamService();
+  const _userService = new UserService();
 
   useEffect(() => {
-    setTeamValues({
-      name: "",
-      checked: false,
-    });
-  }, []);
+    async function init() {
+      const usersOptions = await _userService.list();
+      setUserOptions(usersOptions);
+
+      if (id) {
+        setAction("edit");
+        const team = await _teamService.read(id);
+        setTeamValues(team);
+
+        debugger;
+      } else {
+        setAction("create");
+        setTeamValues({
+          name: "",
+          checked: false,
+          users: [],
+        });
+      }
+    }
+
+    init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   async function createTeam(values) {
     debugger;
-    const _teamService = new TeamService();
-    await _teamService
-      .create(values)
-      .then((res) => {
-        debugger;
-      })
-      .catch((err) => {
-        debugger;
-        console.log(err);
-      });
+    if (action === "create") {
+      await _teamService
+        .create(values)
+        .then((res) => {
+          debugger;
+        })
+        .catch((err) => {
+          debugger;
+          console.log(err);
+        });
+    } else {
+      await _teamService
+        .update(values)
+        .then((res) => {
+          debugger;
+        })
+        .catch((err) => {});
+    }
   }
 
   return (
     <div>
-      <h1>Criando novo time</h1>
+      <h1>{action === "create" ? "Criando time" : "Editando time"}</h1>
       <hr></hr>
 
       <Formik
         enableReinitialize={true}
-        // validationSchema={veiacoSchema}
         initialValues={teamValues}
         onSubmit={(values) => {
           debugger;
@@ -45,19 +76,27 @@ export default function TeamForm() {
       >
         {(props) => {
           return (
-            <Form className="form-veiaco">
-              {JSON.stringify(props.values)}
-              <TextInput label="Nome do time" name="name" fieldName="name" />
+            <Form>
+              <Field type="text" name="name" />
 
-              <CheckboxInput
-                label="Equipe credenciada?"
-                name="checked"
-                fieldName="checked"
-                id="checked"
+              <br />
+
+              <label>Credenciado: </label>
+              <Field type="checkbox" name="checked" />
+
+              <br />
+
+              <Select
+                isMulti
+                name="users"
+                options={userOptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+                value={props.values?.users}
                 onChange={(ev) => {
-                  props.setFieldValue("checked", ev.target.checked);
+                  debugger;
+                  props.setFieldValue("users", ev);
                 }}
-                checked={props?.values?.checked}
               />
 
               <button type="submit">Salvar</button>
