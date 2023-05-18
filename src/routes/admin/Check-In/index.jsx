@@ -6,7 +6,7 @@ import "./styles.scss";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
 
 export default function CheckIn() {
-  const [teams, setTeams] = useState();
+  const [teams, setTeams] = useState([]);
   const [teamClicked, setTeamClicked] = useState();
   const [displayDialog, setDisplayDialog] = useState(false);
 
@@ -22,11 +22,10 @@ export default function CheckIn() {
   }, []);
 
   async function checkInUser() {
-    console.log(teamClicked);
-
     _teamService
       .update({ checked: !teamClicked.checked, id: teamClicked.id })
       .then((res) => {
+        window.location.reload();
         setDisplayDialog(false);
       })
       .catch((res) => console.log(res));
@@ -37,8 +36,14 @@ export default function CheckIn() {
       <ConfirmationDialog
         open={displayDialog}
         setOpen={setDisplayDialog}
-        title="Deseja credenciar a equipe?"
-        msg="Ao credenciar, essa equipe irá aparecer na listagem do raking principal."
+        title={`Deseja ${
+          teamClicked?.checked ? "descredenciar" : "credenciar"
+        } a equipe ${teamClicked?.name}?`}
+        msg={
+          teamClicked?.checked
+            ? "Ao descredenciar, essa equipe irá sumir na listagem do raking principal."
+            : "Ao credenciar, essa equipe irá aparecer na listagem do raking principal."
+        }
         onConfirm={checkInUser}
       />
 
@@ -55,7 +60,7 @@ export default function CheckIn() {
 
       <Row>
         {teams?.map((team) => (
-          <Col sm="6" md="6" lg="6" xl="6">
+          <Col sm="2" md="2" lg="2" xl="2" key={team.id}>
             <div
               className={team.checked ? "checked" : "not-checked"}
               onClick={() => {
@@ -63,7 +68,7 @@ export default function CheckIn() {
                 setTeamClicked(team);
               }}
             >
-              <span key={team.id}>{team.name}</span>
+              <span>{team.name}</span>
             </div>
           </Col>
         ))}

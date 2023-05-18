@@ -34,12 +34,8 @@ export default function ConfirmationDialog({
         <DialogContentText>{msg}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={handleClose}>
-          Cancelar
-        </Button>
-        <Button onClick={onConfirm} autoFocus>
-          Aceitar
-        </Button>
+        <Button onClick={handleClose}>Cancelar</Button>
+        <Button onClick={onConfirm}>Aceitar</Button>
       </DialogActions>
     </Dialog>
   );
