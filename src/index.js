@@ -8,7 +8,10 @@ import AdminUsers from "./routes/admin/Users";
 import AdminTeams from "./routes/admin/Teams";
 import TeamForm from "./routes/admin/Teams/TeamsForm";
 import AdminUserForm from "./routes/admin/Users/UserForm";
+import AdminValidation from "./routes/admin/Validation";
+import IndividualValidation from "./routes/admin/Validation/IndividualValidation";
 import CheckIn from "./routes/admin/Check-In";
+
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,11 @@ const router = createBrowserRouter([
         element: <TeamForm />,
       },
       { path: "/admin/teams/form/:id", element: <TeamForm /> },
+      { path: "/admin/validation", element: <AdminValidation /> },
+      {
+        path: "/admin/user/:id/validation",
+        element: <IndividualValidation />,
+      },
     ],
   },
 ]);

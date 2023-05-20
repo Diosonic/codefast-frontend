@@ -16,6 +16,18 @@ export default class TeamSerializer {
       json.id && { id: json.id },
       json.users && {
         users: json.users.map((item) => this._userSerializer.fromJson(item)),
+      },
+      {
+        validation: json.validation,
+      },
+      {
+        unplaced: json.unplaced,
+      },
+      {
+        points: json.points,
+      },
+      json.time && {
+        time: json.time,
       }
     );
 
@@ -30,7 +42,16 @@ export default class TeamSerializer {
       {
         checked: team.checked,
       },
-      team.users && { id_users: team.users.map((item) => item.id) }
+      team.users && { id_users: team.users.map((item) => item.id) },
+      {
+        validation: team.validation,
+      },
+      team.points && {
+        points: team.points,
+      },
+      {
+        time: team.time,
+      }
     );
 
     return teamToJson;
