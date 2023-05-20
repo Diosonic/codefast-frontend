@@ -30,10 +30,11 @@ export default function AdminValidation() {
       <hr />
 
       <Row>
-        {teamsList.map((user) => (
+        {teamsList.map((team) => (
           <Col>
-
-            <span>{user.name}</span>
+            <NavLink to={`/admin/user/${team.id}/validation`}>
+              <span>{team?.name}</span>
+            </NavLink>
           </Col>
         ))}
       </Row>

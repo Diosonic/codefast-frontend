@@ -24,7 +24,6 @@ export default function TeamForm() {
         const team = await _teamService.read(id);
         setTeamValues(team);
 
-        debugger;
       } else {
         setAction("create");
         setTeamValues({
