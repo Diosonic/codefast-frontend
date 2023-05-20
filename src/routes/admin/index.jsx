@@ -5,6 +5,10 @@ export default function AdminPage() {
     <div>
       <ul>
         <li>
+          <NavLink to="/admin/checkin">Credenciamento</NavLink>{" "}
+        </li>
+
+        <li>
           <NavLink to="/admin/users">Usuários</NavLink>
         </li>
 

@@ -10,7 +10,6 @@ export default function AdminUsers() {
 
   useEffect(() => {
     async function init() {
-      debugger;
       const userService = new UserService();
       const userResponse = await userService.list();
       setUsers(userResponse);

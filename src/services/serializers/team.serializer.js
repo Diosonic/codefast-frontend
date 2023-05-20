@@ -7,7 +7,6 @@ export default class TeamSerializer {
 
   fromJson(json) {
     const team = {};
-    debugger;
     Object.assign(
       team,
       json.name && { name: json.name },
@@ -37,7 +36,6 @@ export default class TeamSerializer {
 
   toJson(team) {
     const teamToJson = {};
-    debugger;
     Object.assign(
       teamToJson,
       team.name && { name: team.name },

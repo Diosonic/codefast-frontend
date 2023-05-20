@@ -39,7 +39,6 @@ export default function TeamForm() {
   }, [id]);
 
   async function createTeam(values) {
-    debugger;
     if (action === "create") {
       await _teamService
         .create(values)
