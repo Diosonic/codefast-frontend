@@ -14,7 +14,7 @@ export default class TeamSerializer {
       {
         checked: json.checked,
       },
-      json.id && { id: json.id },
+      json.id && { id: json.id, value: json.id, label: json.name },
       json.users && {
         users: json.users.map((item) => this._userSerializer.fromJson(item)),
       },
@@ -36,6 +36,7 @@ export default class TeamSerializer {
   }
 
   toJson(team) {
+    debugger
     const teamToJson = {};
     debugger;
 

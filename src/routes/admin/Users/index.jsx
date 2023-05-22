@@ -2,17 +2,40 @@ import { useEffect, useState } from "react";
 import UserService from "../../../services/user.service";
 
 import "./styles.scss";
-import { Row } from "reactstrap";
-import { NavLink } from "react-router-dom";
+
+import AdminButtonsFooter from "../../../components/admin/AdminButtonsFooter";
+import AdminTable from "../../../components/admin/AdminTable";
+import AdminHeader from "../../../components/admin/AdminHeader";
+import { useNavigate } from "react-router-dom";
+import { UserEdit } from "iconsax-react";
+import { Tag } from "antd";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const tableHead = [
+    {
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Nome",
+      dataIndex: "name",
+      key: "name",
+    },
+    { title: "Email", dataIndex: "email", key: "email" },
+  ];
 
   useEffect(() => {
     async function init() {
+      setLoading(true);
       const userService = new UserService();
       const userResponse = await userService.list();
+
       setUsers(userResponse);
+      setLoading(false);
     }
 
     init();
@@ -20,18 +43,11 @@ export default function AdminUsers() {
 
   return (
     <div>
-      <h1>Usuários</h1>
+      <AdminHeader title="Usuários" buttonRoute="/admin/users/form" />
 
-      <NavLink to="/admin/users/form">
-        <button>Novo</button>
-      </NavLink>
-      <hr />
+      <AdminTable data={users} columns={tableHead} loading={loading} />
 
-      <Row>
-        {users.map((user) => (
-          <span>{user.name}</span>
-        ))}
-      </Row>
+      <AdminButtonsFooter routerLink={"/admin"} />
     </div>
   );
 }
