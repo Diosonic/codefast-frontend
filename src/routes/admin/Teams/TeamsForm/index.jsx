@@ -1,15 +1,20 @@
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import TeamService from "../../../../services/team.service";
-import { useParams } from "react-router-dom";
-import Select from "react-select";
+import { useNavigate, useParams } from "react-router-dom";
 import UserService from "../../../../services/user.service";
+import AdminButtonsFooter from "../../../../components/admin/AdminButtonsFooter";
+import TextInput from "../../../../components/TextInput";
+import Select from "react-select";
+import { Col, Row } from "reactstrap";
 
 export default function TeamForm() {
   const { id } = useParams();
   const [teamValues, setTeamValues] = useState();
   const [userOptions, setUserOptions] = useState([]);
   const [action, setAction] = useState("create");
+
+  let navigate = useNavigate();
 
   const _teamService = new TeamService();
   const _userService = new UserService();
@@ -23,7 +28,6 @@ export default function TeamForm() {
         setAction("edit");
         const team = await _teamService.read(id);
         setTeamValues(team);
-
       } else {
         setAction("create");
         setTeamValues({
@@ -43,7 +47,7 @@ export default function TeamForm() {
       await _teamService
         .create(values)
         .then((res) => {
-          debugger;
+          navigate("/admin/teams");
         })
         .catch((err) => {
           debugger;
@@ -68,36 +72,38 @@ export default function TeamForm() {
         enableReinitialize={true}
         initialValues={teamValues}
         onSubmit={(values) => {
-          debugger;
           createTeam(values);
         }}
       >
         {(props) => {
           return (
             <Form>
-              <Field type="text" name="name" />
+              <Row>
+                <Col md="3" lg="3" xl="3">
+                  <TextInput
+                    type="text"
+                    label="Nome"
+                    name="name"
+                    placeholder="Nome"
+                  />
+                </Col>
 
-              <br />
+                <Col md="3" lg="3" xl="3">
+                  <Select
+                    isMulti
+                    name="users"
+                    options={userOptions}
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                    value={props.values?.users}
+                    onChange={(ev) => {
+                      props.setFieldValue("users", ev);
+                    }}
+                  />
+                </Col>
+              </Row>
 
-              <label>Credenciado: </label>
-              <Field type="checkbox" name="checked" />
-
-              <br />
-
-              <Select
-                isMulti
-                name="users"
-                options={userOptions}
-                className="basic-multi-select"
-                classNamePrefix="select"
-                value={props.values?.users}
-                onChange={(ev) => {
-                  debugger;
-                  props.setFieldValue("users", ev);
-                }}
-              />
-
-              <button type="submit">Salvar</button>
+              <AdminButtonsFooter submit routerLink={"/admin/teams"} />
             </Form>
           );
         }}

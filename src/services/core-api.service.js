@@ -44,12 +44,13 @@ export default class CoreApiService {
   }
 
   async create(item) {
+    debugger;
     const response = await api.post(
       `${this.endpoint}`,
       this.serializer.toJson(item)
     );
 
-    const data = response.data.oret;
+    const data = response.data.item;
 
     return this.serializer.fromJson(data);
   }
@@ -67,6 +68,7 @@ export default class CoreApiService {
   }
 
   async update(item, isFormDate = false) {
+    debugger;
     const response = await api.put(
       `${this.endpoint}/${item.id}`,
       isFormDate
