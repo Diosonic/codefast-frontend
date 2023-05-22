@@ -16,11 +16,13 @@ export default function IndividualValidation() {
     }
 
     init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   async function initValidation() {
-    team.validation = "Em progresso";
-    
+    debugger;
+    team.validation = "Validando";
+
     await _teamService
       .update(team)
       .then((res) => {
@@ -31,7 +33,7 @@ export default function IndividualValidation() {
 
   async function aproveValidation() {
     team.validation = "Aprovado";
-    team.time = null;
+    team.time = 0;
     team.points = team.points + 100;
 
     await _teamService

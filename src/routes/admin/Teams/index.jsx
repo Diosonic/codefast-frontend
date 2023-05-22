@@ -19,7 +19,7 @@ export default function AdminTeams() {
   return (
     <div>
       <h1>Times</h1>
-
+    
       <NavLink to="/admin/teams/form">
         <button>Novo</button>
       </NavLink>
