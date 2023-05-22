@@ -9,6 +9,7 @@ export default class CoreApiService {
 
   async read(id) {
     const response = await api.get(`${this.endpoint}/${id}`);
+
     const data = response.data.item;
     return this.serializer.fromJson(data);
   }
