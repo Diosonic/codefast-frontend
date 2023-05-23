@@ -3,6 +3,9 @@ import InfoLevel from "./InfoLevel";
 import { useEffect, useState } from "react";
 import TeamService from "../../../services/team.service";
 
+
+
+
 export default function TeamRating() {
   const [teamsList, setTeamsList] = useState([]);
 

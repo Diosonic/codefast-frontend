@@ -10,6 +10,7 @@ import TeamForm from "./routes/admin/Teams/TeamsForm";
 import AdminUserForm from "./routes/admin/Users/UserForm";
 import AdminValidation from "./routes/admin/Validation";
 import IndividualValidation from "./routes/admin/Validation/IndividualValidation";
+import TeamBrackets from "./routes/app/TeamBrackets";
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <TeamRating />,
+      },
+      {
+        path: "/brackets",
+        element: <TeamBrackets />,
       },
     ],
   },
