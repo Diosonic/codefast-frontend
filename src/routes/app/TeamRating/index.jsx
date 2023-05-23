@@ -7,8 +7,6 @@ import { Col, Row } from "reactstrap";
 import "./styles.scss";
 
 
-
-
 export default function TeamRating() {
   const [teamsList, setTeamsList] = useState([]);
   const [levelInProgress, setLevelInProgress] = useState();

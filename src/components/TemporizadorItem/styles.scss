@@ -1,17 +1,17 @@
-table {
+.score table {
   width: 80%;
   margin: 0 auto;
   font-family: "Montserrat", sans-serif;
 }
 
-th,
-td {
+.score th,
+.score td {
   text-align: center;
   width: 200px;
   font-size: 20px;
 }
 
-tr {
+.score tr {
   color: rgb(226, 226, 226);
   display: grid;
   grid-template-columns: 300px 300px 300px 1fr;
@@ -35,7 +35,7 @@ tr {
   }
 }
 
-th {
+.score th {
   background-color: #f2f2f2;
 }
 

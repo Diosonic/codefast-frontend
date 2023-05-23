@@ -43,15 +43,17 @@ export default function TemporizadorItem({ item, levelInProgress }) {
   }
 
   return (
-    <table>
-      <tbody>
-        <tr className={checkStatus()}>
-          <td className="team-name">{item.name}</td>
-          <td>{item.validation}</td>
-          <td>{segundos}</td>
-          <td className="team-points">{item.points}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div className="score">
+      <table>
+        <tbody>
+          <tr className={checkStatus()}>
+            <td className="team-name">{item.name}</td>
+            <td>{item.validation}</td>
+            <td>{segundos}</td>
+            <td className="team-points">{item.points}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   );
 }
