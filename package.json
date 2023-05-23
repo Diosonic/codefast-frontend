@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "ant": "^0.2.0",
     "antd": "^5.5.0",
     "axios": "^1.4.0",
     "formik": "^2.2.9",
@@ -24,7 +25,7 @@
     "react-use": "^17.4.0",
     "reactstrap": "^9.1.10",
     "sass": "^1.62.1",
-    "styled-components": "^6.0.0-rc.1",
+    "socket.io-client": "^4.6.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
