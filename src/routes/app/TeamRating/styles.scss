@@ -1,6 +1,16 @@
-.team-rating-container {
-  .ranking-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+body {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 34px,
+    #0f46a2 34px,
+    #0f46a2 68px
+  );
+  background-color: #124eb0;
+  height: 100vh;
+}
+
+.team-score {
+  width: 1000px;
+  margin: 0 auto;
 }

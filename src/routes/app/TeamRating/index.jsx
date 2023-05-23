@@ -3,9 +3,12 @@ import InfoLevel from "./InfoLevel";
 import { useEffect, useState } from "react";
 import TeamService from "../../../services/team.service";
 import TemporizadorItem from "../../../components/TemporizadorItem";
+import { Col, Row } from "reactstrap";
+import "./styles.scss";
 
 export default function TeamRating() {
   const [teamsList, setTeamsList] = useState([]);
+  const [levelInProgress, setLevelInProgress] = useState();
   const _teamService = new TeamService();
 
   useEffect(() => {
@@ -13,7 +16,7 @@ export default function TeamRating() {
       const responseTeamService = await _teamService.list();
       setTeamsList(responseTeamService);
     }, 5000);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -24,32 +27,31 @@ export default function TeamRating() {
     }
 
     init();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="team-rating-container">
-      <InfoLevel />
+      {/* <InfoLevel /> */}
 
-      <div>
-        <h3>Pontuação</h3>
-        <table className="ranking-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Nome</th>
-              <th>Status</th>
-              <th>Tempo</th>
-              <th>Pontuação</th>
-            </tr>
-          </thead>
+      <button
+        onClick={() => {
+          setLevelInProgress(true);
+        }}
+      >
+        Começar etapa
+      </button>
 
-          <tbody>
-            {teamsList.map((item) => (
-              <TemporizadorItem key={item.id} item={item} />
-            ))}
-          </tbody>
-        </table>
+      <div className="team-score">
+        <Row>
+          {teamsList.map((item) => (
+            <TemporizadorItem
+              key={item.id}
+              item={item}
+              levelInProgress={levelInProgress}
+            />
+          ))}
+        </Row>
       </div>
     </div>
   );
