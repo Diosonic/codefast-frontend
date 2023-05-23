@@ -8,9 +8,25 @@ import {
 } from "react-brackets";
 
 import "./styles.scss";
+import { useEffect, useState } from "react";
+import RoundService from "../../../services/rounds.service";
 
 export default function TeamBrackets() {
-  const rounds = [
+  const [rounds, setRounds] = useState([]);
+
+  useEffect(() => {
+    async function init() {
+      const _roundsService = new RoundService();
+      const roundsResponse = await _roundsService.list();
+      setRounds(roundsResponse);
+    }
+
+    init();
+  }, []);
+
+  console.log(rounds)
+
+  const roundss = [
     {
       title: "Round of 8",
       seeds: [
@@ -72,7 +88,7 @@ export default function TeamBrackets() {
     // mobileBreakpoint is required to be passed down to a seed
     return (
       <Seed mobileBreakpoint={breakpoint} className="seed">
-        <SeedItem className="seed-item" >
+        <SeedItem className="seed-item">
           <div className="seed-team">
             <SeedTeam>{seed.teams[0]?.name || "NO TEAM "}</SeedTeam>
 
