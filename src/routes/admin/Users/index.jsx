@@ -6,9 +6,6 @@ import "./styles.scss";
 import AdminButtonsFooter from "../../../components/admin/AdminButtonsFooter";
 import AdminTable from "../../../components/admin/AdminTable";
 import AdminHeader from "../../../components/admin/AdminHeader";
-import { useNavigate } from "react-router-dom";
-import { UserEdit } from "iconsax-react";
-import { Tag } from "antd";
 
 export default function AdminUsers() {
   const [users, setUsers] = useState([]);

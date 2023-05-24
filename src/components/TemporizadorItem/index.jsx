@@ -23,6 +23,12 @@ export default function TemporizadorItem({ item, levelInProgress }) {
 
       if (item.validation === "Aprovado") {
         clearInterval(timer);
+        updateTime({ id: item.id, time: segundos });
+      }
+
+      if (item.validation === "Declinado") {
+        clearInterval(timer);
+        updateTime({ id: item.id, time: segundos });
       }
 
       return () => clearInterval(timer);

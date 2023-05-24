@@ -15,6 +15,7 @@ import AdminUserForm from "./routes/admin/Users/UserForm";
 import AdminValidation from "./routes/admin/Validation";
 import IndividualValidation from "./routes/admin/Validation/IndividualValidation";
 import TeamBrackets from "./routes/app/TeamBrackets";
+import ClassificationRound from "./routes/admin/ClassificationsRound";
 
 const router = createBrowserRouter([
   {
@@ -61,20 +62,15 @@ const router = createBrowserRouter([
         path: "/admin/user/:id/validation",
         element: <IndividualValidation />,
       },
+      {
+        path: "/admin/classification-round",
+        element: <ClassificationRound />,
+      },
     ],
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-if (window.location.pathname === "/") {
-  const rootDisplay = document.getElementById("root");
-  rootDisplay.style.backgroundImage =
-    "repeating-linear-gradient(45deg, transparent, transparent 34px, #0f46a2 34px, #0f46a2 68px)";
-
-  rootDisplay.style.height = "100vh";
-  rootDisplay.style.backgroundColor = "#124eb0";
-}
 
 root.render(
   <React.StrictMode>

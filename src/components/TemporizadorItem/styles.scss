@@ -12,9 +12,8 @@
 }
 
 .score tr {
-  color: rgb(226, 226, 226);
   display: grid;
-  grid-template-columns: 300px 300px 300px 1fr;
+  grid-template-columns: 300px 300px 200px 200px;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -42,14 +41,18 @@
 .approved {
   background: rgb(23, 165, 54);
   font-weight: 600;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 .declined {
-  background: red;
+  background: rgb(236, 57, 57);
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 .validation {
-  background: rgb(236, 252, 21);
+  background: rgb(233, 205, 46);
   color: black;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;

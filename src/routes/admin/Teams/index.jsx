@@ -3,8 +3,7 @@ import TeamService from "../../../services/team.service";
 import AdminTable from "../../../components/admin/AdminTable";
 import AdminButtonsFooter from "../../../components/admin/AdminButtonsFooter";
 import AdminHeader from "../../../components/admin/AdminHeader";
-import { Card, CardTick1, Edit } from "iconsax-react";
-import { useNavigate } from "react-router-dom";
+import { CardTick1 } from "iconsax-react";
 import { Popconfirm, Tag } from "antd";
 
 export default function AdminTeams() {
@@ -55,7 +54,7 @@ export default function AdminTeams() {
             }
             onConfirm={() => checkInUser(record)}
           >
-            <CardTick1 cursor="pointer" color="#37d67a"/>
+            <CardTick1 cursor="pointer" color="#37d67a" />
           </Popconfirm>
         </>
       ),
@@ -72,6 +71,7 @@ export default function AdminTeams() {
     }
 
     init();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function checkInUser(record) {

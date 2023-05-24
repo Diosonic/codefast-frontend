@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import TeamService from "../../../../services/team.service";
+import { Button } from "antd";
+import "./styles.scss";
 
 export default function IndividualValidation() {
   const { id } = useParams();
@@ -57,38 +59,63 @@ export default function IndividualValidation() {
 
   return (
     <div>
-      <h1>Você está validando o grupo {team?.name}!</h1>
+      <h1>{team?.name}</h1>
+
       <hr></hr>
 
       <div>
+        <label>
+          Atualmente o time {team?.name} possui {team?.points} pontos
+        </label>
+        <br />
+        <small>
+          Preste muita atenção durante a avaliação do material, caso tenha
+          dúvidas, pergunte a um discente ou docente de confiança.
+        </small>
+      </div>
+
+      <div>
         {!validationInProgress ? (
-          <>
-            <button
+          <div className="init-validation">
+            <Button
               onClick={() => {
                 initValidation(team);
               }}
+              htmlType="submit"
+              type="primary"
             >
               Começar validação
-            </button>
-            <button>Voltar</button>
-          </>
+            </Button>
+
+            <NavLink to="/admin/validation">
+              <Button htmlType="submit" type="default">
+                Voltar
+              </Button>
+            </NavLink>
+          </div>
         ) : (
-          <>
-            <button
-              onClick={() => {
-                aproveValidation();
-              }}
-            >
-              Aprovar
-            </button>
-            <button
-              onClick={() => {
-                reproveValidation();
-              }}
-            >
-              Reprovar
-            </button>
-          </>
+          <div className="init-validation">
+            <NavLink to="/admin/validation">
+              <Button
+                onClick={() => {
+                  aproveValidation();
+                }}
+                htmlType="submit"
+                type="primary"
+              >
+                Aprovar
+              </Button>
+            </NavLink>
+            <NavLink to="/admin/validation">
+              <Button
+                onClick={() => {
+                  reproveValidation();
+                }}
+              >
+                Reprovar
+              </Button>
+            </NavLink>
+          </div>
         )}
       </div>
     </div>
