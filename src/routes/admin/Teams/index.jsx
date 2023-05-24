@@ -3,9 +3,10 @@ import TeamService from "../../../services/team.service";
 import AdminTable from "../../../components/admin/AdminTable";
 import AdminButtonsFooter from "../../../components/admin/AdminButtonsFooter";
 import AdminHeader from "../../../components/admin/AdminHeader";
-import { CardTick1, Edit2 } from "iconsax-react";
+import { CardTick1, Edit2, PlayRemove } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import { Popconfirm, Tag } from "antd";
+import "./styles.scss";
 
 export default function AdminTeams() {
   const [teams, setTeams] = useState([]);
@@ -42,29 +43,62 @@ export default function AdminTeams() {
         ),
     },
     {
+      title: "Classificação",
+      dataIndex: "unplaced",
+      key: "unplaced",
+      render: (record) =>
+        !record ? (
+          <Tag color="green" bordered={false}>
+            Classificado
+          </Tag>
+        ) : (
+          <Tag color="red" bordered={false}>
+            Desclassificado
+          </Tag>
+        ),
+    },
+    {
       title: "Ação",
       key: "action",
       render: (record) => (
         <>
-          <Edit2
-            onClick={() => navigate(`/admin/teams/form/${record.id}`)}
-            cursor="pointer"
-            color="#37d67a"
-          />
+          <div className="team-actions">
+            <Edit2
+              onClick={() => navigate(`/admin/teams/form/${record.id}`)}
+              cursor="pointer"
+              color="#37d67a"
+            />
 
-          <Popconfirm
-            title={
-              record.checked ? "Descredenciar equipe" : "Credenciar equipe"
-            }
-            description={
-              record.checked
-                ? `Deseja descredenciar a equipe ${record.name}?`
-                : `Deseja credenciar a equipe ${record.name}?`
-            }
-            onConfirm={() => checkInUser(record)}
-          >
-            <CardTick1 cursor="pointer" color="#37d67a" />
-          </Popconfirm>
+            <Popconfirm
+              title={
+                record.checked ? "Descredenciar equipe" : "Credenciar equipe"
+              }
+              description={
+                record.checked
+                  ? `Deseja descredenciar a equipe ${record.name}?`
+                  : `Deseja credenciar a equipe ${record.name}?`
+              }
+              onConfirm={() => checkInUser(record)}
+            >
+              <CardTick1 cursor="pointer" color="#37d67a" />
+            </Popconfirm>
+
+            <Popconfirm
+              title={
+                !record.unplaced
+                  ? "Desclassificar equipe"
+                  : "Classificar equipe"
+              }
+              description={
+                !record.unplaced
+                  ? `Deseja desclassificar a equipe ${record.name}?`
+                  : `Deseja classificar a equipe ${record.name}?`
+              }
+              onConfirm={() => unplaceTeam(record)}
+            >
+              <PlayRemove cursor="pointer" color="#f47373" />
+            </Popconfirm>
+          </div>
         </>
       ),
     },
@@ -102,6 +136,12 @@ export default function AdminTeams() {
       .catch((res) => {
         setLoading(false);
       });
+  }
+
+  async function unplaceTeam(record) {
+    record.unplaced = !record.unplaced;
+
+    await _teamService.update(record);
   }
 
   return (

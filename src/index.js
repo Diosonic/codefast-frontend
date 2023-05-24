@@ -11,9 +11,9 @@ import AdminUserForm from "./routes/admin/Users/UserForm";
 import AdminValidation from "./routes/admin/Validation";
 import IndividualValidation from "./routes/admin/Validation/IndividualValidation";
 import TeamBrackets from "./routes/app/TeamBrackets";
-import ClassificationRound from "./routes/admin/ClassificationsRound";
 import AdminBrackets from "./routes/admin/Brackets";
 import AdminBracketsForm from "./routes/admin/Brackets/BracketsForm";
+import ClassificationRound from "./components/ClassificationsRound";
 
 const router = createBrowserRouter([
   {
