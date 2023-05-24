@@ -7,20 +7,34 @@ import TextInput from "../../../../components/TextInput";
 import { Col } from "reactstrap";
 import RoundService from "../../../../services/round.service";
 import SeedService from "../../../../services/seed.service";
+import TeamService from "../../../../services/team.service";
+import Select from "react-select";
+import SeedAndTeamCard from "./SeedAndTeamCard";
 
-// import "./styles.scss";
+import "./styles.scss";
 
 export default function AdminBracketsForm() {
   const { id } = useParams();
   const [action, setAction] = useState("create");
   const [bracketValues, setBracketValues] = useState({});
+  const [relationBracket, setRelationBracket] = useState({
+    seedId: "",
+    team: "",
+  });
+  const [teamsOptions, setTeamsOptions] = useState([]);
 
   let navigate = useNavigate();
 
   const _roundsService = new RoundService();
+  const _teamService = new TeamService();
+  const _seedService = new SeedService();
 
   useEffect(() => {
     async function init() {
+      const responseTeamService = await _teamService.list();
+
+      setTeamsOptions(responseTeamService);
+
       if (id) {
         setAction("edit");
         const round = await _roundsService.read(id);
@@ -37,24 +51,40 @@ export default function AdminBracketsForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  console.log(bracketValues);
-
   async function onSubmit(values) {
-    console.log(values);
+    await _roundsService
+      .create(values)
+      .then((res) => {
+        navigate("/admin/brackets");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
-  async function onAddSeed() {
-    const _seedService = new SeedService();
-
+  async function relationUserAndSeed() {
     await _seedService
-      .create({ round_id: id })
+      .createRelationSeedsAndTeam({
+        seedId: relationBracket.seedId,
+        teamId: relationBracket.team.id,
+      })
       .then((res) => {
         // navigate("/admin/brackets");
       })
       .catch((err) => {
         console.log(err);
       });
+  }
 
+  async function onAddSeed() {
+    await _seedService
+      .create({ round_id: id })
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -72,8 +102,8 @@ export default function AdminBracketsForm() {
         {(props) => {
           return (
             <Form className="form-veiaco">
-              {JSON.stringify(props.values)}
               <Row className="form-user">
+                {/* {console.log(props.values)} */}
                 <Col md="3" lg="3" xl="3">
                   <TextInput
                     type="text"
@@ -81,13 +111,32 @@ export default function AdminBracketsForm() {
                     name="title"
                     placeholder="Título"
                   />
-                </Col>brackets
-
-                <Col md="12" lg="12" xl="12">
-                  <h2>{props?.values?.seeds?.length}</h2>
-
-                  <Button htmlType="button" onClick={onAddSeed}>Adicionar ramo</Button>
                 </Col>
+                {console.log(props.values)}
+
+                {action === "edit" && (
+                  <>
+                    <Col md="12" lg="12" xl="12" className="seed-container">
+                      <h6>
+                        Quantidade de ramo nessa etapa:{" "}
+                        {props?.values?.seeds?.length}
+                      </h6>
+
+                      <Button htmlType="button" onClick={onAddSeed}>
+                        Adicionar ramo
+                      </Button>
+                    </Col>
+
+                    <hr />
+
+                    <SeedAndTeamCard
+                      relationBracket={relationBracket}
+                      setRelationBracket={setRelationBracket}
+                      values={props?.values}
+                      teamsOptions={teamsOptions}
+                    />
+                  </>
+                )}
               </Row>
 
               <div className="buttons-container">

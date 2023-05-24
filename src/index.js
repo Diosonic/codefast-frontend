@@ -69,6 +69,10 @@ const router = createBrowserRouter([
         element: <AdminBrackets />,
       },
       {
+        path: "/admin/brackets/form",
+        element: <AdminBracketsForm />,
+      },
+      {
         path: "/admin/brackets/form/:id",
         element: <AdminBracketsForm />,
       },

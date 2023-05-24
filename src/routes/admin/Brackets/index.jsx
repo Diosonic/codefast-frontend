@@ -55,7 +55,7 @@ export default function AdminBrackets() {
 
   return (
     <div>
-      <AdminHeader title="Rodadas" buttonRoute="/admin/brackets" />
+      <AdminHeader title="Rodadas" buttonRoute="/admin/brackets/form" />
 
       <AdminTable data={rounds} columns={tableHead} loading={loading} />
 

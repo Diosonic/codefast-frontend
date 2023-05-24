@@ -113,19 +113,6 @@ export default function TeamForm() {
                     }}
                   />
                 </Col>
-
-                <Col md="3" lg="3" xl="3">
-                  <Select
-                    name="seed_id"
-                    options={seedOptions}
-                    className="basic-multi-select"
-                    classNamePrefix="select"
-                    value={props.values?.seed_id}
-                    onChange={(ev) => {
-                      props.setFieldValue("seed_id", ev);
-                    }}
-                  />
-                </Col>
               </Row>
 
               <AdminButtonsFooter submit routerLink={"/admin/teams"} />

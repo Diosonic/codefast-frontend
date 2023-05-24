@@ -1,0 +1,27 @@
+.select-team {
+  background-color: #f0f2f5;
+  border-color: red;
+
+  .select-seed-container {
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+
+    .seed-team-card {
+      width: 300px;
+      margin-top: 16px;
+
+      .add-team {
+        span {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+
+
+  .display-infos {
+    padding-top: 2rem;
+    text-align: center;
+  }
+}

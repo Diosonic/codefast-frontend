@@ -20,12 +20,12 @@ export default class RoundSerializer {
   }
 
   toJson(round) {
+    debugger;
     const roundToJson = {};
 
     Object.assign(
       roundToJson,
-      round.name && { name: round.name },
-      round.email && { email: round.email }
+      round.title && { title: round.title },
     );
     return roundToJson;
   }
