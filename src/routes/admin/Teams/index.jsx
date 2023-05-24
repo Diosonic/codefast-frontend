@@ -3,7 +3,7 @@ import TeamService from "../../../services/team.service";
 import AdminTable from "../../../components/admin/AdminTable";
 import AdminButtonsFooter from "../../../components/admin/AdminButtonsFooter";
 import AdminHeader from "../../../components/admin/AdminHeader";
-import { Card, CardTick1, Edit, Edit2 } from "iconsax-react";
+import { CardTick1, Edit2 } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import { Popconfirm, Tag } from "antd";
 
@@ -80,7 +80,7 @@ export default function AdminTeams() {
     }
 
     init();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function checkInUser(record) {

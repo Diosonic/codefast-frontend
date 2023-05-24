@@ -32,6 +32,8 @@ export default function TemporizadorItem({ item, levelInProgress }) {
       }
 
       return () => clearInterval(timer);
+    } else {
+      setSegundos(0);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.validation, levelInProgress]);
@@ -48,6 +50,18 @@ export default function TemporizadorItem({ item, levelInProgress }) {
     }
   }
 
+  function convertMinutesAndSeconds(numero) {
+    var minutos = Math.floor(numero / 60);
+    var segundos = numero % 60;
+
+    var minutosFormatados = minutos < 10 ? "0" + minutos : minutos;
+    var segundosFormatados = segundos < 10 ? "0" + segundos : segundos;
+
+    var tempoFormatado = minutosFormatados + ":" + segundosFormatados;
+
+    return tempoFormatado;
+  }
+
   return (
     <div className="score">
       <table>
@@ -55,7 +69,7 @@ export default function TemporizadorItem({ item, levelInProgress }) {
           <tr className={checkStatus()}>
             <td className="team-name">{item.name}</td>
             <td>{item.validation}</td>
-            <td>{segundos}</td>
+            <td>{convertMinutesAndSeconds(segundos)}</td>
             <td className="team-points">{item.points}</td>
           </tr>
         </tbody>
