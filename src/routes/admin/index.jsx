@@ -31,7 +31,7 @@ export default function AdminPage() {
         <Col md="2" lg="2" xl="2">
           <NavLink to="/admin/brackets" className="menu-card">
             <PlayCircle size="42" color="#555555" />
-            <label>Rodadas</label>
+            <label>Eliminatória</label>
           </NavLink>
         </Col>
       </Row>
