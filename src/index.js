@@ -15,6 +15,8 @@ import AdminUserForm from "./routes/admin/Users/UserForm";
 import AdminValidation from "./routes/admin/Validation";
 import IndividualValidation from "./routes/admin/Validation/IndividualValidation";
 import TeamBrackets from "./routes/app/TeamBrackets";
+import AdminBrackets from "./routes/admin/Brackets";
+import AdminBracketsForm from "./routes/admin/Brackets/BracketsForm";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +63,16 @@ const router = createBrowserRouter([
         path: "/admin/user/:id/validation",
         element: <IndividualValidation />,
       },
+      {
+        path: "/admin/brackets",
+        element: <AdminBrackets />,
+      },
+      {
+        path: "/admin/brackets/form/:id",
+        element: <AdminBracketsForm />,
+      },
+      
+      
     ],
   },
 ]);

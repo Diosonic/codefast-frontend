@@ -3,13 +3,15 @@ import TeamService from "../../../services/team.service";
 import AdminTable from "../../../components/admin/AdminTable";
 import AdminButtonsFooter from "../../../components/admin/AdminButtonsFooter";
 import AdminHeader from "../../../components/admin/AdminHeader";
-import { Card, CardTick1, Edit } from "iconsax-react";
+import { Card, CardTick1, Edit, Edit2 } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import { Popconfirm, Tag } from "antd";
 
 export default function AdminTeams() {
   const [teams, setTeams] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  let navigate = useNavigate();
 
   const _teamService = new TeamService();
 
@@ -44,6 +46,12 @@ export default function AdminTeams() {
       key: "action",
       render: (record) => (
         <>
+          <Edit2
+            onClick={() => navigate(`/admin/teams/form/${record.id}`)}
+            cursor="pointer"
+            color="#37d67a"
+          />
+
           <Popconfirm
             title={
               record.checked ? "Descredenciar equipe" : "Credenciar equipe"
@@ -55,7 +63,7 @@ export default function AdminTeams() {
             }
             onConfirm={() => checkInUser(record)}
           >
-            <CardTick1 cursor="pointer" color="#37d67a"/>
+            <CardTick1 cursor="pointer" color="#37d67a" />
           </Popconfirm>
         </>
       ),
