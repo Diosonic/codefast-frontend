@@ -1,10 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useLocation,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import TeamRating from "./routes/app/TeamRating";
 import AdminPage from "./routes/admin";
@@ -16,6 +12,8 @@ import AdminValidation from "./routes/admin/Validation";
 import IndividualValidation from "./routes/admin/Validation/IndividualValidation";
 import TeamBrackets from "./routes/app/TeamBrackets";
 import ClassificationRound from "./routes/admin/ClassificationsRound";
+import AdminBrackets from "./routes/admin/Brackets";
+import AdminBracketsForm from "./routes/admin/Brackets/BracketsForm";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +63,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/classification-round",
         element: <ClassificationRound />,
+      },
+      {
+        path: "/admin/brackets",
+        element: <AdminBrackets />,
+      },
+      {
+        path: "/admin/brackets/form/:id",
+        element: <AdminBracketsForm />,
       },
     ],
   },

@@ -9,7 +9,7 @@ import {
 
 import "./styles.scss";
 import { useEffect, useState } from "react";
-import RoundService from "../../../services/rounds.service";
+import RoundService from "../../../services/round.service";
 
 export default function TeamBrackets() {
   const [rounds, setRounds] = useState([]);

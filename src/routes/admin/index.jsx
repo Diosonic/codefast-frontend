@@ -17,7 +17,13 @@ export default function AdminPage() {
         </li>
 
         <li>
-          <NavLink to="/admin/classification-round">Rodadas de classificação</NavLink>{" "}
+          <NavLink to="/admin/classification-round">
+            Rodadas de classificação
+          </NavLink>
+        </li>
+
+        <li>
+          <NavLink to="/admin/brackets">Rodadas</NavLink>
         </li>
       </ul>
     </div>
