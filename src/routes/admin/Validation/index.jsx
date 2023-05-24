@@ -5,6 +5,7 @@ import AdminTable from "../../../components/admin/AdminTable";
 import AdminHeader from "../../../components/admin/AdminHeader";
 import { Judge } from "iconsax-react";
 import { Tag } from "antd";
+import ClassificationRound from "../../../components/ClassificationsRound";
 
 export default function AdminValidation() {
   const [teamsList, setTeamsList] = useState([]);
@@ -73,6 +74,8 @@ export default function AdminValidation() {
       <AdminHeader title="Validação" />
 
       <AdminTable data={teamsList} columns={tableHead} loading={loading} />
+
+      <ClassificationRound />
     </div>
   );
 }

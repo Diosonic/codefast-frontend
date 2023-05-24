@@ -1,9 +1,8 @@
 import { Button } from "antd";
-import AdminHeader from "../../../components/admin/AdminHeader";
-import TeamService from "../../../services/team.service";
+import TeamService from "../../services/team.service";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
-import ClassificationScoreService from "../../../services/classification-score.service";
+import ClassificationScoreService from "../../services/classification-score.service";
 
 export default function ClassificationRound() {
   const _classificationScoreService = new ClassificationScoreService();
@@ -27,8 +26,6 @@ export default function ClassificationRound() {
 
   return (
     <>
-      <AdminHeader title="Rodadas classificatórias" />
-
       <div className="buttons-classifications">
         <Button
           htmlType="submit"

@@ -40,7 +40,7 @@ export default class TeamSerializer {
 
   toJson(team) {
     const teamToJson = {};
-
+    debugger;
     Object.assign(
       teamToJson,
       team.name && { name: team.name },
@@ -59,7 +59,8 @@ export default class TeamSerializer {
       },
       team.seed_id && {
         seed_id: team.seed_id.id,
-      }
+      },
+      { unplaced: team.unplaced }
     );
 
     return teamToJson;

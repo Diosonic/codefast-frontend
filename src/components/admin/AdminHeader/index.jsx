@@ -9,19 +9,19 @@ export default function AdminHeader({ title, buttonRoute }) {
     <>
       <Row>
         <Col md="6" lg="6" xl="6">
-          <h1>{title}</h1>
+          <h1 className="title-admin-header">{title}</h1>
         </Col>
 
         <Col md="6" lg="6" xl="6" className="inputs-col">
           {buttonRoute && (
             <NavLink to={buttonRoute}>
-              <Button>Adicionar novo</Button>
+              <Button type="primary">Adicionar novo</Button>
             </NavLink>
           )}
         </Col>
       </Row>
 
-      <hr />
+      <hr className="hr-admin-header" />
     </>
   );
 }
