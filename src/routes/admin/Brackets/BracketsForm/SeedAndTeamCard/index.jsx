@@ -1,16 +1,11 @@
 import { Col } from "reactstrap";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import { Avatar, Button, Card, Popover, Skeleton, Switch } from "antd";
+import { Card } from "antd";
 import { useState } from "react";
-import Select from "react-select";
+
+import { AddCircle, ProfileRemove } from "iconsax-react";
+import SeedAndCardModal from "./SeedAndCardModal";
 
 import "./styles.scss";
-import { AddCircle } from "iconsax-react";
-import SeedAndCardModal from "./SeedAndCardModal";
 
 export default function SeedAndTeamCard({
   values,
@@ -19,6 +14,7 @@ export default function SeedAndTeamCard({
   teamsOptions,
 }) {
   const [open, setOpen] = useState(false);
+  const [action, setAction] = useState("");
   const { Meta } = Card;
 
   return (
@@ -30,6 +26,7 @@ export default function SeedAndTeamCard({
         teamsOptions={teamsOptions}
         setRelationBracket={setRelationBracket}
         relationBracket={relationBracket}
+        action={action}
       />
 
       <h4>Relacionar equipes às chaves:</h4>
@@ -50,13 +47,29 @@ export default function SeedAndTeamCard({
                     })
                   }
                 >
-                  <div onClick={() => setOpen(true)}>
-                    <AddCircle size="25" color="#37d67a" />
-
-                    <span>Adicionar</span>
-                  </div>
+                  <AddCircle
+                    onClick={() => {
+                      setAction("add");
+                      setOpen(true);
+                    }}
+                    size="25"
+                    color="#37d67a"
+                  />
                 </div>
               ),
+
+              <ProfileRemove
+                onClick={() => {
+                  setAction("remove");
+                  setOpen(true);
+                  setRelationBracket({
+                    ...relationBracket,
+                    seedId: seed.id,
+                  });
+                }}
+                size="25"
+                color="#f47373"
+              />,
             ]}
           >
             <Meta title={seed.id} />
@@ -74,7 +87,7 @@ export default function SeedAndTeamCard({
         <h5>
           Chave: {relationBracket?.seedId} <br />
           Equipe:
-          {relationBracket?.team?.name}
+          {relationBracket?.team?.id}
         </h5>
       </Col>
     </Col>
