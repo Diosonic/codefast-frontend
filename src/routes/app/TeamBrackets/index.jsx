@@ -10,21 +10,25 @@ import {
 import "./styles.scss";
 import { useEffect, useState } from "react";
 import RoundService from "../../../services/round.service";
+import ClassificationScoreService from "../../../services/classification-score.service";
 
 export default function TeamBrackets() {
   const [rounds, setRounds] = useState([]);
 
+  const _roundsService = new RoundService();
+
   useEffect(() => {
-    async function init() {
-      const _roundsService = new RoundService();
+    setInterval(async () => {
       const roundsResponse = await _roundsService.list();
       setRounds(roundsResponse);
-    }
 
-    init();
+  
+    }, 5000);
   }, []);
 
   console.log(rounds);
+
+
 
   const roundss = [
     {
@@ -81,27 +85,43 @@ export default function TeamBrackets() {
     },
   ];
 
+  console.log(rounds);
+
+
+
+
+
   const CustomSeed = ({ seed, breakpoint, roundIndex, seedIndex }) => {
     return (
       <Seed mobileBreakpoint={breakpoint} className="seed">
         <SeedItem className="seed-item">
           <div className="seed-team">
-            <SeedTeam className="team-1">
+            <SeedTeam
+              className={`team-1 ${seed?.teams[0]?.unplaced ? "unplaced" : ""}`}
+            >
               {seed.teams[0]?.name ? (
                 <>
-                  <span>1</span> {seed.teams[0]?.name}
-                  <div>67</div>
+                  <div className="point">1</div>
+                  <div className="team">{seed.teams[0]?.name}</div>
+                  <div className="time">
+                    {seed.teams[0]?.validation !== "Em progresso"
+                      ? seed.teams[0]?.validation
+                      : seed.teams[0]?.time}
+                  </div>
                 </>
               ) : (
                 "-"
               )}
             </SeedTeam>
 
-            <SeedTeam className="team-2">
+            <SeedTeam
+              className={`team-2 ${seed?.teams[1]?.unplaced ? "unplaced" : ""}`}
+            >
               {seed.teams[1]?.name ? (
                 <>
-                  <span>2</span> {seed.teams[1]?.name}
-                  <div>87</div>
+                  <div className="point">2</div>
+                  <div className="team">{seed.teams[1]?.name}</div>
+                  <div className="time">67</div>
                 </>
               ) : (
                 "-"
@@ -116,7 +136,11 @@ export default function TeamBrackets() {
   return (
     <Bracket
       roundTitleComponent={(title, roundIndex) => {
-        return <div style={{ textAlign: "center", color: "red" }}>{title}</div>;
+        return (
+          <div className="round-title">
+            <h5>{title}</h5>
+          </div>
+        );
       }}
       rounds={rounds}
       renderSeedComponent={CustomSeed}
