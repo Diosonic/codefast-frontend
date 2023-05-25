@@ -1,12 +1,19 @@
 .seed {
-  font-size: 15px;
+  min-width: 450px !important;
+  font-size: 19px !important;
 
   .seed-item {
-    border-radius: 10px;
+    border-left: 14px solid #213366;
+    border-radius: 5px;
     background-color: #fff !important;
 
     .seed-team {
       color: #000;
+
+
+      .team-2 {
+        background-color: #fafafa;
+      }
     }
   }
 }

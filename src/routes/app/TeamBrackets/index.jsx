@@ -24,7 +24,7 @@ export default function TeamBrackets() {
     init();
   }, []);
 
-  console.log(rounds)
+  console.log(rounds);
 
   const roundss = [
     {
@@ -82,17 +82,31 @@ export default function TeamBrackets() {
   ];
 
   const CustomSeed = ({ seed, breakpoint, roundIndex, seedIndex }) => {
-    // breakpoint passed to Bracket component
-    // to check if mobile view is triggered or not
-
-    // mobileBreakpoint is required to be passed down to a seed
     return (
       <Seed mobileBreakpoint={breakpoint} className="seed">
         <SeedItem className="seed-item">
           <div className="seed-team">
-            <SeedTeam>{seed.teams[0]?.name || "NO TEAM "}</SeedTeam>
+            <SeedTeam className="team-1">
+              {seed.teams[0]?.name ? (
+                <>
+                  <span>1</span> {seed.teams[0]?.name}
+                  <div>67</div>
+                </>
+              ) : (
+                "-"
+              )}
+            </SeedTeam>
 
-            <SeedTeam>{seed.teams[1]?.name || "NO TEAM "}</SeedTeam>
+            <SeedTeam className="team-2">
+              {seed.teams[1]?.name ? (
+                <>
+                  <span>2</span> {seed.teams[1]?.name}
+                  <div>87</div>
+                </>
+              ) : (
+                "-"
+              )}
+            </SeedTeam>
           </div>
         </SeedItem>
       </Seed>
