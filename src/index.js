@@ -14,6 +14,7 @@ import TeamBrackets from "./routes/app/TeamBrackets";
 import AdminBrackets from "./routes/admin/Brackets";
 import AdminBracketsForm from "./routes/admin/Brackets/BracketsForm";
 import ClassificationRound from "./components/ClassificationsRound";
+import Operator from "./routes/admin/Operator";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/brackets/form/:id",
         element: <AdminBracketsForm />,
+      },
+      {
+        path: "/admin/operator",
+        element: <Operator />,
       },
     ],
   },

@@ -25,37 +25,35 @@ export default function ClassificationRound() {
   }
 
   return (
-    <>
-      <div className="buttons-classifications">
-        <Button
-          htmlType="submit"
-          type="primary"
-          onClick={() => {
-            newRound();
-          }}
-        >
-          Preparar uma nova rodada
-        </Button>
+    <div className="buttons-classifications">
+      <Button
+        htmlType="submit"
+        type="primary"
+        onClick={() => {
+          newRound();
+        }}
+      >
+        Preparar uma nova rodada
+      </Button>
 
-        <Button
-          htmlType="submit"
-          type="default"
-          onClick={async () => {
-            await _classificationScoreService.update({
-              id: 1,
-              inProgress: true,
-            });
-          }}
-        >
-          Iniciar nova rodada
-        </Button>
+      <Button
+        htmlType="submit"
+        type="default"
+        onClick={async () => {
+          await _classificationScoreService.update({
+            id: 1,
+            inProgress: true,
+          });
+        }}
+      >
+        Iniciar nova rodada
+      </Button>
 
-        <NavLink to="/admin">
-          <Button htmlType="submit" type="text">
-            Voltar
-          </Button>
-        </NavLink>
-      </div>
-    </>
+      <NavLink to="/admin">
+        <Button htmlType="submit" type="text">
+          Voltar
+        </Button>
+      </NavLink>
+    </div>
   );
 }

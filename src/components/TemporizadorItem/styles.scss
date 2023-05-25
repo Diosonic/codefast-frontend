@@ -39,20 +39,21 @@
 }
 
 .approved {
-  background: rgb(23, 165, 54);
+  background: rgb(45, 192, 77);
   font-weight: 600;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 .declined {
-  background: rgb(236, 57, 57);
+  background: rgb(236, 64, 64);
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  color: white;
 }
 
 .validation {
-  background: rgb(233, 205, 46);
+  background: rgb(231, 205, 56);
   color: black;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
