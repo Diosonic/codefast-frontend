@@ -4,7 +4,6 @@ import TeamService from "../../../services/team.service";
 import AdminTable from "../../../components/admin/AdminTable";
 import AdminHeader from "../../../components/admin/AdminHeader";
 import { Judge } from "iconsax-react";
-import { Tag } from "antd";
 import ClassificationRound from "../../../components/ClassificationsRound";
 
 export default function AdminValidation() {
@@ -24,17 +23,6 @@ export default function AdminValidation() {
       key: "name",
     },
     {
-      title: "Status",
-      dataIndex: "validation",
-      key: "validation",
-      render: (record) =>
-        record && (
-          <Tag color="blue" bordered={false}>
-            Em progresso
-          </Tag>
-        ),
-    },
-    {
       title: "Ação",
       key: "action",
       render: (record) => (
@@ -52,17 +40,24 @@ export default function AdminValidation() {
 
   useEffect(() => {
     async function init() {
+      debugger;
       setLoading(true);
       const _teamService = new TeamService();
       const teamServiceResponse = await _teamService.list();
 
-      const x = [];
-      teamServiceResponse.forEach((item) => {
+      const teamServiceFiltered = teamServiceResponse.filter(
+        (item) => item.checked === true && item.unplaced === false
+      );
+
+      const validation = [];
+
+      teamServiceFiltered.forEach((item) => {
         if (item.validation === "Em progresso") {
-          x.push(item);
+          validation.push(item);
         }
       });
-      setTeamsList(x);
+
+      setTeamsList(validation);
       setLoading(false);
     }
 
