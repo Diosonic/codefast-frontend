@@ -34,6 +34,7 @@ export default class SeedSerializer {
       seed.teamId && { team_id: seed.teamId },
       seed.seedId && { seed_id: seed.seedId }
     );
+    
     return seedToJson;
   }
 }

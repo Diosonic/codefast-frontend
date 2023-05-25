@@ -31,9 +31,10 @@ export default function AdminBracketsForm() {
 
   useEffect(() => {
     async function init() {
+      debugger;
       const responseTeamService = await _teamService.list();
 
-      setTeamsOptions(responseTeamService);
+      setTeamsOptions(responseTeamService.filter((team) => !team.unplaced));
 
       if (id) {
         setAction("edit");
@@ -52,28 +53,16 @@ export default function AdminBracketsForm() {
   }, [id]);
 
   async function onSubmit(values) {
-    await _roundsService
-      .create(values)
-      .then((res) => {
-        navigate("/admin/brackets");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  async function relationUserAndSeed() {
-    await _seedService
-      .createRelationSeedsAndTeam({
-        seedId: relationBracket.seedId,
-        teamId: relationBracket.team.id,
-      })
-      .then((res) => {
-        // navigate("/admin/brackets");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (action === "create") {
+      await _roundsService
+        .create(values)
+        .then((res) => {
+          navigate("/admin/brackets");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   async function onAddSeed() {
@@ -103,9 +92,9 @@ export default function AdminBracketsForm() {
           return (
             <Form className="form-veiaco">
               <Row className="form-user">
-                {/* {console.log(props.values)} */}
                 <Col md="3" lg="3" xl="3">
                   <TextInput
+                    disabled={action === "edit"}
                     type="text"
                     label="Título"
                     name="title"

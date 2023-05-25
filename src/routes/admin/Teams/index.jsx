@@ -62,7 +62,7 @@ export default function AdminTeams() {
       key: "action",
       render: (record) => (
         <>
-          <div className="team-actions">
+          <div className="table-actions">
             <Edit2
               onClick={() => navigate(`/admin/teams/form/${record.id}`)}
               cursor="pointer"
