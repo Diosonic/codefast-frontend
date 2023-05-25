@@ -66,7 +66,7 @@ export default function AdminTeams() {
             <Edit2
               onClick={() => navigate(`/admin/teams/form/${record.id}`)}
               cursor="pointer"
-              color="#37d67a"
+              color="#FFAB00"
             />
 
             <Popconfirm
@@ -139,9 +139,23 @@ export default function AdminTeams() {
   }
 
   async function unplaceTeam(record) {
-    record.unplaced = !record.unplaced;
+    debugger;
+    const updatedTeams = teams.map((team) => {
+      if (team.id === record.id) {
+        return { ...team, unplaced: !record.unplaced };
+      }
+      return team;
+    });
 
-    await _teamService.update(record);
+    await _teamService
+      .update({ unplaced: !record.unplaced, id: record.id })
+      .then((res) => {
+        setTeams(updatedTeams);
+        setLoading(false);
+      })
+      .catch((res) => {
+        setLoading(false);
+      });
   }
 
   return (
