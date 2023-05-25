@@ -3,7 +3,7 @@ import TeamService from "../../../services/team.service";
 import AdminTable from "../../../components/admin/AdminTable";
 import AdminButtonsFooter from "../../../components/admin/AdminButtonsFooter";
 import AdminHeader from "../../../components/admin/AdminHeader";
-import { CardTick1, Edit2, PlayRemove } from "iconsax-react";
+import { CardTick1, Edit2, PlayRemove, Trash } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 import { Popconfirm, Tag } from "antd";
 import "./styles.scss";
@@ -98,6 +98,14 @@ export default function AdminTeams() {
             >
               <PlayRemove cursor="pointer" color="#f47373" />
             </Popconfirm>
+
+            <Popconfirm
+              title="Remover equipe"
+              description={`Deseja remover a equipe "${record.name}"?`}
+              onConfirm={() => handleDelete(record)}
+            >
+              <Trash size="24" cursor="pointer" color="#f47373" />
+            </Popconfirm>
           </div>
         </>
       ),
@@ -116,6 +124,18 @@ export default function AdminTeams() {
     init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  async function handleDelete(values) {
+    await _teamService
+      .delete(values.id)
+      .then(() => {
+        const updatedTeams = teams.filter((round) => round.id !== values.id);
+        setTeams(updatedTeams);
+      })
+      .catch((err) => {
+        alert(err.msg);
+      });
+  }
 
   async function checkInUser(record) {
     const updatedTeams = teams.map((team) => {
