@@ -4,8 +4,8 @@ import AdminHeader from "../../../components/admin/AdminHeader";
 import AdminTable from "../../../components/admin/AdminTable";
 import AdminButtonsFooter from "../../../components/admin/AdminButtonsFooter";
 import { Edit2, Trash } from "iconsax-react";
-import { useNavigate } from "react-router-dom";
-import { Popconfirm } from "antd";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Button, Popconfirm } from "antd";
 
 export default function AdminBrackets() {
   const [rounds, setRounds] = useState([]);
@@ -71,16 +71,23 @@ export default function AdminBrackets() {
     }
 
     init();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(rounds);
 
   return (
     <div>
-      <AdminHeader title="Rodadas" buttonRoute="/admin/brackets/form" />
-
+      <AdminHeader
+        title="Rodadas"
+        buttonRoute="/admin/brackets/form"
+        buttonAux={
+          <NavLink to="/admin/brackets/validation">
+            <Button>Validar eliminatória</Button>
+          </NavLink>
+        }
+      />
       <AdminTable data={rounds} columns={tableHead} loading={loading} />
-
       <AdminButtonsFooter routerLink={"/admin"} />
     </div>
   );

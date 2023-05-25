@@ -1,6 +1,5 @@
 export default class RoundSerializer {
   fromJson(json) {
-    debugger;
     const round = {};
 
     Object.assign(
@@ -20,13 +19,9 @@ export default class RoundSerializer {
   }
 
   toJson(round) {
-    debugger;
     const roundToJson = {};
 
-    Object.assign(
-      roundToJson,
-      round.title && { title: round.title },
-    );
+    Object.assign(roundToJson, round.title && { title: round.title });
     return roundToJson;
   }
 }
