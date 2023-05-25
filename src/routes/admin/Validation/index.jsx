@@ -75,7 +75,9 @@ export default function AdminValidation() {
 
       <AdminTable data={teamsList} columns={tableHead} loading={loading} />
 
-      <ClassificationRound />
+      {JSON.parse(localStorage.getItem("AUTH_OPERATOR")) === true && (
+        <ClassificationRound />
+      )}
     </div>
   );
 }

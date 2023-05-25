@@ -34,9 +34,21 @@ export default function IndividualValidation() {
   }
 
   async function aproveValidation() {
+    const teamResponse = await _teamService.read(id);
+
+    let points = 100;
+
+    if (teamResponse.time <= 900) {
+      points = 150;
+    } else if (teamResponse.time <= 1200) {
+      points = 125;
+    } else if (teamResponse.time <= 1500) {
+      points = 110;
+    }
+
     team.validation = "Aprovado";
+    team.points = team.points + points;
     team.time = 0;
-    team.points = team.points + 100;
 
     await _teamService
       .update(team)
@@ -47,8 +59,11 @@ export default function IndividualValidation() {
   }
 
   async function reproveValidation() {
+    let points = 25;
+    team.points = team.points + points;
+    team.time = 0;
     team.validation = "Declinado";
-    debugger;
+
     await _teamService
       .update(team)
       .then((res) => {

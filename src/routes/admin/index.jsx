@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import "./styles.scss";
 import { Col, Row } from "reactstrap";
-import { People, Personalcard, PlayCircle, Rank } from "iconsax-react";
+import { Login, People, Personalcard, PlayCircle, Rank } from "iconsax-react";
 
 export default function AdminPage() {
   return (
@@ -32,6 +32,13 @@ export default function AdminPage() {
           <NavLink to="/admin/brackets" className="menu-card">
             <PlayCircle size="42" color="#555555" />
             <label>Eliminatória</label>
+          </NavLink>
+        </Col>
+
+        <Col md="2" lg="2" xl="2">
+          <NavLink to="/admin/operator" className="menu-card">
+            <Login size="42" color="#555555" />
+            <label>Sou operador</label>
           </NavLink>
         </Col>
       </Row>
