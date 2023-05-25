@@ -43,11 +43,15 @@ export default function TeamRating() {
       <div className="team-score">
         <Row>
           {teamsList.map((item) => (
-            <TemporizadorItem
-              key={item.id}
-              item={item}
-              levelInProgress={levelInProgress}
-            />
+            <>
+              {item.checked && !item.unplaced && (
+                <TemporizadorItem
+                  key={item.id}
+                  item={item}
+                  levelInProgress={levelInProgress}
+                />
+              )}
+            </>
           ))}
         </Row>
       </div>
