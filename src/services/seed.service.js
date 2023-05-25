@@ -8,8 +8,6 @@ export default class SeedService extends CoreApiService {
   }
 
   async createRelationSeedsAndTeam(item) {
-    debugger;
-
     const response = await api.post(
       `${this.endpoint}/team`,
       this.serializer.toJson(item)
@@ -21,7 +19,6 @@ export default class SeedService extends CoreApiService {
   }
 
   async removeRelationSeedsAndTeam(item) {
-    debugger;
     const response = await api.put(
       `${this.endpoint}/team`,
       this.serializer.toJson(item)

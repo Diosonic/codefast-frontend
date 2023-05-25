@@ -159,7 +159,6 @@ export default function AdminTeams() {
   }
 
   async function unplaceTeam(record) {
-    debugger;
     const updatedTeams = teams.map((team) => {
       if (team.id === record.id) {
         return { ...team, unplaced: !record.unplaced };

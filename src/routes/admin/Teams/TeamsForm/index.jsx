@@ -20,7 +20,7 @@ export default function TeamForm() {
 
   const _teamService = new TeamService();
   const _userService = new UserService();
-  const _seedService = new SeedService()
+  const _seedService = new SeedService();
 
   useEffect(() => {
     async function init() {
@@ -28,8 +28,7 @@ export default function TeamForm() {
       const seedOptions = await _seedService.list();
 
       setUserOptions(usersOptions);
-      setSeedOptions(seedOptions)
-
+      setSeedOptions(seedOptions);
 
       if (id) {
         setAction("edit");
@@ -50,7 +49,7 @@ export default function TeamForm() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  console.log(seedOptions)
+  console.log(seedOptions);
 
   async function createTeam(values) {
     if (action === "create") {
@@ -60,15 +59,12 @@ export default function TeamForm() {
           navigate("/admin/teams");
         })
         .catch((err) => {
-          debugger;
           console.log(err);
         });
     } else {
       await _teamService
         .update(values)
-        .then((res) => {
-          debugger;
-        })
+        .then((res) => {})
         .catch((err) => {});
     }
   }

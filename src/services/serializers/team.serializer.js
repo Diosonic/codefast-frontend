@@ -32,6 +32,9 @@ export default class TeamSerializer {
       },
       {
         time: json.time,
+      },
+      {
+        knockoutPoints: json.knockout_points,
       }
     );
 
@@ -60,7 +63,11 @@ export default class TeamSerializer {
       team.seed_id && {
         seed_id: team.seed_id.id,
       },
-      { unplaced: team.unplaced }
+      { unplaced: team.unplaced },
+
+      team.hasOwnProperty("knockoutPoints") && {
+        knockout_points: team.knockoutPoints,
+      }
     );
 
     return teamToJson;

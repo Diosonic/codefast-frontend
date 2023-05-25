@@ -15,6 +15,8 @@ import AdminBrackets from "./routes/admin/Brackets";
 import AdminBracketsForm from "./routes/admin/Brackets/BracketsForm";
 import ClassificationRound from "./components/ClassificationsRound";
 import Operator from "./routes/admin/Operator";
+import BracketsValidation from "./routes/admin/Brackets/Validation";
+import BracketsIndividualValidation from "./routes/admin/Brackets/Validation/IndividualValidation";
 
 const router = createBrowserRouter([
   {
@@ -81,10 +83,17 @@ const router = createBrowserRouter([
         path: "/admin/operator",
         element: <Operator />,
       },
+      {
+        path: "/admin/brackets/validation",
+        element: <BracketsValidation />,
+      },
+      {
+        path: "/admin/team/:id/validation_brackets",
+        element: <BracketsIndividualValidation />,
+      },
     ],
   },
 ]);
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

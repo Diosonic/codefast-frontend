@@ -1,6 +1,5 @@
 export default class SeedSerializer {
   fromJson(json) {
-    debugger;
     const seed = {};
 
     Object.assign(
@@ -25,7 +24,6 @@ export default class SeedSerializer {
   }
 
   toJson(seed) {
-    debugger;
     const seedToJson = {};
 
     Object.assign(
@@ -34,7 +32,7 @@ export default class SeedSerializer {
       seed.teamId && { team_id: seed.teamId },
       seed.seedId && { seed_id: seed.seedId }
     );
-    
+
     return seedToJson;
   }
 }
