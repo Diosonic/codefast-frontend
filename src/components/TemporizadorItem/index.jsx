@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TeamService from "../../services/team.service";
 import "./styles.scss";
+import { convertMinutesAndSeconds } from "../../utils/convertMinuteAndSeconds";
 
 export default function TemporizadorItem({ item, levelInProgress }) {
   const [segundos, setSegundos] = useState(item.time);
@@ -48,18 +49,6 @@ export default function TemporizadorItem({ item, levelInProgress }) {
     } else {
       return "in-progress";
     }
-  }
-
-  function convertMinutesAndSeconds(numero) {
-    var minutos = Math.floor(numero / 60);
-    var segundos = numero % 60;
-
-    var minutosFormatados = minutos < 10 ? "0" + minutos : minutos;
-    var segundosFormatados = segundos < 10 ? "0" + segundos : segundos;
-
-    var tempoFormatado = minutosFormatados + ":" + segundosFormatados;
-
-    return tempoFormatado;
   }
 
   return (

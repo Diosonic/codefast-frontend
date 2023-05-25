@@ -17,7 +17,7 @@ export default class ClassificationScoreSerializer {
 
   toJson(classificationScore) {
     const classificationScoreToJson = {};
-    debugger;
+
     Object.assign(
       classificationScoreToJson,
       classificationScore.id && { id: classificationScore.id },

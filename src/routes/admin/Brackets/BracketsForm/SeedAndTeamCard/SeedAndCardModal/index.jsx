@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "antd";
 import Select from "react-select";
 import SeedService from "../../../../../../services/seed.service";
+import TeamService from "../../../../../../services/team.service";
 
 export default function SeedAndCardModal({
   teamsOptions,
@@ -32,7 +33,7 @@ export default function SeedAndCardModal({
           seedId: relationBracket.seedId,
           teamId: relationBracket.team.id,
         })
-        .then((res) => {
+        .then(async (res) => {
           setOpen(false);
           setConfirmLoading(false);
         })
@@ -42,15 +43,12 @@ export default function SeedAndCardModal({
     }
 
     if (action === "remove") {
-      debugger;
       await _seedService
         .removeRelationSeedsAndTeam({
           seedId: relationBracket.seedId,
           teamId: relationBracket.team.id,
         })
         .then((res) => {
-          debugger;
-
           setOpen(false);
           setConfirmLoading(false);
         })

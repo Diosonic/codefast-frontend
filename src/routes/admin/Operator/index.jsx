@@ -12,8 +12,6 @@ export default function Operator() {
   let navigate = useNavigate();
 
   function setAuth({ username, password }) {
-    debugger;
-
     if (username === "operatorhackaton" && password === "Un1nass4u") {
       localStorage.setItem("AUTH_OPERATOR", true);
       navigate(`/admin`);

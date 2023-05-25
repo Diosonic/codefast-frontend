@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import TeamService from "../../../../services/team.service";
+import TeamService from "../../../../../services/team.service";
 import { Button } from "antd";
-import "./styles.scss";
+// import "./styles.scss";
 
-export default function IndividualValidation() {
+export default function BracketsIndividualValidation() {
   const { id } = useParams();
   const [team, setTeam] = useState();
   const [validationInProgress, setValidationInProgress] = useState();
@@ -23,6 +23,8 @@ export default function IndividualValidation() {
 
   async function initValidation() {
     team.validation = "Validando";
+    delete team.unplaced;
+    delete team.checked;
 
     await _teamService
       .update(team)
@@ -33,43 +35,24 @@ export default function IndividualValidation() {
   }
 
   async function aproveValidation() {
+    debugger;
     const teamResponse = await _teamService.read(id);
+    delete teamResponse.unplaced;
+    delete teamResponse.checked;
+    teamResponse.validation = "Aprovado";
 
-    let points = 100;
-
-    if (teamResponse.time <= 900) {
-      points = 150;
-    } else if (teamResponse.time <= 1200) {
-      points = 125;
-    } else if (teamResponse.time <= 1500) {
-      points = 110;
-    }
-
-    team.validation = "Aprovado";
-    team.points = team.points + points;
-    team.time = 0;
+    debugger;
+    teamResponse.knockoutPoints = teamResponse.knockoutPoints + 1;
 
     await _teamService
-      .update(team)
+      .update(teamResponse)
       .then((res) => {
-        setValidationInProgress(false);
+        setValidationInProgress(true);
       })
       .catch((err) => {});
   }
 
-  async function reproveValidation() {
-    let points = 25;
-    team.points = team.points + points;
-    team.time = 0;
-    team.validation = "Declinado";
-
-    await _teamService
-      .update(team)
-      .then((res) => {
-        setValidationInProgress(false);
-      })
-      .catch((err) => {});
-  }
+  async function reproveValidation() {}
 
   return (
     <div>
@@ -78,9 +61,7 @@ export default function IndividualValidation() {
       <hr></hr>
 
       <div>
-        <label>
-          Atualmente o time {team?.name} possui {team?.points} pontos
-        </label>
+        <label>Atualmente o time {team?.name}</label>
         <br />
         <small>
           Preste muita atenção durante a avaliação do material, caso tenha
@@ -101,7 +82,7 @@ export default function IndividualValidation() {
               Começar validação
             </Button>
 
-            <NavLink to="/admin/validation">
+            <NavLink to="/admin/brackets/validation">
               <Button htmlType="submit" type="default">
                 Voltar
               </Button>
@@ -109,7 +90,7 @@ export default function IndividualValidation() {
           </div>
         ) : (
           <div className="init-validation">
-            <NavLink to="/admin/validation">
+            <NavLink to="/admin/brackets/validation">
               <Button
                 onClick={() => {
                   aproveValidation();
@@ -120,7 +101,7 @@ export default function IndividualValidation() {
                 Aprovar
               </Button>
             </NavLink>
-            <NavLink to="/admin/validation">
+            <NavLink to="/admin/brackets/validation">
               <Button
                 onClick={() => {
                   reproveValidation();

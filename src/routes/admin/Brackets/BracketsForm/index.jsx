@@ -31,7 +31,6 @@ export default function AdminBracketsForm() {
 
   useEffect(() => {
     async function init() {
-      debugger;
       const responseTeamService = await _teamService.list();
 
       setTeamsOptions(responseTeamService.filter((team) => !team.unplaced));
