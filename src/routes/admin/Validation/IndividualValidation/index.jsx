@@ -15,6 +15,10 @@ export default function IndividualValidation() {
     async function init() {
       const teamResponse = await _teamService.read(id);
       setTeam(teamResponse);
+
+      if (teamResponse.validation === "Validando") {
+        setValidationInProgress(true);
+      }
     }
 
     init();
@@ -127,6 +131,12 @@ export default function IndividualValidation() {
                 }}
               >
                 Reprovar
+              </Button>
+            </NavLink>
+
+            <NavLink to="/admin/validation">
+              <Button htmlType="submit" type="default">
+                Voltar
               </Button>
             </NavLink>
           </div>

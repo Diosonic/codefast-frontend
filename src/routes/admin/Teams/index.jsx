@@ -58,6 +58,15 @@ export default function AdminTeams() {
         ),
     },
     {
+      title: "Usuários",
+      dataIndex: "users",
+      key: "users",
+      render: (record) =>
+        record.map((item, index) =>
+          index <= 1 ? item.name + ", " : item.name + "."
+        ),
+    },
+    {
       title: "Ação",
       key: "action",
       render: (record) => (
