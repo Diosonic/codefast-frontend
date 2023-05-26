@@ -8,7 +8,6 @@ import { Col } from "reactstrap";
 import RoundService from "../../../../services/round.service";
 import SeedService from "../../../../services/seed.service";
 import TeamService from "../../../../services/team.service";
-import Select from "react-select";
 import SeedAndTeamCard from "./SeedAndTeamCard";
 
 import "./styles.scss";
@@ -100,18 +99,17 @@ export default function AdminBracketsForm() {
                     placeholder="Título"
                   />
                 </Col>
-                {console.log(props.values)}
 
                 {action === "edit" && (
                   <>
                     <Col md="12" lg="12" xl="12" className="seed-container">
                       <h6>
-                        Quantidade de ramo nessa etapa:{" "}
+                        Quantidade de chaves nessa etapa:{" "}
                         {props?.values?.seeds?.length}
                       </h6>
 
                       <Button htmlType="button" onClick={onAddSeed}>
-                        Adicionar ramo
+                        Adicionar chave
                       </Button>
                     </Col>
 
@@ -128,7 +126,13 @@ export default function AdminBracketsForm() {
               </Row>
 
               <div className="buttons-container">
-                <AdminButtonsFooter submit routerLink={"/admin/brackets"} />
+                {action === "create" ? (
+                  <AdminButtonsFooter submit routerLink={"/admin/brackets"} />
+                ) : (
+                  <>
+                    <AdminButtonsFooter routerLink={"/admin/brackets"} />
+                  </>
+                )}
               </div>
             </Form>
           );

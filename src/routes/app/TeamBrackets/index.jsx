@@ -2,7 +2,7 @@ import { Bracket, Seed } from "react-brackets";
 import { useEffect, useState } from "react";
 import RoundService from "../../../services/round.service";
 import ClassificationScoreService from "../../../services/classification-score.service";
-import SeedItemKnockout from "../../../components/SeedItem";
+import SeedItemKnockout from "./SeedItem";
 import "./styles.scss";
 
 export default function TeamBrackets() {

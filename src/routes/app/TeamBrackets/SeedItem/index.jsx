@@ -1,7 +1,7 @@
 import { SeedItem, SeedTeam } from "react-brackets";
 import { useEffect, useState } from "react";
-import TeamService from "../../services/team.service";
-import { convertMinutesAndSeconds } from "../../utils/convertMinuteAndSeconds";
+import TeamService from "../../../../services/team.service";
+import { convertMinutesAndSeconds } from "../../../../utils/convertMinuteAndSeconds";
 
 export default function SeedItemKnockout({ seed, levelInProgress }) {
   const [seconds1, setSeconds1] = useState(0);
@@ -86,6 +86,10 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seed.teams[1]?.validation, levelInProgress]);
 
+
+
+  console.log(seed.teams[0])
+
   return (
     <SeedItem className="seed-item">
       <div className="seed-team">
@@ -94,7 +98,7 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
         >
           {seed.teams[0]?.name ? (
             <>
-              <div className="point">{seed.teams[0]?.knockout_points}</div>
+              {/* <div className="point">{seed.teams[0]?.knockout_points}</div> */}
               <div className="team">{seed.teams[0]?.name}</div>
               <div className="time">
                 {seed.teams[0]?.validation !== "Em progresso" ? (
@@ -120,7 +124,7 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
           {seed.teams[1]?.name ? (
             <>
               <>
-                <div className="point">{seed.teams[1]?.knockout_points}</div>
+                {/* <div className="point">{seed.teams[1]?.knockout_points}</div> */}
                 <div className="team">{seed.teams[1]?.name}</div>
                 <div className="time">
                   {seed.teams[1]?.validation !== "Em progresso" ? (

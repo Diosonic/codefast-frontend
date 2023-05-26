@@ -38,7 +38,6 @@ export default function SeedAndCardModal({
           setOpen(false);
           setConfirmLoading(false);
 
-          debugger;
           const team = await _teamService.read(relationBracket.team.id);
           delete team.unplaced;
           delete team.checked;
@@ -48,6 +47,8 @@ export default function SeedAndCardModal({
             .update(team)
             .then((res) => {})
             .catch((err) => {});
+
+            window.location.reload()
         })
         .catch((err) => {
           console.log(err);
@@ -63,6 +64,8 @@ export default function SeedAndCardModal({
         .then((res) => {
           setOpen(false);
           setConfirmLoading(false);
+          window.location.reload()
+
         })
         .catch((err) => {
           console.log(err);

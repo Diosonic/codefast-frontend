@@ -82,14 +82,6 @@ export default function SeedAndTeamCard({
           </Card>
         ))}
       </div>
-
-      <Col md="12" lg="12" xl="12" className="display-infos">
-        <h5>
-          Chave: {relationBracket?.seedId} <br />
-          Equipe:
-          {relationBracket?.team?.id}
-        </h5>
-      </Col>
     </Col>
   );
 }

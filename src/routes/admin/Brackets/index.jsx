@@ -78,7 +78,7 @@ export default function AdminBrackets() {
     <div>
       <AdminHeader
         title="Rodadas"
-        buttonRoute="/admin/resbrackets/form"
+        buttonRoute="/admin/brackets/form"
         buttonAux={
           <NavLink to="/admin/brackets/validation">
             <Button>Validar eliminatória</Button>

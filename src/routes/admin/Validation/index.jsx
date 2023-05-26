@@ -5,6 +5,7 @@ import AdminTable from "../../../components/admin/AdminTable";
 import AdminHeader from "../../../components/admin/AdminHeader";
 import { Judge } from "iconsax-react";
 import ClassificationRound from "../../../components/ClassificationsRound";
+import { Tag } from "antd";
 
 export default function AdminValidation() {
   const [teamsList, setTeamsList] = useState([]);
@@ -21,6 +22,21 @@ export default function AdminValidation() {
       title: "Nome",
       dataIndex: "name",
       key: "name",
+    },
+    {
+      title: "Validação",
+      dataIndex: "validation",
+      key: "validation",
+      render: (record) =>
+        record === "Validando" ? (
+          <Tag color="yellow" bordered={false}>
+            {record}
+          </Tag>
+        ) : (
+          <Tag color="blue" bordered={false}>
+            {record}
+          </Tag>
+        ),
     },
     {
       title: "Ação",
@@ -51,7 +67,7 @@ export default function AdminValidation() {
       const validation = [];
 
       teamServiceFiltered.forEach((item) => {
-        if (item.validation === "Em progresso") {
+        if (item.validation !== "Aprovado") {
           validation.push(item);
         }
       });
