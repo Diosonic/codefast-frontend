@@ -26,10 +26,11 @@ export default function IndividualValidation() {
   }, [id]);
 
   async function initValidation() {
-    team.validation = "Validando";
+    const teamResponse = await _teamService.read(id);
+    teamResponse.validation = "Validando";
 
     await _teamService
-      .update(team)
+      .update(teamResponse)
       .then((res) => {
         setValidationInProgress(true);
       })
@@ -49,12 +50,11 @@ export default function IndividualValidation() {
       points = 110;
     }
 
-    team.validation = "Aprovado";
-    team.points = team.points + points;
-    team.time = 0;
+    teamResponse.validation = "Aprovado";
+    teamResponse.points = teamResponse.points + points;
 
     await _teamService
-      .update(team)
+      .update(teamResponse)
       .then((res) => {
         setValidationInProgress(false);
       })
@@ -62,13 +62,14 @@ export default function IndividualValidation() {
   }
 
   async function reproveValidation() {
+    const teamResponse = await _teamService.read(id);
+
     let points = 25;
-    team.points = team.points + points;
-    team.time = 0;
-    team.validation = "Declinado";
+    teamResponse.points = teamResponse.points + points;
+    teamResponse.validation = "Declinado";
 
     await _teamService
-      .update(team)
+      .update(teamResponse)
       .then((res) => {
         setValidationInProgress(false);
       })

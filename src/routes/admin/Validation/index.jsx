@@ -67,7 +67,10 @@ export default function AdminValidation() {
       const validation = [];
 
       teamServiceFiltered.forEach((item) => {
-        if (item.validation !== "Aprovado") {
+        if (
+          item.validation === "Validando" ||
+          item.validation === "Em progresso"
+        ) {
           validation.push(item);
         }
       });

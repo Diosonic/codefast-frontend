@@ -2,7 +2,7 @@ import "./styles.scss";
 import { useEffect, useState } from "react";
 import TeamService from "../../../services/team.service";
 import TemporizadorItem from "../../../components/TemporizadorItem";
-import { Row } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import "./styles.scss";
 import ClassificationScoreService from "../../../services/classification-score.service";
 
@@ -43,7 +43,7 @@ export default function TeamRating() {
       <div className="team-score">
         <Row>
           {teamsList.map((item) => (
-            <>
+            <Col lg="12" sm="12" md="12">
               {item.checked && !item.unplaced && (
                 <TemporizadorItem
                   key={item.id}
@@ -51,7 +51,7 @@ export default function TeamRating() {
                   levelInProgress={levelInProgress}
                 />
               )}
-            </>
+            </Col>
           ))}
         </Row>
       </div>

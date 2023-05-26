@@ -13,7 +13,7 @@
 
 .score tr {
   display: grid;
-  grid-template-columns: 300px 300px 200px 200px;
+  grid-template-columns: 400px 300px 200px 200px;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -24,6 +24,7 @@
     text-align: left;
     font-size: 24px;
     font-weight: 600;
+    width: 100%;
   }
 
   .team-points {
