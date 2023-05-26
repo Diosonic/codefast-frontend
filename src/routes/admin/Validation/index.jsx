@@ -40,7 +40,6 @@ export default function AdminValidation() {
 
   useEffect(() => {
     async function init() {
-      debugger;
       setLoading(true);
       const _teamService = new TeamService();
       const teamServiceResponse = await _teamService.list();

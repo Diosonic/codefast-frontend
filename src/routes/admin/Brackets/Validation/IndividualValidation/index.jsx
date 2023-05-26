@@ -15,6 +15,10 @@ export default function BracketsIndividualValidation() {
     async function init() {
       const teamResponse = await _teamService.read(id);
       setTeam(teamResponse);
+
+      if (teamResponse.validation === "Validando") {
+        setValidationInProgress(true);
+      }
     }
 
     init();
@@ -35,13 +39,11 @@ export default function BracketsIndividualValidation() {
   }
 
   async function aproveValidation() {
-    debugger;
     const teamResponse = await _teamService.read(id);
     delete teamResponse.unplaced;
     delete teamResponse.checked;
     teamResponse.validation = "Aprovado";
 
-    debugger;
     teamResponse.knockoutPoints = teamResponse.knockoutPoints + 1;
 
     await _teamService
@@ -52,7 +54,20 @@ export default function BracketsIndividualValidation() {
       .catch((err) => {});
   }
 
-  async function reproveValidation() {}
+  async function reproveValidation() {
+    const teamResponse = await _teamService.read(id);
+    delete teamResponse.unplaced;
+    delete teamResponse.checked;
+    teamResponse.validation = "Em progresso";
+    teamResponse.time = 0;
+
+    await _teamService
+      .update(teamResponse)
+      .then((res) => {
+        setValidationInProgress(false);
+      })
+      .catch((err) => {});
+  }
 
   return (
     <div>
@@ -81,12 +96,6 @@ export default function BracketsIndividualValidation() {
             >
               Começar validação
             </Button>
-
-            <NavLink to="/admin/brackets/validation">
-              <Button htmlType="submit" type="default">
-                Voltar
-              </Button>
-            </NavLink>
           </div>
         ) : (
           <div className="init-validation">
@@ -101,13 +110,22 @@ export default function BracketsIndividualValidation() {
                 Aprovar
               </Button>
             </NavLink>
+
             <NavLink to="/admin/brackets/validation">
               <Button
                 onClick={() => {
                   reproveValidation();
                 }}
+                htmlType="submit"
+                type="primary"
               >
                 Reprovar
+              </Button>
+            </NavLink>
+
+            <NavLink to="/admin/brackets/validation">
+              <Button htmlType="submit" type="default">
+                Voltar
               </Button>
             </NavLink>
           </div>

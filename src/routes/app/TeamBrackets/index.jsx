@@ -38,13 +38,14 @@ export default function TeamBrackets() {
 
   return (
     <Bracket
-      roundTitleComponent={(title, roundIndex) => {
-        return (
-          <div className="round-title">
-            <h5>{title}</h5>
-          </div>
-        );
-      }}
+      // roundTitleComponent={(title, roundIndex) => {
+      //   return (
+      //     <div className="round-title">
+      //       <h5>{title}</h5>
+      //     </div>
+      //   );
+      // }}
+      roundTitleComponent={() => {}}
       rounds={rounds}
       renderSeedComponent={CustomSeed}
     />

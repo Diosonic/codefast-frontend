@@ -36,33 +36,14 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
         clearInterval(timer);
         updateTime({ id: seed.teams[0]?.id, time: seconds1 });
 
-        if (seed.teams[0]?.knockout_points === 2) {
+        if (seed.teams[0]?.knockout_points === 1) {
           updateTime({ id: seed.teams[1]?.id, unplaced: true });
         }
-
-        const timerAproved = setInterval(() => {
-          updateTime({
-            id: seed.teams[0]?.id,
-            time: 0,
-            validation: "Em progresso",
-          });
-
-          updateTime({
-            id: seed.teams[1]?.id,
-            time: 0,
-            validation: "Em progresso",
-          });
-
-          setSeconds2(0);
-          setSeconds1(0);
-
-          clearInterval(timerAproved);
-        }, 10000);
       }
 
       if (
-        seed.teams[0]?.knockout_points === 2 ||
-        seed.teams[1]?.knockout_points === 2
+        seed.teams[0]?.knockout_points === 1 ||
+        seed.teams[1]?.knockout_points === 1
       ) {
         clearInterval(timer);
       }
@@ -89,33 +70,13 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
         clearInterval(timer);
         updateTime({ id: seed.teams[1]?.id, time: seconds2 });
 
-        if (seed.teams[1]?.knockout_points === 2) {
+        if (seed.teams[1]?.knockout_points === 1) {
           updateTime({ id: seed.teams[0]?.id, unplaced: true });
         }
-
-        const timerAproved = setInterval(() => {
-          updateTime({
-            id: seed.teams[0]?.id,
-            time: 0,
-            validation: "Em progresso",
-          });
-
-          updateTime({
-            id: seed.teams[1]?.id,
-            time: 0,
-            validation: "Em progresso",
-          });
-
-          setSeconds2(0);
-          setSeconds1(0);
-
-          clearInterval(timerAproved);
-        }, 10000);
       }
 
       if (seed.teams[1]?.validation === "Declinado") {
         clearInterval(timer);
-        // updateTime({ id: item.id, time: segundos });
       }
 
       return () => clearInterval(timer);
@@ -137,11 +98,11 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
               <div className="team">{seed.teams[0]?.name}</div>
               <div className="time">
                 {seed.teams[0]?.validation !== "Em progresso" ? (
-                  `${seed.teams[0]?.validation} | ${convertMinutesAndSeconds(
+                  `${seed.teams[0]?.validation} - ${convertMinutesAndSeconds(
                     seed.teams[0]?.time
                   )}`
-                ) : seed.teams[1]?.knockout_points === 2 ||
-                  seed.teams[0]?.knockout_points === 2 ? (
+                ) : seed.teams[1]?.knockout_points === 1 ||
+                  seed.teams[0]?.knockout_points === 1 ? (
                   <>00:00</>
                 ) : (
                   convertMinutesAndSeconds(seconds1)
@@ -163,11 +124,11 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
                 <div className="team">{seed.teams[1]?.name}</div>
                 <div className="time">
                   {seed.teams[1]?.validation !== "Em progresso" ? (
-                    `${seed.teams[1]?.validation} | ${convertMinutesAndSeconds(
+                    `${seed.teams[1]?.validation} - ${convertMinutesAndSeconds(
                       seed.teams[1]?.time
                     )}`
-                  ) : seed.teams[1]?.knockout_points === 2 ||
-                    seed.teams[0]?.knockout_points === 2 ? (
+                  ) : seed.teams[1]?.knockout_points === 1 ||
+                    seed.teams[0]?.knockout_points === 1 ? (
                     <>00:00</>
                   ) : (
                     convertMinutesAndSeconds(seconds2)

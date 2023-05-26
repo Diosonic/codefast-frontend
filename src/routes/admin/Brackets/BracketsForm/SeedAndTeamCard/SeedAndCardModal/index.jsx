@@ -26,6 +26,7 @@ export default function SeedAndCardModal({
   async function handleConfirm() {
     setConfirmLoading(true);
     const _seedService = new SeedService();
+    const _teamService = new TeamService();
 
     if (action === "add") {
       await _seedService
@@ -33,9 +34,20 @@ export default function SeedAndCardModal({
           seedId: relationBracket.seedId,
           teamId: relationBracket.team.id,
         })
-        .then(async (res) => {
+        .then(async () => {
           setOpen(false);
           setConfirmLoading(false);
+
+          debugger;
+          const team = await _teamService.read(relationBracket.team.id);
+          delete team.unplaced;
+          delete team.checked;
+          team.validation = "Em progresso";
+
+          await _teamService
+            .update(team)
+            .then((res) => {})
+            .catch((err) => {});
         })
         .catch((err) => {
           console.log(err);

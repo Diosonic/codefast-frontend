@@ -74,13 +74,11 @@ export default function AdminBrackets() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(rounds);
-
   return (
     <div>
       <AdminHeader
         title="Rodadas"
-        buttonRoute="/admin/brackets/form"
+        buttonRoute="/admin/resbrackets/form"
         buttonAux={
           <NavLink to="/admin/brackets/validation">
             <Button>Validar eliminatória</Button>

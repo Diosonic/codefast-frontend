@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import TeamService from "../../../../services/team.service";
 import AdminHeader from "../../../../components/admin/AdminHeader";
 import AdminTable from "../../../../components/admin/AdminTable";
-import { Button } from "antd";
+import { Button, Tag } from "antd";
 import ClassificationScoreService from "../../../../services/classification-score.service";
 
 export default function BracketsValidation() {
@@ -44,6 +44,21 @@ export default function BracketsValidation() {
       key: "name",
     },
     {
+      title: "Validação",
+      dataIndex: "validation",
+      key: "validation",
+      render: (record) =>
+        record === "Validando" ? (
+          <Tag color="yellow" bordered={false}>
+            {record}
+          </Tag>
+        ) : (
+          <Tag color="blue" bordered={false}>
+            {record}
+          </Tag>
+        ),
+    },
+    {
       title: "Ação",
       key: "action",
       render: (record) => (
@@ -69,11 +84,7 @@ export default function BracketsValidation() {
 
       const x = [];
       teamServiceResponse.forEach((item) => {
-        if (
-          item.validation === "Em progresso" &&
-          item.checked &&
-          !item.unplaced
-        ) {
+        if (item.checked && !item.unplaced && item.validation !== "Aprovado") {
           x.push(item);
         }
       });
