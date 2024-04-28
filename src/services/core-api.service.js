@@ -10,17 +10,19 @@ export default class CoreApiService {
   async read(id) {
     const response = await api.get(`${this.endpoint}/${id}`);
 
-    const data = response.data.item;
+    const data = response.data;
     return this.serializer.fromJson(data);
   }
 
   async list(queryOptions = null, isListView = null) {
+    debugger;
     const response = await api.get(
       `${this.endpoint}?${(queryOptions && queryOptions.toQueryString()) || ""}`
     );
-    const data = response.data.item;
+    
+    const data = response.data;
 
-    if (data.items && isListView) {
+    if (data && isListView) {
       return this.convertData(data, data._meta);
     } else {
       return this.convertData(data);
