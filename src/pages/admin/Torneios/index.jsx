@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, React } from "react";
 import TorneioService from "../../../services/torneio.service";
-import TabelaAdmin from "../../../components/Admin/Tabelas";
 import { Popconfirm } from "antd";
 import { ExportCircle, Trash } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
+import TabelaAdmin from "../../../components/admin/Tabelas";
 
 export default function Torneios() {
   const [torneios, setTorneios] = useState([]);
@@ -28,11 +28,11 @@ export default function Torneios() {
         <>
           <div className="table-actions">
             <ExportCircle
-                onClick={() => navigate(`/admin/torneio/${record.id}`)}
-                cursor="pointer"
-                color="#37D67A"
-              />
-  
+              onClick={() => navigate(`/admin/torneio/${record.id}`)}
+              cursor="pointer"
+              color="#37D67A"
+            />
+
             <Popconfirm
               title="Remover torneio"
               description={`Deseja remover o torneio "${record.titulo}"?`}
@@ -66,4 +66,3 @@ export default function Torneios() {
     </div>
   );
 }
-

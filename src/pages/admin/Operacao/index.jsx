@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState, React } from "react";
+import { useParams } from "react-router-dom";
 import TorneioService from "../../../services/torneio.service";
 
 export default function Operacao() {
   const { id } = useParams();
   const [torneio, setTorneio] = useState();
-
 
   useEffect(() => {
     const _torneioService = new TorneioService();
@@ -18,10 +17,5 @@ export default function Operacao() {
     init();
   }, [id]);
 
-  return (
-
-    <div>
-        {console.log(torneio)}
-    </div>
-  )
+  return <div>{console.log(torneio)}</div>;
 }

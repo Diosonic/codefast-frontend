@@ -6,7 +6,7 @@ import "./styles.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Torneios from "./pages/admin/Torneios";
 import Operacao from "./pages/admin/Operacao";
-
+import Credenciamento from "./pages/admin/Torneios/Credenciamento";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/torneio/:id",
         element: <Operacao />,
+      },
+      {
+        path: "/admin/torneio/:id/credenciamento",
+        element: <Credenciamento />,
       },
     ],
   },
