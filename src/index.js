@@ -4,9 +4,10 @@ import App from "./App";
 
 import "./styles.scss";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Credenciamento from "./pages/admin/Torneios/Operacao/Credenciamento";
+import Operacao from "./pages/admin/Torneios/Operacao";
 import Torneios from "./pages/admin/Torneios";
-import Operacao from "./pages/admin/Operacao";
-import Credenciamento from "./pages/admin/Torneios/Credenciamento";
+
 
 const router = createBrowserRouter([
   {
