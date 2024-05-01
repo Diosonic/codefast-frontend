@@ -2,7 +2,7 @@ import { useEffect, useState, React } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TorneioService from "../../../../../services/torneio.service";
 import TabelaAdmin from "../../../../../components/admin/Tabelas";
-import { Edit, Trash } from "iconsax-react";
+import { Card, Edit, Trash } from "iconsax-react";
 import { Popconfirm } from "antd";
 import EquipeService from "../../../../../services/equipe.service";
 
@@ -66,9 +66,13 @@ export default function Credenciamento() {
           <Popconfirm
             title="Credenciar"
             description={`Deseja credenciar essa a equipe "${record.nome}"?`}
-            onConfirm={() => console.log(record)}
+            onConfirm={() => credenciarEquipe(record)}
           >
-            <Edit size="24" cursor="pointer" color="#f3d42f" />
+            {record.isCredenciado ? (
+              <Card size="24" cursor="pointer" color="#37D67A" />
+            ) : (
+              <Card size="24" cursor="pointer" color="#f47373" />
+            )}
           </Popconfirm>
         </div>
       ),
@@ -88,15 +92,29 @@ export default function Credenciamento() {
     init();
   }, [id]);
 
+  async function credenciarEquipe(values) {
+    values.isCredenciado = !values.isCredenciado;
+
+    await _equipeService
+      .update(values)
+      .then((res) => {
+        const updatedEquipes = equipes.map((equipe) =>
+          equipe.id === res.id ? res : equipe
+        );
+
+        setEquipes(updatedEquipes);
+      })
+      .catch((err) => {});
+  }
+
   async function deletarEquipe(values) {
     await _equipeService
       .delete(values.id)
       .then(() => {
-        debugger;
-        const equipesAttualizadas = equipes.filter(
+        const equipesAtualizadas = equipes.filter(
           (equipe) => equipe.id !== values.id
         );
-        setEquipes(equipesAttualizadas);
+        setEquipes(equipesAtualizadas);
       })
       .catch((err) => {
         alert(err.msg);
@@ -105,7 +123,13 @@ export default function Credenciamento() {
 
   return (
     <div>
-      <TabelaAdmin data={equipes} columns={colunasTabela} loading={false} />
+      <TabelaAdmin
+        botaoAdicionarLabel="Adicionar nova equipe"
+        linkAdicionarItem={`/admin/torneio/${id}/credenciamento/formulario`}
+        data={equipes}
+        columns={colunasTabela}
+        loading={false}
+      />
     </div>
   );
 }

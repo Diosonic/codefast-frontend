@@ -51,7 +51,7 @@ export default class CoreApiService {
       this.serializer.toJson(item)
     );
 
-    const data = response.data.item;
+    const data = response.data;
 
     return this.serializer.fromJson(data);
   }
@@ -76,7 +76,7 @@ export default class CoreApiService {
         : this.serializer.toJson(item)
     );
 
-    const data = response.data.item;
+    const data = response.data;
     return this.serializer.fromJson(data);
   }
 
@@ -92,7 +92,6 @@ export default class CoreApiService {
   }
 
   async delete(id) {
-    debugger;
     const response = await api.delete(`${this.endpoint}/${id}`);
     return response;
   }

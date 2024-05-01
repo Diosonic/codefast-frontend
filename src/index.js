@@ -31,13 +31,16 @@ const router = createBrowserRouter([
         element: <Credenciamento />,
       },
       {
+        path: "/admin/torneio/:id/credenciamento/formulario",
+        element: <CredenciamentoFormulario />,
+      },
+      {
         path: "/admin/torneio/:id/credenciamento/:idEquipe/formulario",
         element: <CredenciamentoFormulario />,
       },
     ],
   },
 ]);
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(

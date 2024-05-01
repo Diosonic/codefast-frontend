@@ -1,5 +1,17 @@
-import { Table } from "antd";
+import { Button, Table } from "antd";
 
-export default function TabelaAdmin({ data, columns, loading }) {
-  return <Table columns={columns} loading={loading} dataSource={data} />;
+export default function TabelaAdmin({
+  data,
+  columns,
+  loading,
+  linkAdicionarItem,
+  botaoAdicionarLabel,
+}) {
+  return (
+    <>
+      <Button href={linkAdicionarItem}>{botaoAdicionarLabel}</Button>
+
+      <Table columns={columns} loading={loading} dataSource={data} />
+    </>
+  );
 }

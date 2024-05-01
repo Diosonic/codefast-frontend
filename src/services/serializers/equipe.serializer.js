@@ -1,13 +1,13 @@
 export default class EquipeSerializer {
   fromJson(json) {
-    debugger;
     const equipe = {};
 
     Object.assign(
       equipe,
       json.id && { id: json.id },
       json.nome && { nome: json.nome },
-      json.nomeParticipantes && { nomeParticipantes: json.nomeParticipantes }
+      json.nomeParticipantes && { nomeParticipantes: json.nomeParticipantes },
+      { isCredenciado: json.isCredenciado }
     );
 
     return equipe;
@@ -15,9 +15,17 @@ export default class EquipeSerializer {
 
   toJson(equipe) {
     const equipeToJson = {};
-    debugger;
 
-    Object.assign(equipeToJson, equipe.id && { id: equipe.id });
+    Object.assign(
+      equipeToJson,
+      equipe.id && { id: equipe.id },
+      equipe.nome && { nome: equipe.nome },
+      equipe.nomeParticipantes && {
+        nomeParticipantes: equipe.nomeParticipantes,
+      },
+      { isCredenciado: equipe.isCredenciado },
+      equipe.torneioId && { torneioId: equipe.torneioId }
+    );
 
     return equipeToJson;
   }

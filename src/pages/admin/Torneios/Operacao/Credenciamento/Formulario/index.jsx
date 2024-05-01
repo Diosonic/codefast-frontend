@@ -1,35 +1,30 @@
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import EquipeService from "../../../../../../services/equipe.service";
 
 export default function CredenciamentoFormulario() {
-  const { id } = useParams();
+  const { id, idEquipe } = useParams();
   const [equipeValues, setEquipeValues] = useState();
-  const [userOptions, setUserOptions] = useState([]);
-  const [action, setAction] = useState("create");
+  const [action, setAction] = useState("criar");
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const _equipeService = new EquipeService();
 
   useEffect(() => {
     async function init() {
-      const usersOptions = await _equipeService.read();
-
-      setUserOptions(usersOptions);
-
-      if (id) {
-        setAction("edit");
-        const equipe = await _equipeService.read(id);
+      if (idEquipe) {
+        setAction("editar");
+        const equipe = await _equipeService.read(idEquipe);
         setEquipeValues(equipe);
       } else {
-        setAction("create");
+        setAction("criar");
         setEquipeValues({
-          name: "",
-          seed_id: "",
-          checked: false,
-          users: [],
+          nome: "",
+          nomeParticipantes: "",
+          isCredenciado: false,
+          torneioId: id,
         });
       }
     }
@@ -39,28 +34,30 @@ export default function CredenciamentoFormulario() {
   }, [id]);
 
   async function criarEquipe(values) {
-    //   if (action === "create") {
-    //     await _teamService
-    //       .create(values)
-    //       .then((res) => {
-    //         navigate("/admin/teams");
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   } else {
-    //     await _teamService
-    //       .update(values)
-    //       .then((res) => {})
-    //       .catch((err) => {});
-    //   }
+    debugger;
+    if (action === "criar") {
+      debugger;
+      await _equipeService
+        .create(values)
+        .then((res) => {
+          debugger;
+          navigate(`/admin/torneio/${id}/credenciamento`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      await _equipeService
+        .update(values)
+        .then((res) => {})
+        .catch((err) => {});
+    }
   }
 
   return (
     <div>
-      <h1>{action === "create" ? "Criando time" : "Editando time"}</h1>
+      <h1>{action === "criar" ? "Criando equipe" : "Editando equipe"}</h1>
       <hr />
-
       <Formik
         enableReinitialize={true}
         initialValues={equipeValues}
@@ -71,28 +68,20 @@ export default function CredenciamentoFormulario() {
         {(props) => {
           return (
             <Form>
-              {/* <TextInput
-                    type="text"
-                    label="Nome"
-                    name="name"
-                    placeholder="Nome"
-                  /> */}
+              <Field type="text" name="nome" placeholder="Nome" />
 
-              {/* <Col md="3" lg="3" xl="3">
-                  <Select
-                    isMulti
-                    name="users"
-                    options={userOptions}
-                    className="basic-multi-select"
-                    classNamePrefix="select"
-                    value={props.values?.users}
-                    onChange={(ev) => {
-                      props.setFieldValue("users", ev);
-                    }}
-                  />
-                </Col> */}
+              <Field
+                type="text"
+                name="nomeParticipantes"
+                placeholder="Nome dos participantes"
+              />
 
-              {/* <AdminButtonsFooter submit routerLink={"/admin/teams"} /> */}
+              <label>
+                <Field type="checkbox" name="isCredenciado" />
+                Credenciado
+              </label>
+
+              <button type="submit">Enviar</button>
             </Form>
           );
         }}
