@@ -8,14 +8,13 @@ export default class TorneioService extends CoreApiService {
   }
 
   async GetAllEquipesTorneioAsync(id) {
-    debugger;
     this.parentEndpoint = "equipes";
 
-    const response = await api.get(`${this.endpoint}/${id}/${this.parentEndpoint}/`);
+    const response = await api.get(
+      `${this.endpoint}/${id}/${this.parentEndpoint}/`
+    );
 
-    const data = response.data;
+    const data = { equipes: response.data };
     return this.serializer.fromJson(data);
   }
 }
-
-

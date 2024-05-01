@@ -1,15 +1,22 @@
+import EquipeSerializer from "./equipe.serializer";
 
 export default class TorneioSerializer {
+  constructor() {
+    this.equipeSerializer = new EquipeSerializer();
+  }
 
   fromJson(json) {
-    debugger;
     const torneio = {};
 
     Object.assign(
       torneio,
       json.id && { id: json.id },
-      json.titulo && { titulo: json.titulo}
-      
+      json.titulo && { titulo: json.titulo },
+      json.equipes && {
+        equipes: json.equipes.map((item) =>
+          this.equipeSerializer.fromJson(item)
+        ),
+      }
     );
 
     return torneio;
@@ -18,10 +25,7 @@ export default class TorneioSerializer {
   toJson(torneio) {
     const torneioToJson = {};
 
-    Object.assign(
-      torneioToJson,
-      
-    );
+    Object.assign(torneioToJson);
 
     return torneioToJson;
   }

@@ -7,7 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Credenciamento from "./pages/admin/Torneios/Operacao/Credenciamento";
 import Operacao from "./pages/admin/Torneios/Operacao";
 import Torneios from "./pages/admin/Torneios";
-
+import CredenciamentoFormulario from "./pages/admin/Torneios/Operacao/Credenciamento/Formulario";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/torneio/:id/credenciamento",
         element: <Credenciamento />,
+      },
+      {
+        path: "/admin/torneio/:id/credenciamento/:idEquipe/formulario",
+        element: <CredenciamentoFormulario />,
       },
     ],
   },

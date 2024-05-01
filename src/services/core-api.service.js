@@ -15,11 +15,10 @@ export default class CoreApiService {
   }
 
   async list(queryOptions = null, isListView = null) {
-    debugger;
     const response = await api.get(
       `${this.endpoint}?${(queryOptions && queryOptions.toQueryString()) || ""}`
     );
-    
+
     const data = response.data;
 
     if (data && isListView) {
@@ -93,6 +92,7 @@ export default class CoreApiService {
   }
 
   async delete(id) {
+    debugger;
     const response = await api.delete(`${this.endpoint}/${id}`);
     return response;
   }
