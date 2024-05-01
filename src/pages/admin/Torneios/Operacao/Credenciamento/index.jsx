@@ -1,7 +1,7 @@
 import { useEffect, useState, React } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TorneioService from "../../../../../services/torneio.service";
-import TabelaAdmin from "../../../../../components/admin/Tabelas";
+import TabelaAdmin from "../../../../../components/Admin/Tabelas";
 import { Card, Edit, Trash } from "iconsax-react";
 import { Popconfirm } from "antd";
 import EquipeService from "../../../../../services/equipe.service";

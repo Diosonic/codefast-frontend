@@ -8,11 +8,12 @@ import Credenciamento from "./pages/admin/Torneios/Operacao/Credenciamento";
 import Operacao from "./pages/admin/Torneios/Operacao";
 import Torneios from "./pages/admin/Torneios";
 import CredenciamentoFormulario from "./pages/admin/Torneios/Operacao/Credenciamento/Formulario";
+import EtapaEliminatoria from "./pages/app/EtapaEliminatoria";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    path: "/torneio/:id/etapa-eliminatoria",
+    element: <EtapaEliminatoria />,
   },
   {
     path: "/admin",

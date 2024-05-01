@@ -3,7 +3,7 @@ import TorneioService from "../../../services/torneio.service";
 import { Popconfirm } from "antd";
 import { ExportCircle, Trash } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
-import TabelaAdmin from "../../../components/admin/Tabelas";
+import TabelaAdmin from "../../../components/Admin/Tabelas";
 
 export default function Torneios() {
   const [torneios, setTorneios] = useState([]);
