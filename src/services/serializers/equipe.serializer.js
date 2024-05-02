@@ -23,8 +23,8 @@ export default class EquipeSerializer {
       equipe.nomeParticipantes && {
         nomeParticipantes: equipe.nomeParticipantes,
       },
-      { isCredenciado: equipe.isCredenciado },
-      equipe.torneioId && { torneioId: equipe.torneioId }
+      equipe.torneioId && { torneioId: equipe.torneioId },
+      { isCredenciado: equipe.isCredenciado }
     );
 
     return equipeToJson;

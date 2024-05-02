@@ -4,19 +4,20 @@ import ControleEliminatoriaService from "../../../services/controleEliminatoria.
 
 export default function EtapaEliminatoria() {
   const { id } = useParams();
-  const [equipes, setEquipes] = useState([]);
+  const [equipesEliminatoria, setEquipesEliminatoria] = useState([]);
 
   useEffect(() => {
     const _controleEliminatoriaService = new ControleEliminatoriaService();
 
     async function init() {
-      debugger;
-      const responseTorneioService =
+      const responseControleEliminatoria =
         await _controleEliminatoriaService.GetAllEquipesCredenciadasEliminatoria(
           id
         );
 
-      setEquipes(responseTorneioService);
+      setEquipesEliminatoria(
+        responseControleEliminatoria.controleEliminatoriaEquipes
+      );
     }
 
     init();
@@ -24,9 +25,14 @@ export default function EtapaEliminatoria() {
 
   return (
     <div>
-      Etapa
-      {equipes.map((equipe) => (
-        <h1>{equipe.nome}</h1>
+      {equipesEliminatoria?.map((equipe) => (
+        <div style={{ display: "flex", gap: "20px" }}>
+          <br />
+          <h1>{equipe.equipe.nome}</h1>
+          <p>{equipe.statusValidacao}</p>
+          <p>{equipe.tempo}</p>
+          <p>{equipe.pontuacao}</p>
+        </div>
       ))}
     </div>
   );

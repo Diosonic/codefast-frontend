@@ -13,12 +13,13 @@ export default class ControleEliminatoriaService extends CoreApiService {
 
   async GetAllEquipesCredenciadasEliminatoria(id) {
     this.parentEndpoint = "equipes";
-    debugger;
+
     const response = await api.get(
       `${this.endpoint}/${id}/${this.parentEndpoint}/`
     );
 
-    const data = { equipes: response.data };
+    const data = { controleEliminatoria: response.data };
+
     return this.serializer.fromJson(data);
   }
 }

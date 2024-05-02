@@ -1,15 +1,24 @@
+import ControleEliminatoriaEquipeSerializer from "./controleEliminatoriaEquipe.serializer";
+
 export default class ControleEliminatoriaSerializer {
+  constructor() {
+    this._controleEliminatoriaEquipeSerializer =
+      new ControleEliminatoriaEquipeSerializer();
+  }
+
   fromJson(json) {
-    debugger;
-    const equipe = {};
+    const controleEliminatoria = {};
 
-  Object.assign(
-    equipe,
-    json.equipeId && { equipeId: json.equipeId },
-    json.isDesclassificado && {}
+    Object.assign(
+      controleEliminatoria,
+      json.controleEliminatoria && {
+        controleEliminatoriaEquipes: json.controleEliminatoria.map((item) =>
+          this._controleEliminatoriaEquipeSerializer.fromJson(item)
+        ),
+      }
+    );
 
-  );
-    return equipe;
+    return controleEliminatoria;
   }
 
   toJson(equipe) {
@@ -21,22 +30,21 @@ export default class ControleEliminatoriaSerializer {
   }
 }
 
-
 // equipeId
-// : 
+// :
 // 23
 // id
-// : 
+// :
 // 19
 // isDesclassificado
-// : 
+// :
 // false
 // pontuacao
-// : 
+// :
 // 0
 // statusValidacao
-// : 
+// :
 // "Pendente"
 // tempo
-// : 
+// :
 // "00:00:00"

@@ -34,13 +34,10 @@ export default function CredenciamentoFormulario() {
   }, [id]);
 
   async function criarEquipe(values) {
-    debugger;
     if (action === "criar") {
-      debugger;
       await _equipeService
         .create(values)
         .then((res) => {
-          debugger;
           navigate(`/admin/torneio/${id}/credenciamento`);
         })
         .catch((err) => {
