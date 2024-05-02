@@ -13,7 +13,13 @@ import EtapaEliminatoria from "./pages/app/EtapaEliminatoria";
 const router = createBrowserRouter([
   {
     path: "/torneio/:id/etapa-eliminatoria",
-    element: <EtapaEliminatoria />,
+    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <EtapaEliminatoria />,
+      },
+    ],
   },
   {
     path: "/admin",

@@ -1,28 +1,33 @@
 import { useEffect, useState } from "react";
-import TorneioService from "../../../services/torneio.service";
 import { useParams } from "react-router-dom";
+import ControleEliminatoriaService from "../../../services/controleEliminatoria.service";
 
 export default function EtapaEliminatoria() {
   const { id } = useParams();
   const [equipes, setEquipes] = useState([]);
 
   useEffect(() => {
-    const _torneioService = new TorneioService();
+    const _controleEliminatoriaService = new ControleEliminatoriaService();
 
     async function init() {
+      debugger;
       const responseTorneioService =
-        await _torneioService.GetAllEquipesTorneioAsync(id);
+        await _controleEliminatoriaService.GetAllEquipesCredenciadasEliminatoria(
+          id
+        );
 
-        setEquipes(responseTorneioService);
+      setEquipes(responseTorneioService);
     }
 
     init();
   }, [id]);
 
   return (
-
     <div>
-        {console.log(equipes)}
+      Etapa
+      {equipes.map((equipe) => (
+        <h1>{equipe.nome}</h1>
+      ))}
     </div>
-  )
+  );
 }
