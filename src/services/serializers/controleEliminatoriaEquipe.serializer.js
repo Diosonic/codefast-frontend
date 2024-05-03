@@ -7,7 +7,7 @@ export default class ControleEliminatoriaEquipeSerializer {
 
   fromJson(json) {
     const controleEliminatoriaEquipe = {};
-    debugger;
+
     Object.assign(
       controleEliminatoriaEquipe,
       json.id && { id: json.id },
