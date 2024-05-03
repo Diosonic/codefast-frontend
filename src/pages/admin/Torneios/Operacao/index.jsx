@@ -21,7 +21,7 @@ export default function Operacao() {
   return (
     <Row gutter={[48, 48]}>
       <Col span={8}>
-        <div style={{ backgroundColor: "grey" }}>
+        <div style={{ backgroundColor: "lightcoral" }}>
           <NavLink
             to={`/admin/torneio/${id}/credenciamento`}
             className="menu-card"
@@ -32,11 +32,14 @@ export default function Operacao() {
       </Col>
 
       <Col span={8}>
-        <div style={{ backgroundColor: "grey" }}>OII</div>
-      </Col>
-
-      <Col span={8}>
-        <div style={{ backgroundColor: "grey" }}>Column</div>
+      <div style={{ backgroundColor: "lightcoral" }}>
+          <NavLink
+            to={`/admin/torneio/${id}/controles`}
+            className="menu-card"
+          >
+            Operação
+          </NavLink>
+        </div>
       </Col>
     </Row>
   );

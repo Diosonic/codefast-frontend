@@ -9,6 +9,8 @@ import Operacao from "./pages/admin/Torneios/Operacao";
 import Torneios from "./pages/admin/Torneios";
 import CredenciamentoFormulario from "./pages/admin/Torneios/Operacao/Credenciamento/Formulario";
 import EtapaEliminatoria from "./pages/app/EtapaEliminatoria";
+import ControleEliminatoria from "./pages/admin/Torneios/Operacao/ControleTorneio/Eliminatoria";
+import ControleTorneio from "./pages/admin/Torneios/Operacao/ControleTorneio";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ const router = createBrowserRouter([
       {
         path: "/admin/torneio/:id/credenciamento/:idEquipe/formulario",
         element: <CredenciamentoFormulario />,
+      },
+      {
+        path: "/admin/torneio/:id/controles",
+        element: <ControleTorneio />,
+      },
+      {
+        path: "/admin/torneio/:id/controles/eliminatoria",
+        element: <ControleEliminatoria />,
       },
     ],
   },
