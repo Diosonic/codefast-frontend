@@ -28,6 +28,7 @@ export default function EtapaEliminatoria() {
       {equipesEliminatoria?.map((equipe) => (
         <div style={{ display: "flex", gap: "20px" }}>
           <br />
+          
           <h1>{equipe.equipe.nome}</h1>
           <p>{equipe.statusValidacao}</p>
           <p>{equipe.tempo}</p>

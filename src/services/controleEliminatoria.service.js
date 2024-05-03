@@ -22,4 +22,20 @@ export default class ControleEliminatoriaService extends CoreApiService {
 
     return this.serializer.fromJson(data);
   }
+
+  async AlteraStatusValidacao(item) {
+    debugger;
+    this.parentEndpoint = "equipes";
+
+    const response = await api.put(
+      `${this.endpoint}/${item.id}/${this.parentEndpoint}`,
+      this.serializer.toJson(item)
+    );
+
+    const data = response.data;
+
+    return this.serializer.toJson(data);    
+  }
+
+  
 }

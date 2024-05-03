@@ -21,12 +21,19 @@ export default class ControleEliminatoriaSerializer {
     return controleEliminatoria;
   }
 
-  toJson(equipe) {
-    const equipeToJson = {};
+  toJson(controleEliminatoria) {
+    debugger;
+    const controleEliminatoriaToJson = {};
 
-    Object.assign(equipeToJson);
+    Object.assign(
+      controleEliminatoriaToJson,
+      controleEliminatoria.id && { name: controleEliminatoria.id },
+      controleEliminatoria.statusValidacao && {
+        statusValidacao: controleEliminatoria.statusValidacao,
+      }
+    );
 
-    return equipeToJson;
+    return controleEliminatoriaToJson;
   }
 }
 
