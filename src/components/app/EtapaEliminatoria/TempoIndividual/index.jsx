@@ -4,13 +4,16 @@ export default function TempoIndividual({ equipe }) {
   const [tempoAtual, setTempoAtual] = useState(equipe.tempo);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      localStorage.setItem(`${equipe.equipe.nome}`, tempoAtual);
+    if (equipe.statusValidacao === "Em progresso") {
+      const timer = setInterval(() => {
+        localStorage.setItem(`${equipe.equipe.nome}`, tempoAtual);
 
-      setTempoAtual((prevTime) => incrementarTempo(prevTime));
-    }, 1000);
+        setTempoAtual((prevTime) => incrementarTempo(prevTime));
+      }, 1000);
 
-    return () => clearInterval(timer);
+      return () => clearInterval(timer);
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
