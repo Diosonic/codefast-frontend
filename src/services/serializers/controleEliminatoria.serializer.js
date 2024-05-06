@@ -22,36 +22,20 @@ export default class ControleEliminatoriaSerializer {
   }
 
   toJson(controleEliminatoria) {
-    debugger;
+
     const controleEliminatoriaToJson = {};
 
     Object.assign(
       controleEliminatoriaToJson,
-      controleEliminatoria.id && { name: controleEliminatoria.id },
+      controleEliminatoria.id && { id: controleEliminatoria.id },
       controleEliminatoria.statusValidacao && {
         statusValidacao: controleEliminatoria.statusValidacao,
+      },
+      controleEliminatoria.tempo && {
+        tempo: controleEliminatoria.tempo, 
       }
     );
 
     return controleEliminatoriaToJson;
   }
 }
-
-// equipeId
-// :
-// 23
-// id
-// :
-// 19
-// isDesclassificado
-// :
-// false
-// pontuacao
-// :
-// 0
-// statusValidacao
-// :
-// "Pendente"
-// tempo
-// :
-// "00:00:00"

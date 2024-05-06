@@ -22,15 +22,14 @@ export default function ControleEliminatoria() {
     }
 
     init();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, handleAlteraStatusValidacao]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   async function handleAlteraStatusValidacao(equipe) {
-    await _controleEliminatoriaService
-      .AlteraStatusValidacao({
-        id: equipe.id,
-        statusValidacao: "Validação em Progresso",
-      })
+    await _controleEliminatoriaService.AlteraStatusValidacao({
+      id: equipe.id,
+      statusValidacao: "Validando",
+    });
   }
 
   return (
@@ -50,7 +49,7 @@ export default function ControleEliminatoria() {
 
             <h1>{equipe.equipe.nome}</h1>
             <p>{equipe.statusValidacao}</p>
-          </div>{" "}
+          </div>
         </Popconfirm>
       ))}
     </div>

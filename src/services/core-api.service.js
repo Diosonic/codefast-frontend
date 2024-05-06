@@ -81,7 +81,6 @@ export default class CoreApiService {
   }
 
   async updateSub(id = null, item) {
-    debugger
     const ref = id ? id : item.id;
     const response = await api.put(
       `${this.parentEndpoint}/${ref}/${this.endpoint}`,

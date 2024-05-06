@@ -24,7 +24,6 @@ export default class ControleEliminatoriaService extends CoreApiService {
   }
 
   async AlteraStatusValidacao(item) {
-    debugger;
     this.parentEndpoint = "equipes";
 
     const response = await api.put(
@@ -34,8 +33,6 @@ export default class ControleEliminatoriaService extends CoreApiService {
 
     const data = response.data;
 
-    return this.serializer.toJson(data);    
+    return this.serializer.toJson(data);
   }
-
-  
 }
