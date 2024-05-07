@@ -5,29 +5,6 @@ export default function TempoIndividual({ equipe }) {
   const [tempoAtual, setTempoAtual] = useState(equipe.tempo);
   const _controleEliminatoriaService = new ControleEliminatoriaService();
 
-  function parseTimeStringToTimeSpan(timeString) {
-    // Split the time string into hours, minutes, and seconds
-    const [hours, minutes, seconds] = timeString.split(":").map(Number);
-
-    // Create a new Date object with the time values
-    const date = new Date();
-    date.setHours(hours);
-    date.setMinutes(minutes);
-    date.setSeconds(seconds);
-
-    // Extract hours, minutes, and seconds from the Date object
-    const hoursOfDay = date.getHours();
-    const minutesOfDay = date.getMinutes();
-    const secondsOfDay = date.getSeconds();
-
-    // Create a TimeSpan object
-    return {
-      hours: hoursOfDay,
-      minutes: minutesOfDay,
-      seconds: secondsOfDay,
-    };
-  }
-
   async function alterarStatusValidacao(values) {
     await _controleEliminatoriaService.AlteraStatusValidacao(values);
   }
@@ -40,6 +17,7 @@ export default function TempoIndividual({ equipe }) {
     }, 1000);
 
     if (equipe.statusValidacao === "Validando") {
+      debugger;
       clearInterval(timer);
       alterarStatusValidacao({
         id: equipe.id,

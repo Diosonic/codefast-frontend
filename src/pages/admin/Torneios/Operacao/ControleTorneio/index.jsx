@@ -1,5 +1,5 @@
 import { Col, Row } from "antd";
-import { useEffect, useState, React } from "react";
+import { React } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
 export default function ControleTorneio() {
@@ -10,7 +10,7 @@ export default function ControleTorneio() {
       <Col span={8}>
         <div style={{ backgroundColor: "lightblue" }}>
           <NavLink
-            to={`/admin/torneio/${id}/validacao`}
+            to={`/admin/torneio/${id}/controles/validacao`}
             className="menu-card"
           >
             Validação
@@ -20,7 +20,10 @@ export default function ControleTorneio() {
 
       <Col span={8}>
         <div style={{ backgroundColor: "lightblue" }}>
-          <NavLink to={`/admin/torneio/${id}/controles/eliminatoria`} className="menu-card">
+          <NavLink
+            to={`/admin/torneio/${id}/controles/eliminatoria`}
+            className="menu-card"
+          >
             Controle Eliminatória
           </NavLink>
         </div>

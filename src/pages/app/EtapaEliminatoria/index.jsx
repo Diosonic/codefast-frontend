@@ -20,7 +20,6 @@ export default function EtapaEliminatoria() {
           setEquipesEliminatoria(
             responseControleEliminatoria.controleEliminatoriaEquipes
           );
-          debugger;
         } catch (error) {
           console.error(error);
         }

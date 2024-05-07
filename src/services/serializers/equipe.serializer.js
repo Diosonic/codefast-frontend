@@ -1,7 +1,6 @@
 export default class EquipeSerializer {
   fromJson(json) {
     const equipe = {};
-
     Object.assign(
       equipe,
       json.id && { id: json.id },

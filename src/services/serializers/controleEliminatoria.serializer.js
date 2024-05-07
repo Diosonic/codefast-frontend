@@ -22,7 +22,6 @@ export default class ControleEliminatoriaSerializer {
   }
 
   toJson(controleEliminatoria) {
-
     const controleEliminatoriaToJson = {};
 
     Object.assign(
@@ -32,7 +31,7 @@ export default class ControleEliminatoriaSerializer {
         statusValidacao: controleEliminatoria.statusValidacao,
       },
       controleEliminatoria.tempo && {
-        tempo: controleEliminatoria.tempo, 
+        tempo: controleEliminatoria.tempo,
       }
     );
 
