@@ -56,9 +56,6 @@ export default function ControleEliminatoria() {
       <button>Começar nova rodada</button>
       <br />
       <br />
-      <button>Pausar rodada</button>
-      <br />
-      <br />
       <button>Finalizar rodada</button>
     </div>
   );

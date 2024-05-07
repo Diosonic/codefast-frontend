@@ -1,6 +1,6 @@
 import { useEffect, useState, React } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ControleEliminatoriaService from "../../../../../../services/controleEliminatoria.service";
+import ControleEliminatoriaService from "../../../../../../../services/controleEliminatoria.service";
 
 export default function ValidacaoEliminatoria() {
   const { id } = useParams();

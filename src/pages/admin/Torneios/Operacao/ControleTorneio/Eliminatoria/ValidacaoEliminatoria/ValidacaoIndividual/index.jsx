@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ControleEliminatoriaService from "../../../../../../../services/controleEliminatoria.service";
+import ControleEliminatoriaService from "../../../../../../../../services/controleEliminatoria.service";
 
 export default function ValidacaoIndividual() {
   const { idEquipe } = useParams();
