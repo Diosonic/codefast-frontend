@@ -28,6 +28,14 @@ export default function ControleTorneio() {
           </NavLink>
         </div>
       </Col>
+
+      <Col span={8}>
+        <div style={{ backgroundColor: "lightblue" }}>
+          <NavLink to={`/admin/torneio/${id}/controles/mata-mata`} className="menu-card">
+            Controle Mata-Mata
+          </NavLink>
+        </div>
+      </Col>
     </Row>
   );
 }
