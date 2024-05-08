@@ -36,6 +36,11 @@ export default function TempoIndividual({ equipe }) {
       // updateTime({ id: item.id, time: segundos });
     }
 
+    if (equipe.statusValidacao === "Em espera") {
+      clearInterval(timer);
+      // updateTime({ id: item.id, time: segundos });
+    }
+
     return () => clearInterval(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [equipe.statusValidacao]);

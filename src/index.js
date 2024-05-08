@@ -9,12 +9,13 @@ import Operacao from "./pages/admin/Torneios/Operacao";
 import Torneios from "./pages/admin/Torneios";
 import CredenciamentoFormulario from "./pages/admin/Torneios/Operacao/Credenciamento/Formulario";
 import EtapaEliminatoria from "./pages/app/EtapaEliminatoria";
-import ControleEliminatoria from "./pages/admin/Torneios/Operacao/ControleTorneio/ControleEliminatoria";
-import ValidacaoEliminatoria from "./pages/admin/Torneios/Operacao/ControleTorneio/ValidacaoEliminatoria";
-import ValidacaoIndividual from "./pages/admin/Torneios/Operacao/ControleTorneio/ValidacaoEliminatoria/ValidacaoIndividual";
+
 import ControleMataMata from "./pages/admin/Torneios/Operacao/ControleTorneio/MataMata";
 import ControleTorneio from "./pages/admin/Torneios/Operacao/ControleTorneio";
 import EtapaMataMata from "./pages/app/EtapaMataMata";
+import ControleEliminatoria from "./pages/admin/Torneios/Operacao/ControleTorneio/Eliminatoria";
+import ValidacaoEliminatoria from "./pages/admin/Torneios/Operacao/ControleTorneio/Eliminatoria/ValidacaoEliminatoria";
+import ValidacaoIndividual from "./pages/admin/Torneios/Operacao/ControleTorneio/Eliminatoria/ValidacaoEliminatoria/ValidacaoIndividual";
 
 const router = createBrowserRouter([
   {
