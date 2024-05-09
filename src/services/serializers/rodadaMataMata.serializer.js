@@ -1,27 +1,37 @@
-import SementeRodadaSerializer from "./sementeRodada.serializer";
-
+import RodadaSerializer from "./rodada.serializer";
 
 export default class RodadaMataMataSerializer {
   constructor() {
-    this.sementeRodada = new SementeRodadaSerializer();
+    this.rodada = new RodadaSerializer();
   }
-
 
   fromJson(json) {
     const rodadaMataMata = {};
 
     Object.assign(
       rodadaMataMata,
-      json.titulo && {title: json.titulo},
-      json.sementeRodadas && {
-        seeds: json.sementeRodadas.map((item) =>
-          this.sementeRodada.fromJson(item)
-        )
-      },
+      json.rodadas && {
+        rodadas: json.rodadas.map((item) =>
+          this.rodada.fromJson(item)
+        ),
+      }
 
-
+      
     );
 
     return rodadaMataMata;
+  }
+
+  toJson(controleMataMata) {
+    debugger;
+    const controleMataMataToJson = {};
+
+    Object.assign(
+      controleMataMataToJson,
+      
+    
+    );
+
+    return controleMataMataToJson;
   }
 }

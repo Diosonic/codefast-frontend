@@ -9,13 +9,13 @@ import Operacao from "./pages/admin/Torneios/Operacao";
 import Torneios from "./pages/admin/Torneios";
 import CredenciamentoFormulario from "./pages/admin/Torneios/Operacao/Credenciamento/Formulario";
 import EtapaEliminatoria from "./pages/app/EtapaEliminatoria";
-
-import ControleMataMata from "./pages/admin/Torneios/Operacao/ControleTorneio/MataMata";
 import ControleTorneio from "./pages/admin/Torneios/Operacao/ControleTorneio";
 import EtapaMataMata from "./pages/app/EtapaMataMata";
 import ControleEliminatoria from "./pages/admin/Torneios/Operacao/ControleTorneio/Eliminatoria";
 import ValidacaoEliminatoria from "./pages/admin/Torneios/Operacao/ControleTorneio/Eliminatoria/ValidacaoEliminatoria";
 import ValidacaoIndividual from "./pages/admin/Torneios/Operacao/ControleTorneio/Eliminatoria/ValidacaoEliminatoria/ValidacaoIndividual";
+import AdminMataMata from "./pages/admin/Torneios/Operacao/ControleTorneio/MataMata";
+import OperacaoMataMata from "./pages/admin/Torneios/Operacao/ControleTorneio/MataMata/OperacaoMataMata";
 
 const router = createBrowserRouter([
   {
@@ -74,8 +74,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin/torneio/:id/controles/mata-mata",
-        element: <ControleMataMata />,
+        element: <AdminMataMata />,
       },
+      {
+        path: "/admin/torneio/:id/controles/mata-mata/operacao",
+        element: <OperacaoMataMata />,
+      },
+
+      
     ],
   },
 ]);

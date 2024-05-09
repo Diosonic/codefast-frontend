@@ -10,9 +10,6 @@ export default class ControleMataMataSerializer {
 
     Object.assign(
       controleMataMata,
-      json.statusValidacao && {
-        statusValidacao: json.statusValidacao,
-      },
 
       json.rodadas && {
         rodadas: json.rodadas.map((item) =>

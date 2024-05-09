@@ -11,9 +11,9 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
             <>
               {/* <div className="point">{seed.teams[0]?.knockout_points}</div> */}
               <div className="team">{seed.teams[0]?.name}</div>
-              <div className="time">
+              {/* <div className="time">
                 Status: Em progresso
-              </div>
+              </div> */}
             </>
           ) : (
             "-"

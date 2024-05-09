@@ -13,17 +13,4 @@ export default class ControleMataMataService extends CoreApiService {
 
 
 
-  async GetRodadaEmAndamento(id) {
-    this.parentEndpoint = "get-rodada-em-andamento";
-
-    const response = await api.get(
-      `${this.endpoint}/${id}/${this.parentEndpoint}`
-    );
-
-    const data = { rodadas: response.data };
-
-    return this.serializer.fromJson(data);
-  }
-
-
 }

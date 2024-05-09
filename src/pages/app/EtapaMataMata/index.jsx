@@ -11,6 +11,7 @@ import "./styles.scss";
 import { useEffect, useState } from "react";
 import ControleMataMataService from "../../../services/controleMataMata.service";
 import { useParams } from "react-router-dom";
+import RodadaMataMataService from "../../../services/rodadaMataMata.service";
 
 const rounds = [
   {
@@ -60,18 +61,20 @@ const rounds = [
 
 export default function EtapaMataMata() {
   const { id } = useParams();
-  const [controleMataMata, setControleMataMata] = useState([]);
+  // const [controleMataMata, setControleMataMata] = useState([]);
   const [rodadas, setRodadas] = useState([]);
 
-  const _controleMataMataService = new ControleMataMataService();
+  // const _controleMataMataService = new ControleMataMataService();
+  const _rodadaMataMataService = new RodadaMataMataService();
 
   useEffect(() => {
-
     async function init() {
-      const controleMataMataService = await _controleMataMataService.read(id);
-      setControleMataMata(controleMataMataService);
+      // const controleMataMataService = await _controleMataMataService.read(id);
+      // setControleMataMata(controleMataMataService);
 
-      const rodadaAndamento = await _controleMataMataService.GetRodadaEmAndamento(id);
+      const rodadaAndamento = await _rodadaMataMataService.GetRodadaEmAndamento(
+        id
+      );
       setRodadas(rodadaAndamento.rodadas);
 
       debugger;
@@ -87,7 +90,6 @@ export default function EtapaMataMata() {
       </Seed>
     );
   };
-
 
   return (
     <>
