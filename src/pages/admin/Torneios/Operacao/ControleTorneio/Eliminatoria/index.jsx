@@ -4,7 +4,7 @@ import ControleEliminatoriaService from "../../../../../../services/controleElim
 import { Popconfirm } from "antd";
 
 export default function ControleEliminatoria() {
-  const { id } = useParams();
+  const { id, idTorneio } = useParams();
   const [equipesEliminatoria, setEquipesEliminatoria] = useState([]);
 
   const _controleEliminatoriaService = new ControleEliminatoriaService();
@@ -32,6 +32,14 @@ export default function ControleEliminatoria() {
     });
   }
 
+  async function handleIniciarNovaRodada() {
+    await _controleEliminatoriaService.iniciarNovaRodada(id);
+  }
+
+  async function handleFinalizarRodadaAtual() {
+    await _controleEliminatoriaService.finalizarRodadaAtual(id);
+  }
+
   return (
     <div>
       <h1>Controle de eliminatória</h1>
@@ -53,10 +61,22 @@ export default function ControleEliminatoria() {
         </Popconfirm>
       ))}
 
-      <button>Começar nova rodada</button>
+      <button
+        onClick={() => {
+          handleIniciarNovaRodada();
+        }}
+      >
+        Começar nova rodada
+      </button>
       <br />
       <br />
-      <button>Finalizar rodada</button>
+      <button
+        onClick={() => {
+          handleFinalizarRodadaAtual();
+        }}
+      >
+        Finalizar rodada
+      </button>
     </div>
   );
 }
