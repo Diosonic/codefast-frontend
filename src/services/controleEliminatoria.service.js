@@ -47,13 +47,16 @@ export default class ControleEliminatoriaService extends CoreApiService {
   }
 
   async AlteraStatusValidacao(item) {
+    debugger;
     this.parentEndpoint = "equipes";
+    this.serializer = new ControleEliminatoriaEquipeSerializer();
 
     const response = await api.put(
       `${this.endpoint}/${item.id}/${this.parentEndpoint}`,
       this.serializer.toJson(item)
     );
 
+    debugger;
     const data = response.data;
 
     return this.serializer.toJson(data);
@@ -61,8 +64,6 @@ export default class ControleEliminatoriaService extends CoreApiService {
 
   async iniciarNovaRodada(torneioId) {
     this.parentEndpoint = "iniciarRodada";
-
-    debugger;
 
     const response = await api.put(
       `${this.endpoint}/${torneioId}/${this.parentEndpoint}`

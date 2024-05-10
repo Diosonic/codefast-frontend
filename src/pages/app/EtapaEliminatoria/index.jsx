@@ -25,19 +25,19 @@ export default function EtapaEliminatoria() {
         }
       };
 
-      const interval = setInterval(fetchItems, 1000);
+      const interval = setInterval(fetchItems, 10000);
 
       return () => clearInterval(interval);
     }
 
     init();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
       {equipesEliminatoria?.map((equipe) => (
-        <div style={{ display: "flex", gap: "20px" }}>
+        <div style={{ display: "flex", gap: "20px" }} key={equipe.id}>
           <br />
 
           <h1>{equipe.equipe.nome}</h1>

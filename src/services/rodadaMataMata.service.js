@@ -20,7 +20,6 @@ export default class RodadaMataMataService extends CoreApiService {
   }
 
   async CriaRodadasEtapaMataMata(id){
-    debugger;
 
     this.parentEndpoint = "cria-rodadas";
 
