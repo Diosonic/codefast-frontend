@@ -10,7 +10,7 @@ export default function AdminMataMata() {
       <Col span={8}>
         <div style={{ backgroundColor: "lightcoral" }}>
           <NavLink
-            // to={`/admin/torneio/${id}/credenciamento`}
+            to={`/admin/torneio/${id}/controles/mata-mata/validacao`}
             className="menu-card"
           >
             Validação

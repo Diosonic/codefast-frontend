@@ -16,6 +16,8 @@ import ValidacaoEliminatoria from "./pages/admin/Torneios/Operacao/ControleTorne
 import ValidacaoIndividual from "./pages/admin/Torneios/Operacao/ControleTorneio/Eliminatoria/ValidacaoEliminatoria/ValidacaoIndividual";
 import AdminMataMata from "./pages/admin/Torneios/Operacao/ControleTorneio/MataMata";
 import OperacaoMataMata from "./pages/admin/Torneios/Operacao/ControleTorneio/MataMata/OperacaoMataMata";
+import MataMataValidacao from "./pages/admin/Torneios/Operacao/ControleTorneio/MataMata/Validacao";
+import MataMataValidacaoIndividual from "./pages/admin/Torneios/Operacao/ControleTorneio/MataMata/Validacao/ValidacaoIndividual";
 
 const router = createBrowserRouter([
   {
@@ -80,8 +82,14 @@ const router = createBrowserRouter([
         path: "/admin/torneio/:id/controles/mata-mata/operacao",
         element: <OperacaoMataMata />,
       },
-
-      
+      {
+        path: "/admin/torneio/:id/controles/mata-mata/validacao",
+        element: <MataMataValidacao />,
+      },
+      {
+        path: "/admin/torneio/:id/controles/mata-mata/validacao/:idEquipe",
+        element: <MataMataValidacaoIndividual />,
+      },
     ],
   },
 ]);

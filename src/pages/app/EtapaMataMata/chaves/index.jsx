@@ -1,6 +1,6 @@
 import { SeedItem, SeedTeam } from "react-brackets";
 
-export default function SeedItemKnockout({ seed, levelInProgress }) {
+export default function SeedItemKnockout({ seed }) {
   return (
     <SeedItem className="seed-item">
       <div className="seed-team">
@@ -9,11 +9,12 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
         >
           {seed.teams[0]?.name ? (
             <>
-              {/* <div className="point">{seed.teams[0]?.knockout_points}</div> */}
               <div className="team">{seed.teams[0]?.name}</div>
-              {/* <div className="time">
-                Status: Em progresso
-              </div> */}
+              <div className="time">
+                {seed.teams[0]?.statusValidacao === "Em Progresso"
+                  ? " "
+                  : seed.teams[0]?.statusValidacao}
+              </div>
             </>
           ) : (
             "-"
@@ -26,8 +27,12 @@ export default function SeedItemKnockout({ seed, levelInProgress }) {
           {seed.teams[1]?.name ? (
             <>
               <>
-                {/* <div className="point">{seed.teams[1]?.knockout_points}</div> */}
                 <div className="team">{seed.teams[1]?.name}</div>
+                <div className="time">
+                  {seed.teams[1]?.statusValidacao === "Em Progresso"
+                    ? " "
+                    : seed.teams[1]?.statusValidacao}
+                </div>
               </>
             </>
           ) : (

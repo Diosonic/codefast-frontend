@@ -23,7 +23,6 @@ export default class RodadaMataMataSerializer {
   }
 
   toJson(controleMataMata) {
-    debugger;
     const controleMataMataToJson = {};
 
     Object.assign(

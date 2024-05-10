@@ -6,7 +6,7 @@ export default class RodadaMataMataService extends CoreApiService {
   constructor() {
     super(undefined, "rodada", new RodadaMataMataSerializer());
   }
-  
+
   async GetRodadaEmAndamento(id) {
     this.parentEndpoint = "rodada-andamento";
 
@@ -19,9 +19,7 @@ export default class RodadaMataMataService extends CoreApiService {
     return this.serializer.fromJson(data);
   }
 
-  async CriaRodadasEtapaMataMata(id){
-    debugger;
-
+  async CriaRodadasEtapaMataMata(id) {
     this.parentEndpoint = "cria-rodadas";
 
     const response = await api.post(
@@ -29,14 +27,7 @@ export default class RodadaMataMataService extends CoreApiService {
     );
 
     const data = response.data;
-    
+
     return data;
   }
-
-
-
-
-
-
-
 }

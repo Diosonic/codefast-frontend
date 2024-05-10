@@ -1,32 +1,45 @@
-import RodadaMataMataSerializer from "./rodadaMataMata.serializer";
+import ControleMataMataEquipeSerializer from "./controleMataMataEquipe.serializer";
 
 export default class ControleMataMataSerializer {
   constructor() {
-    this.rodadaMataMata = new RodadaMataMataSerializer();
+    this.controleMataMataEquipe = new ControleMataMataEquipeSerializer();
   }
 
   fromJson(json) {
+    debugger;
     const controleMataMata = {};
 
     Object.assign(
       controleMataMata,
 
-      json.rodadas && {
-        rodadas: json.rodadas.map((item) =>
-          this.rodadaMataMata.fromJson(item)
+      json.id && { id: json.id },
+      json.equipeId && { equipeId: json.equipeId },
+      json.statusValidacao && { statusValidacao: json.statusValidacao },
+      json.equipe && {
+        nome: json.equipe.nome
+      },
+
+      json.controleMataMata && {
+        controleMataMataEquipes: json.controleMataMata.map((item) =>
+          this.controleMataMataEquipe.fromJson(item)
         ),
       }
-
-      
     );
 
     return controleMataMata;
   }
 
   toJson(controleMataMata) {
+    debugger;
     const controleMataMataToJson = {};
 
-    Object.assign(controleMataMataToJson);
+    Object.assign(
+      controleMataMataToJson,
+      controleMataMata.id && { id: controleMataMata.id },
+      controleMataMata.statusValidacao && {
+        statusValidacao: controleMataMata.statusValidacao,
+      }
+    );
 
     return controleMataMataToJson;
   }
