@@ -50,57 +50,42 @@ export default function OperacaoMataMata() {
         statusValidacao: status,
       })
       .then((res) => {
-        window.location.reload();
+        const equipesAtualizadas = controleMataMata.filter(
+          (equipe) => equipe.id !== controleEquipeId
+        );
+
+        setControleMataMata(equipesAtualizadas);
       })
       .catch((res) => {
-        console.log(res);
         alert(res.response.data);
       });
   }
 
+  console.log(controleMataMata);
+
   return (
     <div className="admin-page">
-      <div style={{ paddingBottom: "2rem" }}>
+      <div>
         <h1>Operação mata-mata</h1>
       </div>
 
-      <Flex align="flex-start" gap="small" vertical>
-        <Button
-          htmlType="submit"
-          type="primary"
-          onClick={() => {
-            CriaRodadas();
-          }}
-        >
-          Criar rodadas
-        </Button>
-
-        <Button
-          htmlType="submit"
-          type="primary"
-          onClick={() => {
-            alert("estudando possibilidades");
-          }}
-        >
-          Criar chaves
-        </Button>
-      </Flex>
-
       {controleMataMata?.map((controleEquipe) => (
-        <Popconfirm
-          title="Alterar status"
-          description={`Deseja alterar o status para validando"?`}
-          onConfirm={() =>
-            AlterarStatusValidacao(controleEquipe.id, "Validando")
-          }
-        >
-          <div style={{ display: "flex", gap: "20px" }}>
-            <br />
-
-            <h1>{controleEquipe.nome}</h1>
-            <p>{controleEquipe.statusValidacao}</p>
-          </div>
-        </Popconfirm>
+        <>
+          {console.log(controleEquipe)}
+          {controleEquipe.statusValidacao === "Em Progresso" && (
+            <Popconfirm
+              title="Alterar status"
+              description={`Deseja alterar o status para validando"?`}
+              onConfirm={() =>
+                AlterarStatusValidacao(controleEquipe.id, "Validando")
+              }
+            >
+              <div className="listagem-validacao">
+                <h2>{controleEquipe.nome}</h2>
+              </div>
+            </Popconfirm>
+          )}
+        </>
       ))}
 
       <Flex
@@ -114,6 +99,30 @@ export default function OperacaoMataMata() {
         >
           Voltar
         </Button>
+
+        <div>
+          <Flex gap="small" wrap>
+            <Button
+              htmlType="submit"
+              type="primary"
+              onClick={() => {
+                CriaRodadas();
+              }}
+            >
+              Criar rodadas
+            </Button>
+
+            <Button
+              htmlType="submit"
+              type="primary"
+              onClick={() => {
+                alert("estudando possibilidades");
+              }}
+            >
+              Criar chaves
+            </Button>
+          </Flex>
+        </div>
       </Flex>
     </div>
   );

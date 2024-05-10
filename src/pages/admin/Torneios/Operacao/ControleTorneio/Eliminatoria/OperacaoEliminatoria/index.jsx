@@ -1,6 +1,6 @@
 import { useEffect, useState, React } from "react";
-import { useParams } from "react-router-dom";
-import { Popconfirm } from "antd";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button, Flex, Popconfirm } from "antd";
 import ControleEliminatoriaService from "../../../../../../../services/controleEliminatoria.service";
 
 export default function OperacaoControleEliminatoria() {
@@ -8,6 +8,7 @@ export default function OperacaoControleEliminatoria() {
   const [equipesEliminatoria, setEquipesEliminatoria] = useState([]);
 
   const _controleEliminatoriaService = new ControleEliminatoriaService();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function init() {
@@ -25,58 +26,93 @@ export default function OperacaoControleEliminatoria() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  async function handleAlteraStatusValidacao(equipe) {
-    await _controleEliminatoriaService.AlteraStatusValidacao({
-      id: equipe.id,
-      statusValidacao: "Validando",
-    });
+  async function handleAlteraStatusValidacao(values) {
+    await _controleEliminatoriaService
+      .AlteraStatusValidacao({
+        id: values.id,
+        statusValidacao: "Validando",
+      })
+      .then(() => {
+        const equipesAtualizadas = equipesEliminatoria.filter(
+          (equipe) => equipe.id !== values.id
+        );
+
+        setEquipesEliminatoria(equipesAtualizadas);
+      })
+      .catch((err) => {
+        alert(err.msg);
+      });
   }
 
   async function handleIniciarNovaRodada() {
-    await _controleEliminatoriaService.iniciarNovaRodada(id);
+    await _controleEliminatoriaService.iniciarNovaRodada(id).then(() => {
+      window.location.reload();
+    });
   }
 
   async function handleFinalizarRodadaAtual() {
-    await _controleEliminatoriaService.finalizarRodadaAtual(id);
+    await _controleEliminatoriaService.finalizarRodadaAtual(id).then(() => {
+      window.location.reload();
+    });
   }
 
   return (
-    <div>
-      <h1>Controle de eliminatória</h1>
-
-      <hr />
+    <div className="admin-page">
+      <div>
+        <h1>Operação eliminatória</h1>
+      </div>
 
       {equipesEliminatoria?.map((equipe) => (
-        <Popconfirm
-          title="Remover torneio"
-          description={`Deseja remover o torneio"?`}
-          onConfirm={() => handleAlteraStatusValidacao(equipe)}
-        >
-          <div style={{ display: "flex", gap: "20px" }}>
-            <br />
-
-            <h1>{equipe.equipe.nome}</h1>
-            <p>{equipe.statusValidacao}</p>
-          </div>
-        </Popconfirm>
+        <>
+          {equipe.statusValidacao === "Em progresso" && (
+            <Popconfirm
+              title="Trocar status"
+              description={`Deseja trocar o status para validando"?`}
+              onConfirm={() => handleAlteraStatusValidacao(equipe)}
+            >
+              <div className="listagem-validacao">
+                <h2>{equipe.equipe.nome}</h2>
+              </div>
+            </Popconfirm>
+          )}
+        </>
       ))}
 
-      <button
-        onClick={() => {
-          handleIniciarNovaRodada();
-        }}
+      <Flex
+        gap="small"
+        wrap
+        style={{ paddingTop: "2rem" }}
+        justify={"space-between"}
       >
-        Começar nova rodada
-      </button>
-      <br />
-      <br />
-      <button
-        onClick={() => {
-          handleFinalizarRodadaAtual();
-        }}
-      >
-        Finalizar rodada
-      </button>
+        <Button
+          onClick={() =>
+            navigate(`/admin/torneio/${id}/controles/eliminatoria`)
+          }
+        >
+          Voltar
+        </Button>
+
+        <div>
+          <Flex gap="small" wrap>
+            <Button
+              type="primary"
+              onClick={() => {
+                handleIniciarNovaRodada();
+              }}
+            >
+              Começar rodada
+            </Button>
+
+            <Button
+              onClick={() => {
+                handleFinalizarRodadaAtual();
+              }}
+            >
+              Finalizar rodada
+            </Button>
+          </Flex>
+        </div>
+      </Flex>
     </div>
   );
 }

@@ -16,7 +16,6 @@ export default function Operacao() {
   const { id } = useParams();
   const [torneio, setTorneio] = useState();
 
-  const navigate = useNavigate();
 
   useEffect(() => {
     const _torneioService = new TorneioService();

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Col, Row } from "antd";
 import { useParams } from "react-router-dom";
 import ControleEliminatoriaService from "../../../services/controleEliminatoria.service";
 import TempoIndividual from "../../../components/app/EtapaEliminatoria/TempoIndividual";
+import "./styles.scss";
 
 export default function EtapaEliminatoria() {
   const { id } = useParams();
@@ -34,20 +36,42 @@ export default function EtapaEliminatoria() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <div>
-      {equipesEliminatoria?.map((equipe) => (
-        <div style={{ display: "flex", gap: "20px" }} key={equipe.id}>
-          <br />
+  function checkStatus(status) {
+    if (status === "Validando") {
+      return "validation";
+    } else if (status === "Aprovado") {
+      return "approved";
+    } else if (status === "Declinado") {
+      return "declined";
+    } else {
+      return "in-progress";
+    }
+  }
 
-          <h1>{equipe.equipe.nome}</h1>
-          <p>{equipe.statusValidacao}</p>
-          <p>
-            <TempoIndividual equipe={equipe} />
-          </p>
-          <p>{equipe.pontuacao}</p>
-        </div>
-      ))}
+  return (
+    <div className="team-rating-container">
+      <div className="team-score">
+        <Row>
+          {equipesEliminatoria?.map((equipe) => (
+            <Col span={24}>
+              <div className="score">
+                <table>
+                  <tbody>
+                    <tr className={checkStatus(equipe.statusValidacao)}>
+                      <td className="team-name">{equipe.equipe.nome}</td>
+                      <p>{equipe.statusValidacao}</p>
+                      <td>
+                        <TempoIndividual equipe={equipe} />
+                      </td>
+                      <td className="team-points">{equipe.pontuacao}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </Col>
+          ))}
+        </Row>
+      </div>
     </div>
   );
 }

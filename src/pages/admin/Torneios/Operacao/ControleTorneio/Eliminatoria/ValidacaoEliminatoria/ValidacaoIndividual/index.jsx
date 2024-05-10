@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ControleEliminatoriaService from "../../../../../../../../services/controleEliminatoria.service";
+import { Flex } from "antd";
 
 export default function ValidacaoIndividual() {
-  const { idEquipe } = useParams();
+  const { id, idEquipe } = useParams();
   const [equipeEliminatoria, setEquipeEliminatoria] = useState();
 
   const _controleEliminatoriaService = new ControleEliminatoriaService();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function init() {
@@ -52,41 +54,58 @@ export default function ValidacaoIndividual() {
         pontuacao = 50; // Mais de 47 minutos e 30 segundos
       }
 
-      await _controleEliminatoriaService.AlteraStatusValidacao({
-        id: equipe.id,
-        statusValidacao: status,
-        pontuacao: pontuacao,
-      });
+      await _controleEliminatoriaService
+        .AlteraStatusValidacao({
+          id: equipe.id,
+          statusValidacao: status,
+          pontuacao: pontuacao,
+        })
+        .then((res) => {
+          navigate(`/admin/torneio/${id}/controles/eliminatoria/validacao`);
+        });
     }
 
     if (status === "Declinado") {
-      await _controleEliminatoriaService.AlteraStatusValidacao({
-        id: equipe.id,
-        statusValidacao: status,
-      });
+      await _controleEliminatoriaService
+        .AlteraStatusValidacao({
+          id: equipe.id,
+          statusValidacao: status,
+        })
+        .then((res) => {
+          navigate(`/admin/torneio/${id}/controles/eliminatoria/validacao`);
+        });
     }
   }
 
   return (
-    <div>
-      <h1>Validação {equipeEliminatoria?.equipe?.nome}</h1>
+    <div className="admin-page">
+      <div style={{ paddingBottom: "2rem" }}>
+        <h1>Validação - {equipeEliminatoria?.equipe?.nome}</h1>
+      </div>
 
-      <hr />
+      <Flex gap="small" wrap>
+        <button
+          htmlType="submit"
+          className="aprovar-button"
+          type="primary"
+          onClick={() => {
+            handleAlteraStatusValidacao(equipeEliminatoria, "Aprovado");
+          }}
+        >
+          Aprovar
+        </button>
 
-      <button
-        onClick={() => {
-          handleAlteraStatusValidacao(equipeEliminatoria, "Aprovado");
-        }}
-      >
-        Aprovado
-      </button>
-      <button
-        onClick={() => {
-          handleAlteraStatusValidacao(equipeEliminatoria, "Declinado");
-        }}
-      >
-        Declinado
-      </button>
+        <button
+          htmlType="submit"
+          className="declinar-button"
+          type="primary"
+          onClick={() => {
+            handleAlteraStatusValidacao(equipeEliminatoria, "Declinado");
+          }}
+        >
+          Declinar
+        </button>
+      </Flex>
     </div>
   );
 }

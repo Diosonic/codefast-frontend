@@ -1,6 +1,7 @@
 import { useEffect, useState, React } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ControleEliminatoriaService from "../../../../../../../services/controleEliminatoria.service";
+import { Button, Flex } from "antd";
 
 export default function ValidacaoEliminatoria() {
   const { id } = useParams();
@@ -27,14 +28,14 @@ export default function ValidacaoEliminatoria() {
   }, [id]);
 
   return (
-    <div>
-      <h1>Validação</h1>
-
-      <hr />
+    <div className="admin-page">
+      <div>
+        <h1>Validação Eliminatória</h1>
+      </div>
 
       {equipesEliminatoria?.map((equipe) => (
         <div
-          style={{ display: "flex", gap: "20px" }}
+          className="listagem-validacao"
           onClick={() =>
             navigate(
               `/admin/torneio/${id}/controles/eliminatoria/validacao/${equipe.id}`
@@ -43,10 +44,31 @@ export default function ValidacaoEliminatoria() {
         >
           <br />
 
-          <h1>{equipe.equipe.nome}</h1>
-          <p>{equipe.statusValidacao}</p>
+          <h2>{equipe.equipe.nome}</h2>
         </div>
       ))}
+
+      <Flex
+        gap="small"
+        wrap
+        style={{ paddingTop: "2rem" }}
+        justify={"space-between"}
+      >
+        <Button
+          onClick={() =>
+            navigate(`/admin/torneio/${id}/controles/eliminatoria`)
+          }
+        >
+          Voltar
+        </Button>
+
+        <Button
+          onClick={() => navigate(`/torneio/${id}/etapa-eliminatoria`)}
+          type="primary"
+        >
+          Ir para placar ao vivo
+        </Button>
+      </Flex>
     </div>
   );
 }

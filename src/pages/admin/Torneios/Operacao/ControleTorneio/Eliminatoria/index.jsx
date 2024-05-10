@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import { React } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { BackSquare, Briefcase, Personalcard } from "iconsax-react";
+import { BackSquare, Code, NoteText } from "iconsax-react";
 
 export default function ControleEliminatoria() {
   const { id } = useParams();
@@ -18,7 +18,7 @@ export default function ControleEliminatoria() {
             to={`/admin/torneio/${id}/controles/eliminatoria/validacao`}
             className="menu-card"
           >
-            <Briefcase size="42" color="#555555" />
+            <Code size="42" color="#555555" />
             <label>Vou executar validações</label>
           </NavLink>
         </Col>
@@ -28,7 +28,7 @@ export default function ControleEliminatoria() {
             to={`/admin/torneio/${id}/controles/eliminatoria/operacao`}
             className="menu-card"
           >
-            <Personalcard size="42" color="#555555" />
+            <NoteText size="42" color="#555555" />
             <label>Vou operar em sala de aula</label>
           </NavLink>
         </Col>

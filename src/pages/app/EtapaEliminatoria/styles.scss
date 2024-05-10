@@ -1,0 +1,77 @@
+.team-rating-container {
+  padding-bottom: 60px;
+  padding-top: 3rem;
+  .team-score {
+    width: 1120px;
+    margin: 0 auto;
+  }
+
+  .score table {
+    width: 80%;
+    margin: 0 auto;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .score th,
+  .score td {
+    text-align: center;
+    width: 200px;
+    font-size: 20px;
+  }
+
+  .score tr {
+    display: grid;
+    grid-template-columns: 400px 300px 200px 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    align-items: center;
+    font-weight: 500;
+
+    .team-name {
+      text-align: left;
+      font-size: 24px;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    .team-points {
+      width: 100%;
+      text-align: right;
+      font-weight: bold;
+      font-size: 26px;
+    }
+  }
+
+  .score th {
+    background-color: #f2f2f2;
+  }
+
+  .approved {
+    background: rgb(45, 192, 77);
+    font-weight: 600;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  }
+
+  .declined {
+    background: rgb(236, 64, 64);
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    color: white;
+  }
+
+  .validation {
+    background: rgb(231, 205, 56);
+    color: black;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  }
+
+  .in-progress {
+    background: white;
+    color: black;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  }
+}
