@@ -10,17 +10,6 @@ export default function ControleTorneio() {
       <Col span={8}>
         <div style={{ backgroundColor: "lightblue" }}>
           <NavLink
-            to={`/admin/torneio/${id}/controles/validacao`}
-            className="menu-card"
-          >
-            Validação
-          </NavLink>
-        </div>
-      </Col>
-
-      <Col span={8}>
-        <div style={{ backgroundColor: "lightblue" }}>
-          <NavLink
             to={`/admin/torneio/${id}/controles/eliminatoria`}
             className="menu-card"
           >
@@ -31,7 +20,10 @@ export default function ControleTorneio() {
 
       <Col span={8}>
         <div style={{ backgroundColor: "lightblue" }}>
-          <NavLink to={`/admin/torneio/${id}/controles/mata-mata`} className="menu-card">
+          <NavLink
+            to={`/admin/torneio/${id}/controles/mata-mata`}
+            className="menu-card"
+          >
             Controle Mata-Mata
           </NavLink>
         </div>

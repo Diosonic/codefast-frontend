@@ -17,7 +17,6 @@ export default function TempoIndividual({ equipe }) {
     }, 1000);
 
     if (equipe.statusValidacao === "Validando") {
-      debugger;
       clearInterval(timer);
       alterarStatusValidacao({
         id: equipe.id,
@@ -28,17 +27,19 @@ export default function TempoIndividual({ equipe }) {
 
     if (equipe.statusValidacao === "Aprovado") {
       clearInterval(timer);
-      // updateTime({ id: item.id, time: segundos });
     }
 
     if (equipe.statusValidacao === "Declinado") {
       clearInterval(timer);
-      // updateTime({ id: item.id, time: segundos });
+      alterarStatusValidacao({
+        id: equipe.id,
+        statusValidacao: "Em progresso",
+      });
     }
 
     if (equipe.statusValidacao === "Em espera") {
       clearInterval(timer);
-      // updateTime({ id: item.id, time: segundos });
+      setTempoAtual("00:00:00");
     }
 
     return () => clearInterval(timer);

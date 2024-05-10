@@ -36,7 +36,9 @@ export default function ValidacaoEliminatoria() {
         <div
           style={{ display: "flex", gap: "20px" }}
           onClick={() =>
-            navigate(`/admin/torneio/${id}/controles/validacao/${equipe.id}`)
+            navigate(
+              `/admin/torneio/${id}/controles/eliminatoria/validacao/${equipe.id}`
+            )
           }
         >
           <br />
