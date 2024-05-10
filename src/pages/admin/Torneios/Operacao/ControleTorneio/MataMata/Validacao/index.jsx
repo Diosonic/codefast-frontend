@@ -1,7 +1,9 @@
-import { Col, Row } from "antd";
+import { Button, Flex } from "antd";
 import { React, useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ControleMataMataService from "../../../../../../../services/controleMataMata.service";
+
+import "./styles.scss";
 
 export default function MataMataValidacao() {
   const { id } = useParams();
@@ -26,23 +28,45 @@ export default function MataMataValidacao() {
   }, [id]);
 
   return (
-    <div>
-      <h1>Validação mata-mata</h1>
-      <p>Aqui será feita as validações da etapa mata-mata.</p>
-      <hr />
+    <div className="admin-page">
+      <div>
+        <h1>Validação Mata-Mata</h1>
+      </div>
 
       {controleMataMata?.map((equipe) => (
         <div
-          style={{ display: "flex", gap: "20px" }}
+          className="listagem-validacao"
           onClick={() =>
-            navigate(`/admin/torneio/${id}/controles/mata-mata/validacao/${equipe.id}`)
+            navigate(
+              `/admin/torneio/${id}/controles/mata-mata/validacao/${equipe.id}`
+            )
           }
         >
           <br />
-          <h1>{equipe.nome}</h1>
 
+          <h2>{equipe.nome}</h2>
         </div>
       ))}
+
+      <Flex
+        gap="small"
+        wrap
+        style={{ paddingTop: "2rem" }}
+        justify={"space-between"}
+      >
+        <Button
+          onClick={() => navigate(`/admin/torneio/${id}/controles/mata-mata`)}
+        >
+          Voltar
+        </Button>
+
+        <Button
+          onClick={() => navigate(`/torneio/${id}/etapa-mata-mata`)}
+          type="primary"
+        >
+          Ir para placar ao vivo
+        </Button>
+      </Flex>
     </div>
   );
 }

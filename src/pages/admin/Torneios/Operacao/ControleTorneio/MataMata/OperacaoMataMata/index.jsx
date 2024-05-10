@@ -1,6 +1,6 @@
 import { Flex, Popconfirm } from "antd";
 import { React, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import EtapaMataMata from "../../../../../../app/EtapaMataMata";
 
 import "./styles.scss";
@@ -14,6 +14,8 @@ export default function OperacaoMataMata() {
 
   const _rodadaMataMataService = new RodadaMataMataService();
   const _controleMataMataService = new ControleMataMataService();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function init() {
@@ -54,15 +56,13 @@ export default function OperacaoMataMata() {
         console.log(res);
         alert(res.response.data);
       });
-
   }
 
   return (
-    <div>
-      <h1>Operação mata-mata</h1>
-      <p>Aqui será feita as operações de controle da etapa mata-mata.</p>
-
-      <hr />
+    <div className="admin-page">
+      <div style={{ paddingBottom: "2rem" }}>
+        <h1>Operação mata-mata</h1>
+      </div>
 
       <Flex align="flex-start" gap="small" vertical>
         <Button
@@ -102,6 +102,19 @@ export default function OperacaoMataMata() {
           </div>
         </Popconfirm>
       ))}
+
+      <Flex
+        gap="small"
+        wrap
+        style={{ paddingTop: "2rem" }}
+        justify={"space-between"}
+      >
+        <Button
+          onClick={() => navigate(`/admin/torneio/${id}/controles/mata-mata`)}
+        >
+          Voltar
+        </Button>
+      </Flex>
     </div>
   );
 }

@@ -1,0 +1,25 @@
+.aprovar-button {
+  background-color: green;
+  border: none;
+  padding: 1.5rem 5rem;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #005100;
+  }
+}
+
+.declinar-button {
+  background-color: red;
+  border: none;
+  padding: 1.5rem 5rem;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #a50a0a;
+  }
+}

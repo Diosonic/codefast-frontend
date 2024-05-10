@@ -1,9 +1,9 @@
 import { useEffect, useState, React } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import TorneioService from "../../../../../services/torneio.service";
 import TabelaAdmin from "../../../../../components/Admin/Tabelas";
 import { Card, Edit, Trash } from "iconsax-react";
-import { Popconfirm } from "antd";
+import { Button, Flex, Popconfirm } from "antd";
 import EquipeService from "../../../../../services/equipe.service";
 
 export default function Credenciamento() {
@@ -130,6 +130,10 @@ export default function Credenciamento() {
         columns={colunasTabela}
         loading={false}
       />
+
+      <Flex gap="small" wrap>
+        <Button onClick={() => navigate(`/admin/torneio/${id}`)}>Voltar</Button>
+      </Flex>
     </div>
   );
 }

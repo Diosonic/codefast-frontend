@@ -2,6 +2,7 @@ import { Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import EquipeService from "../../../../../../services/equipe.service";
+import { Button, Flex } from "antd";
 
 export default function CredenciamentoFormulario() {
   const { id, idEquipe } = useParams();
@@ -83,6 +84,12 @@ export default function CredenciamentoFormulario() {
           );
         }}
       </Formik>
+
+      <Flex gap="small" wrap>
+        <Button onClick={() => navigate(`/admin/torneio/${id}/credenciamento`)}>
+          Voltar
+        </Button>
+      </Flex>
     </div>
   );
 }

@@ -1,5 +1,9 @@
 body {
   background-color: #f6f6f6;
+
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .App {
@@ -20,3 +24,48 @@ h6 {
   display: flex;
   gap: 6px;
 }
+
+.admin-page {
+  padding: 60px 0;
+
+  h1 {
+    text-transform: uppercase;
+    color: #3d3d3d;
+  }
+
+  .menu-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 20px 0;
+
+    label {
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+  .menu-card:hover {
+    background-color: rgba(204, 202, 202, 0.705);
+    transition: 0.1s;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -60,7 +60,12 @@ export default function Torneios() {
 
   return (
     <div>
-      <TabelaAdmin data={torneios} columns={colunasTabela} loading={false} />
+      <TabelaAdmin
+        botaoAdicionarLabel="Adicionar novo torneio"
+        data={torneios}
+        columns={colunasTabela}
+        loading={false}
+      />
     </div>
   );
 }
