@@ -23,7 +23,12 @@ export default class ControleEliminatoriaSerializer {
 
   toJson(controleEliminatoria) {
     const controleEliminatoriaToJson = {};
+<<<<<<< Updated upstream
 
+=======
+    debugger;
+    
+>>>>>>> Stashed changes
     Object.assign(
       controleEliminatoriaToJson,
       controleEliminatoria.id && { id: controleEliminatoria.id },
@@ -32,6 +37,9 @@ export default class ControleEliminatoriaSerializer {
       },
       controleEliminatoria.tempo && {
         tempo: controleEliminatoria.tempo,
+      },
+      controleEliminatoria.pontuacao && {
+        pontuacao: controleEliminatoria.pontuacao,
       }
     );
 

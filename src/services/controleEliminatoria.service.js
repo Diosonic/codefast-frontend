@@ -57,7 +57,7 @@ export default class ControleEliminatoriaService extends CoreApiService {
 
     const data = response.data;
 
-    return this.serializer.toJson(data);
+    return this.serializer.fromJson(data);
   }
 
   async iniciarNovaRodada(torneioId) {

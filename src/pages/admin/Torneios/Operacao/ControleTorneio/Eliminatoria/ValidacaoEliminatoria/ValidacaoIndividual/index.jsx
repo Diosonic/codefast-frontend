@@ -25,6 +25,7 @@ export default function ValidacaoIndividual() {
   }, [idEquipe]);
 
   async function handleAlteraStatusValidacao(equipe, status) {
+    debugger;
     if (status === "Aprovado") {
       const teamResponse =
         await _controleEliminatoriaService.GetControleEliminatoriaById(
@@ -36,10 +37,11 @@ export default function ValidacaoIndividual() {
         .map(Number);
       const tempoEmMinutos = hours * 60 + minutes + seconds / 60;
 
+
       let pontuacao = 100;
 
       if (tempoEmMinutos <= 10) {
-        pontuacao = 200; // Menos de 10 minutos
+        pontuacao = teamResponse.pontuacao + 200; // Menos de 10 minutos
       } else if (tempoEmMinutos <= 17.5) {
         pontuacao = 175; // Entre 10 minutos e 17 minutos e 30 segundos
       } else if (tempoEmMinutos <= 25) {

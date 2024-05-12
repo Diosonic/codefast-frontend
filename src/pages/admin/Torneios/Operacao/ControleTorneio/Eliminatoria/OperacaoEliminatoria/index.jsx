@@ -27,10 +27,12 @@ export default function OperacaoControleEliminatoria() {
   }, [id]);
 
   async function handleAlteraStatusValidacao(values) {
+    debugger;
     await _controleEliminatoriaService
       .AlteraStatusValidacao({
         id: values.id,
         statusValidacao: "Validando",
+        pontuacao: values.pontuacao
       })
       .then(() => {
         const equipesAtualizadas = equipesEliminatoria.filter(

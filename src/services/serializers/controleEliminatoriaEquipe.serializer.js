@@ -16,8 +16,7 @@ export default class ControleEliminatoriaEquipeSerializer {
       json.tempo && { tempo: json.tempo },
       json.equipe && {
         equipe: this.equipeSerializer.fromJson(json.equipe),
-      },
-      { isDesclassificado: json.isDesclassificado },
+      }, 
       { pontuacao: json.pontuacao }
     );
 
@@ -26,7 +25,7 @@ export default class ControleEliminatoriaEquipeSerializer {
 
   toJson(equipe) {
     const controleEliminatoriaEquipe = {};
-
+    debugger;
     Object.assign(
       controleEliminatoriaEquipe,
       equipe.id && { id: equipe.id },
@@ -36,7 +35,6 @@ export default class ControleEliminatoriaEquipeSerializer {
       equipe.equipe && {
         equipe: this.equipeSerializer.fromJson(equipe.equipe),
       },
-      { isDesclassificado: equipe.isDesclassificado },
       { pontuacao: equipe.pontuacao }
     );
 
