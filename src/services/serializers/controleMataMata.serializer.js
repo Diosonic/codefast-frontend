@@ -6,7 +6,6 @@ export default class ControleMataMataSerializer {
   }
 
   fromJson(json) {
-    debugger;
     const controleMataMata = {};
 
     Object.assign(
@@ -16,7 +15,7 @@ export default class ControleMataMataSerializer {
       json.equipeId && { equipeId: json.equipeId },
       json.statusValidacao && { statusValidacao: json.statusValidacao },
       json.equipe && {
-        nome: json.equipe.nome
+        nome: json.equipe.nome,
       },
 
       json.controleMataMata && {
@@ -30,7 +29,6 @@ export default class ControleMataMataSerializer {
   }
 
   toJson(controleMataMata) {
-    debugger;
     const controleMataMataToJson = {};
 
     Object.assign(

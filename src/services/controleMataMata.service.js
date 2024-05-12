@@ -16,7 +16,6 @@ export default class ControleMataMataService extends CoreApiService {
   }
 
   async GetEquipesClassificadasMataMataById(id) {
-    debugger;
     this.parentEndpoint = "equipes";
 
     const response = await api.get(
@@ -41,7 +40,6 @@ export default class ControleMataMataService extends CoreApiService {
   }
 
   async AlteraStatusValidacaoMataMata(item) {
-    debugger;
     this.parentEndpoint = "alterar-status-validacao";
 
     const response = await api.put(

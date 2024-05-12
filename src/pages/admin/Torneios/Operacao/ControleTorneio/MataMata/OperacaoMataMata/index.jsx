@@ -1,7 +1,6 @@
 import { Flex, Popconfirm } from "antd";
 import { React, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import EtapaMataMata from "../../../../../../app/EtapaMataMata";
 
 import "./styles.scss";
 import { Button } from "antd/es/radio";
@@ -19,13 +18,10 @@ export default function OperacaoMataMata() {
 
   useEffect(() => {
     async function init() {
-      debugger;
       const controleMataMataService =
         await _controleMataMataService.GetEquipesClassificadasMataMata(id);
 
       setControleMataMata(controleMataMataService.controleMataMataEquipes);
-
-      debugger;
     }
 
     init();

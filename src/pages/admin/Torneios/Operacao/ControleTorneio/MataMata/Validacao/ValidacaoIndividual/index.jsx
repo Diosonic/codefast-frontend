@@ -27,7 +27,6 @@ export default function MataMataValidacaoIndividual() {
   }, [idEquipe]);
 
   async function AlterarStatusValidacao(controleEquipeId, status) {
-    debugger;
     await _controleMataMataService
       .AlteraStatusValidacaoMataMata({
         id: controleEquipeId,

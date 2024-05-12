@@ -15,13 +15,10 @@ export default function MataMataValidacao() {
 
   useEffect(() => {
     async function init() {
-      debugger;
       const controleMataMataService =
         await _controleMataMataService.GetAllEquipesCredenciadasValidando(id);
 
       setControleMataMata(controleMataMataService.controleMataMataEquipes);
-
-      debugger;
     }
 
     init();

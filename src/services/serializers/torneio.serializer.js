@@ -21,12 +21,4 @@ export default class TorneioSerializer {
 
     return torneio;
   }
-
-  toJson(torneio) {
-    const torneioToJson = {};
-
-    Object.assign(torneioToJson);
-
-    return torneioToJson;
-  }
 }

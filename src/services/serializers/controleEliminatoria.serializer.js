@@ -23,7 +23,7 @@ export default class ControleEliminatoriaSerializer {
 
   toJson(controleEliminatoria) {
     const controleEliminatoriaToJson = {};
-    debugger;
+
     Object.assign(
       controleEliminatoriaToJson,
       controleEliminatoria.id && { id: controleEliminatoria.id },
