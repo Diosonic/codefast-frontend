@@ -1,6 +1,7 @@
 import { SeedItem, SeedTeam } from "react-brackets";
 
 export default function SeedItemKnockout({ seed }) {
+  debugger;
   return (
     <SeedItem className="seed-item">
       <div className="seed-team">
@@ -9,9 +10,16 @@ export default function SeedItemKnockout({ seed }) {
         >
           {seed.teams[0]?.name ? (
             <>
-              <div className="team">{seed.teams[0]?.name}</div>
+              <div
+                className="team"
+                style={{
+                  color: seed?.teams[0]?.isDesclassificado ? "#c1c1c1" : null,
+                }}
+              >
+                {seed.teams[0]?.name}
+              </div>
               <div className="time">
-                {seed.teams[0]?.statusValidacao === "Em Progresso"
+                {seed.teams[0]?.statusValidacao === "Em progresso"
                   ? " "
                   : seed.teams[0]?.statusValidacao}
               </div>
@@ -27,9 +35,16 @@ export default function SeedItemKnockout({ seed }) {
           {seed.teams[1]?.name ? (
             <>
               <>
-                <div className="team">{seed.teams[1]?.name}</div>
+                <div
+                  className="team"
+                  style={{
+                    color: seed?.teams[1]?.isDesclassificado ? "#c1c1c1" : null,
+                  }}
+                >
+                  {seed.teams[1]?.name}
+                </div>
                 <div className="time">
-                  {seed.teams[1]?.statusValidacao === "Em Progresso"
+                  {seed.teams[1]?.statusValidacao === "Em progresso"
                     ? " "
                     : seed.teams[1]?.statusValidacao}
                 </div>

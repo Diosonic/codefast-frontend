@@ -1,7 +1,9 @@
 import { useEffect, useState, React } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ControleEliminatoriaService from "../../../../../../../services/controleEliminatoria.service";
-import { Button, Flex } from "antd";
+import { Button, Flex, Popconfirm } from "antd";
+import { Code } from "iconsax-react";
+import TabelaAdmin from "../../../../../../../components/Admin/Tabelas";
 
 export default function ValidacaoEliminatoria() {
   const { id } = useParams();
@@ -10,6 +12,35 @@ export default function ValidacaoEliminatoria() {
   const _controleEliminatoriaService = new ControleEliminatoriaService();
 
   const navigate = useNavigate();
+
+  const colunasTabela = [
+    {
+      title: "Equipe",
+      dataIndex: ["equipe", "nome"],
+      key: "nome",
+    },
+    {
+      title: "Operação",
+      key: "action",
+      render: (record) => (
+        <>
+          <div className="table-actions">
+            <Popconfirm
+              title={`Validar ${record.equipe.nome}`}
+              description={`Deseja ir para a validação"?`}
+              onConfirm={() => {
+                navigate(
+                  `/admin/torneio/${id}/controles/eliminatoria/validacao/${id}`
+                );
+              }}
+            >
+              <Code cursor="pointer" color="#37D67A" />
+            </Popconfirm>
+          </div>
+        </>
+      ),
+    },
+  ];
 
   useEffect(() => {
     async function init() {
@@ -29,24 +60,16 @@ export default function ValidacaoEliminatoria() {
 
   return (
     <div className="admin-page">
-      <div>
+      <div style={{ paddingBottom: "2rem" }}>
         <h1>Validação Eliminatória</h1>
       </div>
 
-      {equipesEliminatoria?.map((equipe) => (
-        <div
-          className="listagem-validacao"
-          onClick={() =>
-            navigate(
-              `/admin/torneio/${id}/controles/eliminatoria/validacao/${equipe.id}`
-            )
-          }
-        >
-          <br />
-
-          <h2>{equipe.equipe.nome}</h2>
-        </div>
-      ))}
+      <TabelaAdmin
+        data={equipesEliminatoria}
+        columns={colunasTabela}
+        loading={false}
+        pagination={false}
+      />
 
       <Flex
         gap="small"

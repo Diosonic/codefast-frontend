@@ -83,4 +83,16 @@ export default class ControleEliminatoriaService extends CoreApiService {
 
     return this.serializer.toJson(data);
   }
+
+  async finalizarEtapaEliminatoria(torneioId) {
+    this.parentEndpoint = "finalizarEtapaEliminatoria";
+
+    const response = await api.put(
+      `${this.endpoint}/${torneioId}/${this.parentEndpoint}`
+    );
+
+    const data = response.data;
+
+    return this.serializer.toJson(data);
+  }
 }

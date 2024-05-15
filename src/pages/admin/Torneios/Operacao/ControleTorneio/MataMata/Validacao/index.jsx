@@ -1,9 +1,11 @@
-import { Button, Flex } from "antd";
+import { Button, Flex, Popconfirm } from "antd";
 import { React, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ControleMataMataService from "../../../../../../../services/controleMataMata.service";
 
 import "./styles.scss";
+import { Code } from "iconsax-react";
+import TabelaAdmin from "../../../../../../../components/Admin/Tabelas";
 
 export default function MataMataValidacao() {
   const { id } = useParams();
@@ -12,6 +14,35 @@ export default function MataMataValidacao() {
   const _controleMataMataService = new ControleMataMataService();
 
   const navigate = useNavigate();
+
+  const colunasTabela = [
+    {
+      title: "Equipe",
+      dataIndex: "nome",
+      key: "nome",
+    },
+    {
+      title: "Operação",
+      key: "action",
+      render: (record) => (
+        <>
+          <div className="table-actions">
+            <Popconfirm
+              title={`Validar ${record.nome}`}
+              description={`Deseja ir para a validação"?`}
+              onConfirm={() => {
+                navigate(
+                  `/admin/torneio/${id}/controles/mata-mata/validacao/${record.id}`
+                );
+              }}
+            >
+              <Code cursor="pointer" color="#37D67A" />
+            </Popconfirm>
+          </div>
+        </>
+      ),
+    },
+  ];
 
   useEffect(() => {
     async function init() {
@@ -26,24 +57,16 @@ export default function MataMataValidacao() {
 
   return (
     <div className="admin-page">
-      <div>
+      <div style={{ paddingBottom: "2rem" }}>
         <h1>Validação Mata-Mata</h1>
       </div>
 
-      {controleMataMata?.map((equipe) => (
-        <div
-          className="listagem-validacao"
-          onClick={() =>
-            navigate(
-              `/admin/torneio/${id}/controles/mata-mata/validacao/${equipe.id}`
-            )
-          }
-        >
-          <br />
-
-          <h2>{equipe.nome}</h2>
-        </div>
-      ))}
+      <TabelaAdmin
+        data={controleMataMata}
+        columns={colunasTabela}
+        loading={false}
+        pagination={false}
+      />
 
       <Flex
         gap="small"

@@ -19,15 +19,4 @@ export default class RodadaMataMataService extends CoreApiService {
     return this.serializer.fromJson(data);
   }
 
-  async CriaRodadasEtapaMataMata(id) {
-    this.parentEndpoint = "cria-rodadas";
-
-    const response = await api.post(
-      `${this.endpoint}/${id}/${this.parentEndpoint}`
-    );
-
-    const data = response.data;
-
-    return data;
-  }
 }

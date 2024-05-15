@@ -2,6 +2,8 @@ import { useEffect, useState, React } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, Flex, Popconfirm } from "antd";
 import ControleEliminatoriaService from "../../../../../../../services/controleEliminatoria.service";
+import TabelaAdmin from "../../../../../../../components/Admin/Tabelas";
+import { Code } from "iconsax-react";
 
 export default function OperacaoControleEliminatoria() {
   const { id } = useParams();
@@ -10,16 +12,47 @@ export default function OperacaoControleEliminatoria() {
   const _controleEliminatoriaService = new ControleEliminatoriaService();
   const navigate = useNavigate();
 
+  const colunasTabela = [
+    {
+      title: "Equipe",
+      dataIndex: ["equipe", "nome"],
+      key: "nome",
+    },
+    {
+      title: "Operação",
+      key: "action",
+      render: (record) => (
+        <>
+          <div className="table-actions">
+            <Popconfirm
+              title="Trocar status"
+              description={`Deseja trocar o status para validando"?`}
+              onConfirm={() => {
+                handleAlteraStatusValidacao(record);
+              }}
+            >
+              <Code cursor="pointer" color="#37D67A" />
+            </Popconfirm>
+          </div>
+        </>
+      ),
+    },
+  ];
+
   useEffect(() => {
     async function init() {
+      debugger;
       const responseControleEliminatoria =
         await _controleEliminatoriaService.GetAllEquipesCredenciadasEliminatoria(
           id
         );
 
-      setEquipesEliminatoria(
-        responseControleEliminatoria.controleEliminatoriaEquipes
-      );
+      const equipesFiltradas =
+        responseControleEliminatoria.controleEliminatoriaEquipes.filter(
+          (equipe) => equipe.statusValidacao !== "Validando"
+        );
+
+      setEquipesEliminatoria(equipesFiltradas);
     }
 
     init();
@@ -32,7 +65,7 @@ export default function OperacaoControleEliminatoria() {
       .AlteraStatusValidacao({
         id: values.id,
         statusValidacao: "Validando",
-        pontuacao: values.pontuacao
+        pontuacao: values.pontuacao,
       })
       .then(() => {
         const equipesAtualizadas = equipesEliminatoria.filter(
@@ -58,27 +91,30 @@ export default function OperacaoControleEliminatoria() {
     });
   }
 
+  async function handleFinalizarEtapaEliminatoria() {
+    await _controleEliminatoriaService
+      .finalizarEtapaEliminatoria(id)
+      .then(() => {
+        alert(
+          "Processos: \n 1. Foram criado as 3 rodadas mata-mata. \n 2. Classificação dos 8 primeiros \n 3. Foi criado os controles de mata-mata dos 8 colocados. \n 4. Foram criados as sementes da rodada mata-mata. \n \n Agora você será direcionado para o controle da segunda etapa."
+        );
+
+        navigate(`/admin/torneio/${id}/controles/mata-mata`);
+      });
+  }
+
   return (
     <div className="admin-page">
-      <div>
+      <div style={{ paddingBottom: "2rem" }}>
         <h1>Operação eliminatória</h1>
       </div>
 
-      {equipesEliminatoria?.map((equipe) => (
-        <>
-          {equipe.statusValidacao === "Em progresso" && (
-            <Popconfirm
-              title="Trocar status"
-              description={`Deseja trocar o status para validando"?`}
-              onConfirm={() => handleAlteraStatusValidacao(equipe)}
-            >
-              <div className="listagem-validacao">
-                <h2>{equipe.equipe.nome}</h2>
-              </div>
-            </Popconfirm>
-          )}
-        </>
-      ))}
+      <TabelaAdmin
+        data={equipesEliminatoria}
+        columns={colunasTabela}
+        loading={false}
+        pagination={false}
+      />
 
       <Flex
         gap="small"
@@ -112,6 +148,16 @@ export default function OperacaoControleEliminatoria() {
             >
               Finalizar rodada
             </Button>
+
+            <Popconfirm
+              title="Finalizar etapa eliminatória"
+              description="Finalizar etapa eliminatória vai executar o processo para iniciar etapa mata-mata"
+              okText="Sim"
+              cancelText="Não"
+              onConfirm={handleFinalizarEtapaEliminatoria}
+            >
+              <Button danger> Finalizar etapa eliminatória</Button>
+            </Popconfirm>
           </Flex>
         </div>
       </Flex>

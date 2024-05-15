@@ -51,4 +51,29 @@ export default class ControleMataMataService extends CoreApiService {
 
     return this.serializer.toJson(data);
   }
+
+  async PrepararEtapaMataMata(id) {
+    this.parentEndpoint = "preparar-etapa-mata-mata";
+
+    const response = await api.post(
+      `${this.endpoint}/${id}/${this.parentEndpoint}`
+    );
+
+    const data = response.data;
+
+    return data;
+  }
+
+  async DesclassificarEquipe(id) {
+    debugger;
+    this.parentEndpoint = "desclassificar-equipe";
+
+    const response = await api.put(
+      `${this.endpoint}/${id}/${this.parentEndpoint}`
+    );
+
+    const data = response.data;
+
+    return data;
+  }
 }

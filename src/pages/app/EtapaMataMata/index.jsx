@@ -53,14 +53,14 @@ export default function EtapaMataMata() {
   return (
     <>
       <Bracket
-        // roundTitleComponent={(title, roundIndex) => {
-        //   return (
-        //     <div className="round-title">
-        //       <h5>{title}</h5>
-        //     </div>
-        //   );
-        // }}
-        roundTitleComponent={() => {}}
+        roundTitleComponent={(title, roundIndex) => {
+          return (
+            <div className="round-title">
+              <h5>{title}</h5>
+            </div>
+          );
+        }}
+        // roundTitleComponent={() => {}}
         rounds={rodadas}
         renderSeedComponent={CustomSeed}
       />

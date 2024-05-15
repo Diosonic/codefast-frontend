@@ -6,12 +6,20 @@ export default function TabelaAdmin({
   loading,
   linkAdicionarItem,
   botaoAdicionarLabel,
+  pagination = true,
 }) {
   return (
     <>
-      <Button href={linkAdicionarItem}>{botaoAdicionarLabel}</Button>
+      {botaoAdicionarLabel && (
+        <Button href={linkAdicionarItem}>{botaoAdicionarLabel}</Button>
+      )}
 
-      <Table columns={columns} loading={loading} dataSource={data} />
+      <Table
+        pagination={pagination}
+        columns={columns}
+        loading={loading}
+        dataSource={data}
+      />
     </>
   );
 }

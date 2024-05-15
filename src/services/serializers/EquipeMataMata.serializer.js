@@ -1,24 +1,20 @@
-// import ControleMataMataService from "../controleMataMata.service";
 
 export default class EquipeMataMataSerializer {
-  // constructor() {
-  //   this.rodadaMataMata = new ControleMataMataService();
-  // }
-
 
   fromJson(json) {
     const sementeRodada = {};
-
+    // debugger;
     Object.assign(
       sementeRodada,
       json.nome && { name: json.nome },
       json.controleMataMata && {
-        statusValidacao: json.controleMataMata.statusValidacao
+        statusValidacao: json.controleMataMata.statusValidacao,
+      },
+      json.isDesclassificado && {
+        isDesclassificado: json.isDesclassificado,
       }
     );
 
     return sementeRodada;
   }
-
 }
-

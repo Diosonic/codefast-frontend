@@ -4,14 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import "./styles.scss";
 import { Button } from "antd/es/radio";
-import RodadaMataMataService from "../../../../../../../services/rodadaMataMata.service";
 import ControleMataMataService from "../../../../../../../services/controleMataMata.service";
+import { Code, ProfileRemove } from "iconsax-react";
+import TabelaAdmin from "../../../../../../../components/Admin/Tabelas";
 
 export default function OperacaoMataMata() {
   const { id } = useParams();
   const [controleMataMata, setControleMataMata] = useState([]);
 
-  const _rodadaMataMataService = new RodadaMataMataService();
   const _controleMataMataService = new ControleMataMataService();
 
   const navigate = useNavigate();
@@ -21,17 +21,54 @@ export default function OperacaoMataMata() {
       const controleMataMataService =
         await _controleMataMataService.GetEquipesClassificadasMataMata(id);
 
-      setControleMataMata(controleMataMataService.controleMataMataEquipes);
+      const equipesFiltradas =
+        controleMataMataService.controleMataMataEquipes.filter(
+          (equipe) => equipe.statusValidacao !== "Validando"
+        );
+
+      setControleMataMata(equipesFiltradas);
     }
 
     init();
   }, [id]);
 
-  async function CriaRodadas() {
-    await _rodadaMataMataService
-      .CriaRodadasEtapaMataMata(id)
+  const colunasTabela = [
+    {
+      title: "Equipe",
+      dataIndex: "nome",
+      key: "nome",
+    },
+    {
+      title: "Operação",
+      key: "action",
+      render: (record) => (
+        <>
+          <div className="table-actions">
+            <Popconfirm
+              title="Alterar status"
+              description={`Deseja alterar o status para validando"?`}
+              onConfirm={() => alterarStatusValidacao(record.id, "Validando")}
+            >
+              <Code cursor="pointer" color="#37D67A" />
+            </Popconfirm>
+
+            <Popconfirm
+              title="Desclassificar equipe"
+              description={`Deseja desclassificar a equipe "${record.nome}"?`}
+              onConfirm={() => desclassificarEquipe(record.id)}
+            >
+              <ProfileRemove size="24" cursor="pointer" color="#f47373" />
+            </Popconfirm>
+          </div>
+        </>
+      ),
+    },
+  ];
+
+  async function prepararNovaRodada() {
+    await _controleMataMataService
+      .PrepararEtapaMataMata(id)
       .then((res) => {
-        alert(res);
         window.location.reload();
       })
       .catch((res) => {
@@ -39,7 +76,7 @@ export default function OperacaoMataMata() {
       });
   }
 
-  async function AlterarStatusValidacao(controleEquipeId, status) {
+  async function alterarStatusValidacao(controleEquipeId, status) {
     await _controleMataMataService
       .AlteraStatusValidacaoMataMata({
         id: controleEquipeId,
@@ -57,32 +94,33 @@ export default function OperacaoMataMata() {
       });
   }
 
-  console.log(controleMataMata);
+  async function desclassificarEquipe(controleEquipeId) {
+    await _controleMataMataService
+      .DesclassificarEquipe(controleEquipeId)
+      .then((res) => {
+        const equipesAtualizadas = controleMataMata.filter(
+          (equipe) => equipe.id !== controleEquipeId
+        );
+
+        setControleMataMata(equipesAtualizadas);
+      })
+      .catch((res) => {
+        alert(res.response.data);
+      });
+  }
 
   return (
     <div className="admin-page">
-      <div>
+      <div style={{ paddingBottom: "2rem" }}>
         <h1>Operação mata-mata</h1>
       </div>
 
-      {controleMataMata?.map((controleEquipe) => (
-        <>
-          {console.log(controleEquipe)}
-          {controleEquipe.statusValidacao === "Em Progresso" && (
-            <Popconfirm
-              title="Alterar status"
-              description={`Deseja alterar o status para validando"?`}
-              onConfirm={() =>
-                AlterarStatusValidacao(controleEquipe.id, "Validando")
-              }
-            >
-              <div className="listagem-validacao">
-                <h2>{controleEquipe.nome}</h2>
-              </div>
-            </Popconfirm>
-          )}
-        </>
-      ))}
+      <TabelaAdmin
+        data={controleMataMata}
+        columns={colunasTabela}
+        loading={false}
+        pagination={false}
+      />
 
       <Flex
         gap="small"
@@ -102,20 +140,10 @@ export default function OperacaoMataMata() {
               htmlType="submit"
               type="primary"
               onClick={() => {
-                CriaRodadas();
+                prepararNovaRodada();
               }}
             >
-              Criar rodadas
-            </Button>
-
-            <Button
-              htmlType="submit"
-              type="primary"
-              onClick={() => {
-                alert("estudando possibilidades");
-              }}
-            >
-              Criar chaves
+              Preparar nova rodada
             </Button>
           </Flex>
         </div>

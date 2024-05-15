@@ -44,7 +44,7 @@ export default function MataMataValidacaoIndividual() {
       setTimeout(async () => {
         await _controleMataMataService.AlteraStatusValidacaoMataMata({
           id: controleEquipeId,
-          statusValidacao: "Em Progresso",
+          statusValidacao: "Em progresso",
         });
       }, 10000);
     }
