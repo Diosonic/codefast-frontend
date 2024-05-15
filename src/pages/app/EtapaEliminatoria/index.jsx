@@ -53,7 +53,7 @@ export default function EtapaEliminatoria() {
       <div className="team-score">
         <Row>
           {equipesEliminatoria?.map((equipe) => (
-            <Col span={24}>
+            <Col span={24} key={equipe.id}>
               <div className="score">
                 <table>
                   <tbody>
@@ -61,7 +61,7 @@ export default function EtapaEliminatoria() {
                       <td className="team-name">{equipe.equipe.nome}</td>
                       <p>{equipe.statusValidacao}</p>
                       <td>
-                        <TempoIndividual equipe={equipe} />
+                        <TempoIndividual equipe={equipe} key={equipe.id} />
                       </td>
                       <td className="team-points">{equipe.pontuacao}</td>
                     </tr>

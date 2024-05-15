@@ -25,7 +25,6 @@ export default function ValidacaoIndividual() {
   }, [idEquipe]);
 
   async function handleAlteraStatusValidacao(equipe, status) {
-    debugger;
     if (status === "Aprovado") {
       const teamResponse =
         await _controleEliminatoriaService.GetControleEliminatoriaById(
@@ -37,30 +36,31 @@ export default function ValidacaoIndividual() {
         .map(Number);
       const tempoEmMinutos = hours * 60 + minutes + seconds / 60;
 
-
       let pontuacao = 100;
 
       if (tempoEmMinutos <= 10) {
         pontuacao = teamResponse.pontuacao + 200; // Menos de 10 minutos
       } else if (tempoEmMinutos <= 17.5) {
-        pontuacao = 175; // Entre 10 minutos e 17 minutos e 30 segundos
+        pontuacao = teamResponse.pontuacao + 175; // Entre 10 minutos e 17 minutos e 30 segundos
       } else if (tempoEmMinutos <= 25) {
-        pontuacao = 150; // Entre 17 minutos e 30 segundos e 25 minutos
+        pontuacao = teamResponse.pontuacao + 150; // Entre 17 minutos e 30 segundos e 25 minutos
       } else if (tempoEmMinutos <= 32.5) {
-        pontuacao = 125; // Entre 25 minutos e 32 minutos e 30 segundos
+        pontuacao = teamResponse.pontuacao + 125; // Entre 25 minutos e 32 minutos e 30 segundos
       } else if (tempoEmMinutos <= 40) {
-        pontuacao = 100; // Entre 32 minutos e 30 segundos e 40 minutos
+        pontuacao = teamResponse.pontuacao + 100; // Entre 32 minutos e 30 segundos e 40 minutos
       } else if (tempoEmMinutos <= 47.5) {
-        pontuacao = 75; // Entre 40 minutos e 47 minutos e 30 segundos
+        pontuacao = teamResponse.pontuacao + 75; // Entre 40 minutos e 47 minutos e 30 segundos
       } else {
-        pontuacao = 50; // Mais de 47 minutos e 30 segundos
+        pontuacao = teamResponse.pontuacao + 50; // Mais de 47 minutos e 30 segundos
       }
 
+      debugger;
       await _controleEliminatoriaService
         .AlteraStatusValidacao({
           id: equipe.id,
           statusValidacao: status,
           pontuacao: pontuacao,
+          tempo: equipe.tempo,
         })
         .then((res) => {
           navigate(`/admin/torneio/${id}/controles/eliminatoria/validacao`);
