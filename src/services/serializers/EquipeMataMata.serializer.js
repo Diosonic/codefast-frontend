@@ -3,7 +3,7 @@ export default class EquipeMataMataSerializer {
 
   fromJson(json) {
     const sementeRodada = {};
-    // debugger;
+
     Object.assign(
       sementeRodada,
       json.nome && { name: json.nome },

@@ -7,6 +7,7 @@ export default class ControleMataMataSerializer {
 
   fromJson(json) {
     const controleMataMata = {};
+    debugger;
 
     Object.assign(
       controleMataMata,

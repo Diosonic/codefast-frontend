@@ -76,4 +76,28 @@ export default class ControleMataMataService extends CoreApiService {
 
     return data;
   }
+
+  async PrepararEquipeDisputaTerceiroLugar(id) {
+    this.parentEndpoint = "disputar-terceiro-lugar";
+
+    const response = await api.put(
+      `${this.endpoint}/${id}/${this.parentEndpoint}`
+    );
+
+    const data = response.data;
+
+    return data;
+  }
+
+  async PrepararChaveTerceiroLugar(id) {
+    this.parentEndpoint = "preparar-disputa-terceiro-lugar";
+
+    const response = await api.post(
+      `${this.endpoint}/${id}/${this.parentEndpoint}`
+    );
+
+    const data = response.data;
+
+    return data;
+  }
 }

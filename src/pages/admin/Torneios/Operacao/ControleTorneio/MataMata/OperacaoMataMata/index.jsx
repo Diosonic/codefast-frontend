@@ -1,11 +1,10 @@
-import { Flex, Popconfirm } from "antd";
+import { Button, Flex, Popconfirm } from "antd";
 import { React, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import "./styles.scss";
-import { Button } from "antd/es/radio";
 import ControleMataMataService from "../../../../../../../services/controleMataMata.service";
-import { Code, ProfileRemove } from "iconsax-react";
+import { Code, HierarchySquare3, ProfileRemove } from "iconsax-react";
 import TabelaAdmin from "../../../../../../../components/Admin/Tabelas";
 
 export default function OperacaoMataMata() {
@@ -59,6 +58,14 @@ export default function OperacaoMataMata() {
             >
               <ProfileRemove size="24" cursor="pointer" color="#f47373" />
             </Popconfirm>
+
+            <Popconfirm
+              title="Adicionar à disputa pelo terceiro lugar"
+              description={`Deseja adicionar a equipe "${record.nome}"?`}
+              onConfirm={() => prepararEquipeDisputaTerceiroLugar(record.id)}
+            >
+              <HierarchySquare3 size="24" cursor="pointer" color="#7d7626" />
+            </Popconfirm>
           </div>
         </>
       ),
@@ -68,6 +75,17 @@ export default function OperacaoMataMata() {
   async function prepararNovaRodada() {
     await _controleMataMataService
       .PrepararEtapaMataMata(id)
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((res) => {
+        alert(res.response.data);
+      });
+  }
+
+  async function prepararChaveTerceiroLugar() {
+    await _controleMataMataService
+      .PrepararChaveTerceiroLugar(id)
       .then((res) => {
         window.location.reload();
       })
@@ -109,6 +127,15 @@ export default function OperacaoMataMata() {
       });
   }
 
+  async function prepararEquipeDisputaTerceiroLugar(controleEquipeId) {
+    await _controleMataMataService
+      .PrepararEquipeDisputaTerceiroLugar(controleEquipeId)
+      .then((res) => {})
+      .catch((res) => {
+        alert(res.response.data);
+      });
+  }
+
   return (
     <div className="admin-page">
       <div style={{ paddingBottom: "2rem" }}>
@@ -144,6 +171,14 @@ export default function OperacaoMataMata() {
               }}
             >
               Preparar nova rodada
+            </Button>
+
+            <Button
+              onClick={() => {
+                prepararChaveTerceiroLugar();
+              }}
+            >
+              Preparar rodada para 3º lugar
             </Button>
           </Flex>
         </div>

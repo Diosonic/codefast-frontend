@@ -1,7 +1,6 @@
 import { SeedItem, SeedTeam } from "react-brackets";
 
 export default function SeedItemKnockout({ seed }) {
-  debugger;
   return (
     <SeedItem className="seed-item">
       <div className="seed-team">
