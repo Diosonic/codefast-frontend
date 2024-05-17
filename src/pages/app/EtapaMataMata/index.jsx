@@ -19,7 +19,7 @@ export default function EtapaMataMata() {
   const [rodadas, setRodadas] = useState([]);
 
   const _rodadaMataMataService = new RodadaMataMataService();
-console.log(rodadas)
+
   useEffect(() => {
     async function init() {
       const fetchItems = async () => {

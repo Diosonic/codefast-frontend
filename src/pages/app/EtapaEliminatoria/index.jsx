@@ -59,7 +59,7 @@ export default function EtapaEliminatoria() {
                   <tbody>
                     <tr className={checkStatus(equipe.statusValidacao)}>
                       <td className="team-name">{equipe.equipe.nome}</td>
-                      <p>{equipe.statusValidacao}</p>
+                      {/* <p>{equipe.statusValidacao}</p> */}
                       <td>
                         <TempoIndividual equipe={equipe} key={equipe.id} />
                       </td>

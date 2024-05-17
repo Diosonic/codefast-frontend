@@ -2,18 +2,18 @@
   padding-bottom: 60px;
   padding-top: 3rem;
   .team-score {
-    width: 1120px;
     margin: 0 auto;
   }
 
   .score table {
     width: 80%;
     margin: 0 auto;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   .score th,
   .score td {
+    // font-weight: bold;
     text-align: center;
     width: 200px;
     font-size: 20px;
@@ -21,24 +21,25 @@
 
   .score tr {
     display: grid;
-    grid-template-columns: 400px 300px 200px 200px;
-    padding: 10px;
+    justify-items: end;
+    grid-template-columns: 15% 80% 0%;
+    padding: 12px 40px;
     margin-bottom: 10px;
-    border-radius: 4px;
     align-items: center;
     font-weight: 500;
+    min-height: 40px;
 
     .team-name {
       text-align: left;
       font-size: 24px;
       font-weight: 600;
+      font-weight: bold;
       width: 100%;
     }
 
     .team-points {
       width: 100%;
       text-align: right;
-      font-weight: bold;
       font-size: 26px;
     }
   }
@@ -50,13 +51,13 @@
   .approved {
     background: rgb(45, 192, 77);
     font-weight: 600;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    box-shadow: rgb(9 30 66 / 15%) 0px 4px 8px -2px,
+      rgba(9, 30, 66, 0.08) 0px 0px 0px 1pxx;
   }
 
   .declined {
     background: rgb(236, 64, 64);
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    box-shadow: rgb(9 30 66 / 15%) 0px 4px 8px -2px,
       rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     color: white;
   }
@@ -64,14 +65,12 @@
   .validation {
     background: rgb(231, 205, 56);
     color: black;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    box-shadow: rgb(9 30 66 / 15%) 0px 4px 8px -2px,
       rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   }
 
   .in-progress {
     background: white;
-    color: black;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-      rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    color: #272525;
   }
 }
