@@ -30,7 +30,7 @@ export default function ValidacaoEliminatoria() {
               description={`Deseja ir para a validação"?`}
               onConfirm={() => {
                 navigate(
-                  `/admin/torneio/${id}/controles/eliminatoria/validacao/${id}`
+                  `/admin/torneio/${id}/controles/eliminatoria/validacao/${record.equipe.id}`
                 );
               }}
             >
