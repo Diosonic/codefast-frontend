@@ -40,10 +40,19 @@ export default function TempoIndividual({ equipe }) {
       interval = setInterval(() => {
         setTempoLocal((prevTempo) => prevTempo + 1);
       }, 1000);
+    } else if (equipe.statusValidacao === "Em espera") {
+      clearInterval(interval);
+      setTempoLocal(0);
+      alterarStatusValidacao({
+        id: equipe.id,
+        statusValidacao: "Em espera",
+        tempo: formatarTempo(tempoLocal),
+        pontuacao: equipe.pontuacao,
+      });
     }
 
     return () => clearInterval(interval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [equipe.statusValidacao]);
 
   // Função para formatar o tempo em "00:00:00"
