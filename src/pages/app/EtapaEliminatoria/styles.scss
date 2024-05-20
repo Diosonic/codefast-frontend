@@ -49,21 +49,21 @@
   }
 
   .approved {
-    background: rgb(45, 192, 77);
+    background: #2dc04d;
     font-weight: 600;
     box-shadow: rgb(9 30 66 / 15%) 0px 4px 8px -2px,
       rgba(9, 30, 66, 0.08) 0px 0px 0px 1pxx;
   }
 
   .declined {
-    background: rgb(236, 64, 64);
+    background: #ec4040;
     box-shadow: rgb(9 30 66 / 15%) 0px 4px 8px -2px,
       rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
     color: white;
   }
 
   .validation {
-    background: rgb(231, 205, 56);
+    background: #e7cd38;
     color: black;
     box-shadow: rgb(9 30 66 / 15%) 0px 4px 8px -2px,
       rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;

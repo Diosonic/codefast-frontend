@@ -43,7 +43,6 @@ export default function EtapaMataMata() {
   }, []);
 
   const CustomSeed = ({ seed, breakpoint, roundIndex, seedIndex }) => {
-    debugger;
     return (
       <Seed mobileBreakpoint={breakpoint} className="seed">
         <SeedItemKnockout seed={seed} />
@@ -54,14 +53,14 @@ export default function EtapaMataMata() {
   return (
     <>
       <Bracket
-        roundTitleComponent={(title, roundIndex) => {
-          return (
-            <div className="round-title">
-              <h5>{title}</h5>
-            </div>
-          );
-        }}
-        // roundTitleComponent={() => {}}
+        // roundTitleComponent={(title, roundIndex) => {
+        //   return (
+        //     <div className="round-title">
+        //       <h5>{title}</h5>
+        //     </div>
+        //   );
+        // }}
+        roundTitleComponent={() => {}}
         rounds={rodadas}
         renderSeedComponent={CustomSeed}
       />

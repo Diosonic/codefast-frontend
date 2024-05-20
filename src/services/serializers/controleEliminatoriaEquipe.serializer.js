@@ -25,7 +25,6 @@ export default class ControleEliminatoriaEquipeSerializer {
 
   toJson(equipe) {
     const controleEliminatoriaEquipe = {};
-    debugger;
     Object.assign(
       controleEliminatoriaEquipe,
       equipe.id && { id: equipe.id },

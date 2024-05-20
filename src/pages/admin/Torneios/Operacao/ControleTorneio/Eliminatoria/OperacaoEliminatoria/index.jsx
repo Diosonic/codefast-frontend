@@ -41,7 +41,6 @@ export default function OperacaoControleEliminatoria() {
 
   useEffect(() => {
     async function init() {
-      debugger;
       const responseControleEliminatoria =
         await _controleEliminatoriaService.GetAllEquipesCredenciadasEliminatoria(
           id
@@ -60,7 +59,6 @@ export default function OperacaoControleEliminatoria() {
   }, [id]);
 
   async function handleAlteraStatusValidacao(values) {
-    debugger;
     await _controleEliminatoriaService
       .AlteraStatusValidacao({
         id: values.id,
@@ -96,7 +94,7 @@ export default function OperacaoControleEliminatoria() {
       .finalizarEtapaEliminatoria(id)
       .then(() => {
         alert(
-          "Processos: \n 1. Foram criado as 3 rodadas mata-mata. \n 2. Classificação dos 8 primeiros \n 3. Foi criado os controles de mata-mata dos 8 colocados. \n 4. Foram criados as sementes da rodada mata-mata. \n \n Agora você será direcionado para o controle da segunda etapa."
+          "Processos: \n 1. Foram criado as 4 rodadas mata-mata. \n 2. Classificação dos 16 primeiros \n 3. Foi criado os controles de mata-mata dos 16 colocados. \n 4. Foram criados as sementes da rodada mata-mata. \n \n Agora você será direcionado para o controle da segunda etapa."
         );
 
         navigate(`/admin/torneio/${id}/controles/mata-mata`);

@@ -54,7 +54,6 @@ export default function ValidacaoIndividual() {
         pontuacao = teamResponse.pontuacao + 50; // Mais de 47 minutos e 30 segundos
       }
 
-      debugger;
       await _controleEliminatoriaService
         .AlteraStatusValidacao({
           id: equipe.id,

@@ -65,7 +65,6 @@ export default class ControleMataMataService extends CoreApiService {
   }
 
   async DesclassificarEquipe(id) {
-    debugger;
     this.parentEndpoint = "desclassificar-equipe";
 
     const response = await api.put(

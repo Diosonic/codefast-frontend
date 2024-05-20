@@ -7,7 +7,6 @@ export default class SementeRodadaSerializer {
   }
 
   fromJson(json) {
-    debugger;
     const sementeRodada = {};
 
     Object.assign(
