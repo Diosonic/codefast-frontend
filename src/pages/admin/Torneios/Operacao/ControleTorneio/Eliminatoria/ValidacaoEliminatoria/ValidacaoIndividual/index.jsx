@@ -25,12 +25,10 @@ export default function ValidacaoIndividual() {
   }, [idEquipe]);
 
   async function handleAlteraStatusValidacao(equipe, status) {
-    if (status === "Aprovado") {
-      const teamResponse =
-        await _controleEliminatoriaService.GetControleEliminatoriaById(
-          equipe.id
-        );
+    const teamResponse =
+      await _controleEliminatoriaService.GetControleEliminatoriaById(equipe.id);
 
+    if (status === "Aprovado") {
       const [hours, minutes, seconds] = teamResponse.tempo
         .split(":")
         .map(Number);
@@ -38,20 +36,18 @@ export default function ValidacaoIndividual() {
 
       let pontuacao = 100;
 
-      if (tempoEmMinutos <= 10) {
-        pontuacao = teamResponse.pontuacao + 200; // Menos de 10 minutos
-      } else if (tempoEmMinutos <= 17.5) {
-        pontuacao = teamResponse.pontuacao + 175; // Entre 10 minutos e 17 minutos e 30 segundos
+      if (tempoEmMinutos <= 5) {
+        pontuacao = teamResponse.pontuacao + 200; // Menos de 5 minutos
+      } else if (tempoEmMinutos <= 10) {
+        pontuacao = teamResponse.pontuacao + 175; // Entre 5 e 10 minutos
+      } else if (tempoEmMinutos <= 15) {
+        pontuacao = teamResponse.pontuacao + 150; // Entre 10 e 15 minutos
+      } else if (tempoEmMinutos <= 20) {
+        pontuacao = teamResponse.pontuacao + 125; // Entre 15 e 20 minutos
       } else if (tempoEmMinutos <= 25) {
-        pontuacao = teamResponse.pontuacao + 150; // Entre 17 minutos e 30 segundos e 25 minutos
-      } else if (tempoEmMinutos <= 32.5) {
-        pontuacao = teamResponse.pontuacao + 125; // Entre 25 minutos e 32 minutos e 30 segundos
-      } else if (tempoEmMinutos <= 40) {
-        pontuacao = teamResponse.pontuacao + 100; // Entre 32 minutos e 30 segundos e 40 minutos
-      } else if (tempoEmMinutos <= 47.5) {
-        pontuacao = teamResponse.pontuacao + 75; // Entre 40 minutos e 47 minutos e 30 segundos
+        pontuacao = teamResponse.pontuacao + 100; // Entre 20 e 25 minutos
       } else {
-        pontuacao = teamResponse.pontuacao + 50; // Mais de 47 minutos e 30 segundos
+        pontuacao = teamResponse.pontuacao + 50; // Mais de 25 minutos
       }
 
       await _controleEliminatoriaService
@@ -67,10 +63,12 @@ export default function ValidacaoIndividual() {
     }
 
     if (status === "Declinado") {
+      debugger;
       await _controleEliminatoriaService
         .AlteraStatusValidacao({
           id: equipe.id,
           statusValidacao: status,
+          pontuacao: teamResponse.pontuacao + 20,
         })
         .then((res) => {
           navigate(`/admin/torneio/${id}/controles/eliminatoria/validacao`);

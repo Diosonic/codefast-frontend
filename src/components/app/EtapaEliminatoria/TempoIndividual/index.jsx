@@ -32,7 +32,7 @@ export default function TempoIndividual({ equipe }) {
     } else if (equipe.statusValidacao === "Declinado") {
       alterarStatusValidacao({
         id: equipe.id,
-        statusValidacao: "Em progresso",
+        statusValidacao: "Declinado",
         tempo: formatarTempo(tempoLocal),
         pontuacao: equipe.pontuacao,
       });
