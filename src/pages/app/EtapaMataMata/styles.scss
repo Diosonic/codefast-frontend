@@ -23,7 +23,7 @@
       .team-1 {
         justify-content: normal;
         padding: 0.8rem 1.2rem 0.8rem 0.9rem;
-        
+
         .point {
           flex: 0.2;
           opacity: 0.2;
@@ -60,4 +60,10 @@
       }
     }
   }
+}
+
+.timer {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
 }

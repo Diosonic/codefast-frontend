@@ -1,7 +1,6 @@
 import { SeedItem, SeedTeam } from "react-brackets";
 
 export default function SeedItemKnockout({ seed }) {
-  console.log(seed);
   let backgroundColorFirstTeam = null;
   let backgroundColorSecondTeam = null;
 

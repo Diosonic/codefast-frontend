@@ -6,12 +6,15 @@ import "./styles.scss";
 import ControleMataMataService from "../../../../../../../services/controleMataMata.service";
 import { Code, HierarchySquare3, ProfileRemove } from "iconsax-react";
 import TabelaAdmin from "../../../../../../../components/Admin/Tabelas";
+import TorneioService from "../../../../../../../services/torneio.service";
 
 export default function OperacaoMataMata() {
   const { id } = useParams();
   const [controleMataMata, setControleMataMata] = useState([]);
+  const [torneio, setTorneio] = useState();
 
   const _controleMataMataService = new ControleMataMataService();
+  const _torneioService = new TorneioService();
 
   const navigate = useNavigate();
 
@@ -20,12 +23,14 @@ export default function OperacaoMataMata() {
       const controleMataMataService =
         await _controleMataMataService.GetEquipesClassificadasMataMata(id);
 
+      const torneioResponse = await _torneioService.read(id);
       const equipesFiltradas =
         controleMataMataService.controleMataMataEquipes.filter(
           (equipe) => equipe.statusValidacao !== "Validando"
         );
 
       setControleMataMata(equipesFiltradas);
+      setTorneio(torneioResponse);
     }
 
     init();
@@ -136,6 +141,29 @@ export default function OperacaoMataMata() {
       });
   }
 
+  async function AlteraStatusTempo() {
+    setTorneio((prevTorneio) => ({
+      ...prevTorneio,
+      isTempoCorrendo: !prevTorneio.isTempoCorrendo,
+    }));
+
+    await _torneioService
+      .AlteraStatusTempo(id)
+      .then((res) => {})
+      .catch((res) => {
+        alert(res.response.data);
+      });
+  }
+
+  async function ResetarStatusTempo() {
+    await _torneioService
+      .AlteraStatusTempo(id)
+      .then((res) => {})
+      .catch((res) => {
+        alert(res.response.data);
+      });
+  }
+
   return (
     <div className="admin-page">
       <div style={{ paddingBottom: "2rem" }}>
@@ -179,6 +207,16 @@ export default function OperacaoMataMata() {
               }}
             >
               Preparar rodada para 3º lugar
+            </Button>
+
+            <Button
+              onClick={() => {
+                AlteraStatusTempo();
+              }}
+            >
+              {torneio?.isTempoCorrendo
+                ? "Pausar cronometro"
+                : "Rodar cronometro"}
             </Button>
           </Flex>
         </div>

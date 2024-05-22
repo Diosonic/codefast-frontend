@@ -36,18 +36,8 @@ export default function MataMataValidacaoIndividual() {
         navigate(`/admin/torneio/${id}/controles/mata-mata/validacao`);
       })
       .catch((res) => {
-        console.log(res);
         alert(res.response.data);
       });
-
-    if (status === "Declinado") {
-      setTimeout(async () => {
-        await _controleMataMataService.AlteraStatusValidacaoMataMata({
-          id: controleEquipeId,
-          statusValidacao: "Em progresso",
-        });
-      }, 10000);
-    }
   }
 
   return (

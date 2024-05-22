@@ -17,4 +17,16 @@ export default class TorneioService extends CoreApiService {
     const data = { equipes: response.data };
     return this.serializer.fromJson(data);
   }
+
+  async AlteraStatusTempo(id) {
+    this.parentEndpoint = "altera-status-tempo";
+
+    const response = await api.put(
+      `${this.endpoint}/${id}/${this.parentEndpoint}`
+    );
+
+    const data = response.data;
+
+    return data;
+  }
 }
