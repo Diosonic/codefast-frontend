@@ -29,4 +29,16 @@ export default class TorneioService extends CoreApiService {
 
     return data;
   }
+
+  async ResetarStatusTempo(id) {
+    this.parentEndpoint = "resetar-status-tempo";
+
+    const response = await api.put(
+      `${this.endpoint}/${id}/${this.parentEndpoint}`
+    );
+
+    const data = response.data;
+
+    return data;
+  }
 }

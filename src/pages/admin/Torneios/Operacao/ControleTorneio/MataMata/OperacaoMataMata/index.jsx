@@ -12,6 +12,7 @@ export default function OperacaoMataMata() {
   const { id } = useParams();
   const [controleMataMata, setControleMataMata] = useState([]);
   const [torneio, setTorneio] = useState();
+  const [labelBotao, setLabelBotao] = useState("");
 
   const _controleMataMataService = new ControleMataMataService();
   const _torneioService = new TorneioService();
@@ -157,8 +158,13 @@ export default function OperacaoMataMata() {
 
   async function ResetarStatusTempo() {
     await _torneioService
-      .AlteraStatusTempo(id)
-      .then((res) => {})
+      .ResetarStatusTempo(id)
+      .then((res) => {
+        setTorneio((prevTorneio) => ({
+          ...prevTorneio,
+          isTempoCorrendo: false, // Define o status do tempo como pausado
+        }));
+      })
       .catch((res) => {
         alert(res.response.data);
       });
@@ -217,6 +223,16 @@ export default function OperacaoMataMata() {
               {torneio?.isTempoCorrendo
                 ? "Pausar cronometro"
                 : "Rodar cronometro"}
+
+              {labelBotao}
+            </Button>
+
+            <Button
+              onClick={() => {
+                ResetarStatusTempo();
+              }}
+            >
+              Resetar rodada
             </Button>
           </Flex>
         </div>

@@ -14,6 +14,7 @@ export default class TorneioSerializer {
       json.titulo && { titulo: json.titulo },
       json.tempo && { tempo: json.tempo },
       { isTempoCorrendo: json.isTempoCorrendo },
+      { isNovaRodada: json.isNovaRodada },
       json.equipes && {
         equipes: json.equipes.map((item) =>
           this.equipeSerializer.fromJson(item)

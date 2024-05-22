@@ -6,13 +6,14 @@ import { useParams } from "react-router-dom";
 import RodadaMataMataService from "../../../services/rodadaMataMata.service";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import TorneioService from "../../../services/torneio.service";
-import { Button } from "antd";
 
 export default function EtapaMataMata() {
   const { id } = useParams();
   const [rodadas, setRodadas] = useState([]);
   const [tempoCorrendoFlag, setTempoCorrendoFlag] = useState(false);
+  const [novaRodadaFlag, setNovaRodadaFlag] = useState(false);
   const [tempo, setTempo] = useState(0);
+  const [key, setKey] = useState(0);
 
   const _rodadaMataMataService = new RodadaMataMataService();
   const _torneioService = new TorneioService();
@@ -34,6 +35,7 @@ export default function EtapaMataMata() {
           const torneioResponse = await _torneioService.read(id);
 
           setTempoCorrendoFlag(torneioResponse?.isTempoCorrendo);
+          setNovaRodadaFlag(torneioResponse?.isNovaRodada);
 
           const tempoConvertido = convertTimestampToSeconds(
             torneioResponse.tempo
@@ -64,12 +66,21 @@ export default function EtapaMataMata() {
   };
 
   const children = ({ remainingTime }) => {
-    console.log(remainingTime);
+    if (novaRodadaFlag) {
+      setKey((prevKey) => prevKey + 1);
+    }
 
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
 
-    return `${minutes}:${seconds}`;
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    const formattedSeconds = seconds.toString().padStart(2, "0");
+
+    return (
+      <span className="timer-span">
+        {formattedMinutes}:{formattedSeconds}
+      </span>
+    );
   };
 
   return (
@@ -88,6 +99,7 @@ export default function EtapaMataMata() {
 
       <div className="timer">
         <CountdownCircleTimer
+          key={key} // Usando a chave para forçar a remontagem do componente quando é atualizada
           isPlaying={tempoCorrendoFlag}
           duration={tempo}
           colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
