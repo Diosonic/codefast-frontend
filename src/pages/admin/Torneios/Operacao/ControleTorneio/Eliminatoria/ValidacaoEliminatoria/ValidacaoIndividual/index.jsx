@@ -34,20 +34,20 @@ export default function ValidacaoIndividual() {
         .map(Number);
       const tempoEmMinutos = hours * 60 + minutes + seconds / 60;
 
-      let pontuacao = 100;
+      let pontuacao;
 
       if (tempoEmMinutos <= 5) {
-        pontuacao = teamResponse.pontuacao + 200; // Menos de 5 minutos
+        pontuacao = teamResponse.pontuacao + 200; // Até 5 minutos
       } else if (tempoEmMinutos <= 10) {
-        pontuacao = teamResponse.pontuacao + 175; // Entre 5 e 10 minutos
+        pontuacao = teamResponse.pontuacao + 175; // Entre 6 e 10 minutos
       } else if (tempoEmMinutos <= 15) {
-        pontuacao = teamResponse.pontuacao + 150; // Entre 10 e 15 minutos
+        pontuacao = teamResponse.pontuacao + 150; // Entre 11 e 15 minutos
       } else if (tempoEmMinutos <= 20) {
-        pontuacao = teamResponse.pontuacao + 125; // Entre 15 e 20 minutos
+        pontuacao = teamResponse.pontuacao + 125; // Entre 16 e 20 minutos
       } else if (tempoEmMinutos <= 25) {
-        pontuacao = teamResponse.pontuacao + 100; // Entre 20 e 25 minutos
+        pontuacao = teamResponse.pontuacao + 100; // Entre 21 e 25 minutos
       } else {
-        pontuacao = teamResponse.pontuacao + 50; // Mais de 25 minutos
+        pontuacao = teamResponse.pontuacao + 50; // Acima de 25 minutos
       }
 
       await _controleEliminatoriaService
