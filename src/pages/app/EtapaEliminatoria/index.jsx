@@ -43,15 +43,25 @@ export default function EtapaEliminatoria() {
 
     const scrollInterval = setInterval(() => {
       if (scrollDiv) {
-        if (scrollDiv.scrollTop + scrollDiv.clientHeight >= scrollDiv.scrollHeight) {
-          scrollDirection = -1;
+        if (
+          scrollDiv.scrollTop + scrollDiv.clientHeight >=
+          scrollDiv.scrollHeight
+        ) {
+          // Chegou ao rodapé, pausa por 2 segundos e depois inverte a direção
+          setTimeout(() => {
+            scrollDirection = -1;
+          }, 2000);
         } else if (scrollDiv.scrollTop <= 0) {
-          scrollDirection = 1;
+          // Chegou ao topo, pausa por 2 segundos e depois inverte a direção
+          setTimeout(() => {
+            scrollDirection = 1;
+          }, 2000);
         }
 
-        scrollDiv.scrollTop += scrollDirection * 2; // Adjust the value for scroll speed
+        // Rola normalmente se não estiver no topo ou no rodapé
+        scrollDiv.scrollTop += scrollDirection * 2; // Ajuste o valor para a velocidade de rolagem
       }
-    }, 50); // Adjust the interval for smoother or faster scroll
+    }, 50); // Ajuste o intervalo para uma rolagem mais suave ou mais rápida
 
     return () => clearInterval(scrollInterval);
   }, []);
