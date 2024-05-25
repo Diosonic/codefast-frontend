@@ -3,6 +3,10 @@
   padding-top: 3rem;
   .team-score {
     margin: 0 auto;
+    max-height: 80vh; /* Defina a altura máxima do contêiner */
+    overflow-y: auto; /* Adiciona a barra de rolagem vertical */
+    scroll-behavior: smooth; /* Habilita a rolagem suave */
+    position: relative; /* Necessário para posicionamento */
   }
 
   .score table {
@@ -73,4 +77,13 @@
     background: white;
     color: #272525;
   }
+}
+
+.team-score::-webkit-scrollbar {
+  display: none;
+}
+
+/* Para navegadores que não usam o Webkit (por exemplo, Firefox) */
+.team-score {
+  scrollbar-width: none;
 }

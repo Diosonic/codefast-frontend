@@ -23,15 +23,15 @@ export default function AdminMataMata() {
           </NavLink>
         </Col>
 
-        <Col span={8}>
-          <NavLink
+        {/* <Col span={8}> */}
+          {/* <NavLink
             to={`/admin/torneio/${id}/controles/mata-mata/operacao`}
             className="menu-card"
           >
             <NoteText size="42" color="#555555" />
             <label>Vou operar em sala de aula</label>
-          </NavLink>
-        </Col>
+          </NavLink> */}
+        {/* </Col> */}
 
         <Col span={8}>
           <NavLink to={`/admin/torneio/${id}/controles`} className="menu-card">

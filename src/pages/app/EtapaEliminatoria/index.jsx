@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Col, Row } from "antd";
 import { useParams } from "react-router-dom";
 import ControleEliminatoriaService from "../../../services/controleEliminatoria.service";
@@ -9,6 +9,7 @@ export default function EtapaEliminatoria() {
   const { id } = useParams();
   const [equipesEliminatoria, setEquipesEliminatoria] = useState([]);
   const _controleEliminatoriaService = new ControleEliminatoriaService();
+  const teamScoreRef = useRef(null);
 
   useEffect(() => {
     async function init() {
@@ -36,6 +37,25 @@ export default function EtapaEliminatoria() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const scrollDiv = teamScoreRef.current;
+    let scrollDirection = 1;
+
+    const scrollInterval = setInterval(() => {
+      if (scrollDiv) {
+        if (scrollDiv.scrollTop + scrollDiv.clientHeight >= scrollDiv.scrollHeight) {
+          scrollDirection = -1;
+        } else if (scrollDiv.scrollTop <= 0) {
+          scrollDirection = 1;
+        }
+
+        scrollDiv.scrollTop += scrollDirection * 2; // Adjust the value for scroll speed
+      }
+    }, 50); // Adjust the interval for smoother or faster scroll
+
+    return () => clearInterval(scrollInterval);
+  }, []);
+
   function checkStatus(status) {
     if (status === "Validando") {
       return "validation";
@@ -50,7 +70,7 @@ export default function EtapaEliminatoria() {
 
   return (
     <div className="team-rating-container">
-      <div className="team-score">
+      <div className="team-score" ref={teamScoreRef}>
         <Row>
           {equipesEliminatoria?.map((equipe) => (
             <Col span={24} key={equipe.id}>
@@ -59,7 +79,6 @@ export default function EtapaEliminatoria() {
                   <tbody>
                     <tr className={checkStatus(equipe.statusValidacao)}>
                       <td className="team-name">{equipe.equipe.nome}</td>
-                      {/* <p>{equipe.statusValidacao}</p> */}
                       <td>
                         <TempoIndividual equipe={equipe} key={equipe.id} />
                       </td>

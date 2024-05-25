@@ -23,7 +23,7 @@ export default function ControleEliminatoria() {
           </NavLink>
         </Col>
 
-        <Col span={8}>
+        {/* <Col span={8}>
           <NavLink
             to={`/admin/torneio/${id}/controles/eliminatoria/operacao`}
             className="menu-card"
@@ -31,7 +31,7 @@ export default function ControleEliminatoria() {
             <NoteText size="42" color="#555555" />
             <label>Vou operar em sala de aula</label>
           </NavLink>
-        </Col>
+        </Col> */}
 
         <Col span={8}>
           <NavLink to={`/admin/torneio/${id}/controles`} className="menu-card">

@@ -84,7 +84,7 @@ export default function EtapaMataMata() {
   };
 
   return (
-    <div style={{ paddingTop: "2rem" }}>
+    <div className="mata-mata-container" style={{ paddingTop: "2rem" }}>
       <Bracket
         roundTitleComponent={(title, roundIndex) => {
           return (

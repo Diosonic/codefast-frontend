@@ -72,3 +72,23 @@
     font-weight: 500;
   }
 }
+
+.mata-mata-container {
+  padding-top: 2rem;
+  overflow-y: auto;
+  scrollbar-width: thin; // Define a largura da barra de rolagem
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; // Define a cor da barra de rolagem e do fundo
+}
+
+.mata-mata-container::-webkit-scrollbar {
+  width: 5px; // Define a largura da barra de rolagem para navegadores baseados em Webkit (Chrome, Safari)
+}
+
+.mata-mata-container::-webkit-scrollbar-thumb {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.2
+  ); // Define a cor do indicador da barra de rolagem
+}
